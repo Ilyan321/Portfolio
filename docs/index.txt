@@ -1,0 +1,18 @@
+1:"$Sreact.fragment"
+2:I[4584,[],""]
+3:I[3566,[],""]
+4:I[3097,["345","static/chunks/app/not-found-8503209a19b893fe.js"],""]
+5:I[807,["135","static/chunks/135-fe5bbf60b1b1acea.js","974","static/chunks/app/page-db84af21419a497f.js"],"HomeView"]
+6:I[7173,[],"OutletBoundary"]
+8:I[8560,[],"AsyncMetadataOutlet"]
+a:I[7173,[],"ViewportBoundary"]
+c:I[7173,[],"MetadataBoundary"]
+d:"$Sreact.suspense"
+f:I[2852,[],""]
+:HL["/Portfolio/_next/static/css/181736c2c9284ad3.css","style"]
+0:{"P":null,"b":"WpTQ6IIMMqQaXvVDTSJD6","p":"/Portfolio","c":["",""],"i":false,"f":[[["",{"children":["__PAGE__",{}]},"$undefined","$undefined",true],["",["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/Portfolio/_next/static/css/181736c2c9284ad3.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]],["$","html",null,{"lang":"en","className":"dark","children":["$","body",null,{"className":"bg-[#08090A] text-[#F3F4F6] min-h-screen font-sans antialiased","children":["$","$L2",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L3",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"h-screen w-screen flex flex-col items-center justify-center bg-[#1A1918] text-[#F3EFEA] font-mono-code p-4","children":[["$","h2",null,{"className":"text-3xl font-bold mb-2","children":"404 - Page Not Found"}],["$","p",null,{"className":"text-sm text-[#A39E95] mb-4","children":"The requested system resource does not exist."}],["$","$L4",null,{"href":"/","className":"px-4 py-2 rounded bg-emerald-800 text-white text-xs hover:bg-emerald-700","children":"Return Home →"}]]}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]}]}]]}],{"children":["__PAGE__",["$","$1","c",{"children":[["$","$L5",null,{}],null,["$","$L6",null,{"children":["$L7",["$","$L8",null,{"promise":"$@9"}]]}]]}],{},null,false]},null,false],["$","$1","h",{"children":[null,[["$","$La",null,{"children":"$Lb"}],null],["$","$Lc",null,{"children":["$","div",null,{"hidden":true,"children":["$","$d",null,{"fallback":null,"children":"$Le"}]}]}]]}],false]],"m":"$undefined","G":["$f",[]],"s":false,"S":true}
+b:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
+7:null
+10:I[3440,[],"IconMark"]
+9:{"metadata":[["$","title","0",{"children":"Ilyan Khan — Systems & AI Engineer"}],["$","meta","1",{"name":"description","content":"Production developer portfolio & Generative AI systems architecture showcase for Ilyan Khan."}],["$","link","2",{"rel":"icon","href":"/favicon.svg"}],["$","$L10","3",{}]],"error":null,"digest":"$undefined"}
+e:"$9:metadata"
