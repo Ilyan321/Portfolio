@@ -289,7 +289,7 @@ export function HomeView() {
         </div>
 
         {/* =================================================================== */}
-        {/* 3. BOTTOM BENTO ROW (WITH DEDICATED PHILOSOPHY DRAWER TRIGGER)      */}
+        {/* 3. BOTTOM BENTO ROW                                                 */}
         {/* =================================================================== */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-3 sm:gap-4 shrink-0">
           
@@ -408,9 +408,11 @@ export function HomeView() {
               transition={{ type: 'spring', stiffness: 300, damping: 30 }}
               className="relative w-full max-w-2xl sand-card p-6 sm:p-8 space-y-5 shadow-2xl z-10 border border-[#1A1918]/20 max-h-[90vh] overflow-y-auto"
             >
+              {/* Standard Top-Right Close Button */}
               <button
                 onClick={() => setShowPhilosophyModal(false)}
                 className="absolute top-5 right-5 p-2 text-[#78746D] hover:text-[#1A1918] rounded-full bg-[rgba(26,25,24,0.06)] hover:bg-[rgba(26,25,24,0.12)] transition-colors cursor-pointer"
+                aria-label="Close Modal"
               >
                 <XIcon size={18} />
               </button>
@@ -458,8 +460,8 @@ export function HomeView() {
                 </div>
               </div>
 
-              {/* Footer Links */}
-              <div className="flex items-center justify-between pt-3 border-t border-[rgba(26,25,24,0.12)]">
+              {/* Footer Link (Clean, consistent with other modals) */}
+              <div className="pt-3 border-t border-[rgba(26,25,24,0.12)]">
                 <a
                   href="https://github.com/Ilyan321"
                   target="_blank"
@@ -469,12 +471,6 @@ export function HomeView() {
                   <GithubIcon size={13} />
                   <span>Inspect All Repositories on GitHub &nearr;</span>
                 </a>
-                <button
-                  onClick={() => setShowPhilosophyModal(false)}
-                  className="text-xs font-mono-code text-[#78746D] hover:text-[#1A1918] cursor-pointer"
-                >
-                  Close
-                </button>
               </div>
             </motion.div>
           </div>
