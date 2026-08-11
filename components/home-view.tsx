@@ -334,7 +334,7 @@ export function HomeView() {
             {/* Clean Section 1: Projects */}
             <div className="space-y-1 py-1">
               <span className="text-[10px] font-mono-code uppercase tracking-wider text-[#78746D] font-medium block">
-                Systems &bull; AI
+                Projects
               </span>
 
               <div className="divide-y divide-[rgba(26,25,24,0.08)]">
