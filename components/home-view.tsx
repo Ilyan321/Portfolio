@@ -316,10 +316,10 @@ export function HomeView() {
             <div className="flex items-center justify-between pb-2 border-b border-[rgba(26,25,24,0.12)]">
               <div>
                 <span className="text-[10px] font-mono-code uppercase tracking-wider text-[#78746D] block">
-                  SELECTED WORK
+                  Achievements
                 </span>
                 <h3 className="font-serif-display text-xl text-[#1A1918] font-normal tracking-tight">
-                  Projects &amp; Credentials
+                  Projects &amp; Certificates
                 </h3>
               </div>
               <button
@@ -580,10 +580,10 @@ export function HomeView() {
 
               <div>
                 <span className="text-[10px] font-mono-code uppercase tracking-wider text-[#78746D] font-medium">
-                  PORTFOLIO DIRECTORY
+                  ACHIEVEMENTS DIRECTORY
                 </span>
                 <h2 className="font-serif-display text-2xl sm:text-3xl text-[#1A1918] font-normal tracking-tight">
-                  Projects &amp; Credentials
+                  Projects &amp; Certificates
                 </h2>
                 <p className="text-xs font-sans-clean text-[#78746D] mt-0.5">
                   Select any project or certificate to inspect full architectural details &amp; credentials.
