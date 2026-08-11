@@ -157,15 +157,15 @@ export function HomeView() {
         </header>
 
         {/* =================================================================== */}
-        {/* 2. MAIN BENTO GRID - TOP ROW (CENTERED PORTRAIT)                    */}
+        {/* 2. MAIN BENTO GRID - TOP ROW (AUTHENTIC PERSONAL VOICE)             */}
         {/* =================================================================== */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-3 sm:gap-4 flex-1 min-h-0 py-1.5 sm:py-2">
           
-          {/* Top-Left Card: 01 / CREDENTIALS */}
+          {/* Top-Left Card: 01 / BUILDER PROFILE */}
           <div className="lg:col-span-5 sand-card p-4 sm:p-6 flex flex-col justify-between relative overflow-hidden h-full">
             <div className="flex items-start justify-between">
               <span className="text-[10px] font-mono-code uppercase tracking-wider text-[#78746D] font-medium">
-                01 / CREDENTIALS
+                01 / ABOUT ME
               </span>
               
               {/* Abstract 4-Point Star Geometric Vector */}
@@ -184,24 +184,24 @@ export function HomeView() {
               </svg>
             </div>
 
-            {/* Authentic Engineering Headline */}
+            {/* Authentic, Human-Authored Heading & Bio */}
             <div className="space-y-2 my-auto py-1">
               <h1 className="font-serif-display text-2xl sm:text-3xl lg:text-[2.25rem] leading-[1.12] text-[#1A1918] tracking-tight">
-                Engineering <span className="italic font-normal">applied AI systems</span> &amp; reliable software.
+                I build AI that <span className="italic font-normal">actually works</span> in the real world.
               </h1>
               <p className="text-[11px] sm:text-xs font-sans-clean text-[#1A1918] leading-relaxed line-clamp-3">
-                2nd Year CSE student at QUEST Nawabshah with a <strong className="font-semibold text-black">3.10 CGPA</strong> &amp; 4 software internships (IntelliVerse, Arch Tech, Coretech, CodeAlpha).
+                2nd-year Systems Engineering student at QUEST Nawabshah (3.10 CGPA). Whether it&apos;s fine-tuning LLaMA-3 models with LoRA, building AST security firewalls, or shipping production web apps across 4 internships, I care about code that is fast, safe, and useful.
               </p>
             </div>
 
             {/* Bottom Row: Location & Academics Action */}
             <div className="flex items-center justify-between pt-1.5 border-t border-[rgba(26,25,24,0.12)] text-[10px] sm:text-[11px] font-mono-code text-[#78746D]">
-              <span>QUEST Nawabshah, Sindh</span>
+              <span>QUEST Nawabshah, Pakistan</span>
               <button
                 onClick={() => setShowAboutModal(true)}
                 className="text-[#1A1918] font-semibold hover:underline cursor-pointer"
               >
-                Academics &rarr;
+                My Transcript &amp; Internships &rarr;
               </button>
             </div>
           </div>
@@ -288,28 +288,31 @@ export function HomeView() {
         </div>
 
         {/* =================================================================== */}
-        {/* 3. BOTTOM BENTO ROW                                                 */}
+        {/* 3. BOTTOM BENTO ROW (GENUINE PHILOSOPHY & PRINCIPLES)               */}
         {/* =================================================================== */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-3 sm:gap-4 shrink-0">
           
-          {/* Philosophy Card (Bottom-Left, 5 cols) */}
+          {/* Philosophy Card: Genuine Builder Principles */}
           <div className="md:col-span-5 sand-card p-3.5 sm:p-4 flex flex-col justify-between space-y-1.5">
             <div className="space-y-1">
-              <span className="text-[10px] font-mono-code uppercase tracking-wider text-[#78746D] font-medium">
-                02 / PHILOSOPHY
-              </span>
+              <div className="flex items-center justify-between">
+                <span className="text-[10px] font-mono-code uppercase tracking-wider text-[#78746D] font-medium">
+                  02 / HOW I THINK
+                </span>
+                <span className="text-[10px] font-mono-code text-[#78746D]">NO HYPE</span>
+              </div>
               <p className="text-[11px] sm:text-xs font-sans-clean text-[#1A1918] leading-relaxed line-clamp-2">
-                Specialized in fine-tuning LLaMA-3 models with LoRA, architecting source-attributed FAISS vector RAG, and crafting modern web platforms.
+                I prioritize deterministic safety and source truth over empty AI hype. If an LLM generates SQL, an AST firewall must verify it. If it quotes knowledge, FAISS must cite chapter and paragraph.
               </p>
             </div>
 
             <div className="flex items-center justify-between pt-1.5 border-t border-[rgba(26,25,24,0.12)] text-[10px] sm:text-[11px] font-mono-code text-[#78746D]">
-              <span>Generative AI &bull; Systems</span>
+              <span>Ground Truth &bull; Fast Systems</span>
               <button
                 onClick={() => setSelectedProject(FEATURED_PROJECTS[0])}
                 className="text-[#1A1918] font-semibold hover:underline cursor-pointer"
               >
-                View Systems &rarr;
+                Inspect Code &rarr;
               </button>
             </div>
           </div>
