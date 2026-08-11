@@ -315,8 +315,8 @@ export function HomeView() {
             {/* Header */}
             <div className="flex items-center justify-between pb-2 border-b border-[rgba(26,25,24,0.12)]">
               <div>
-                <span className="text-[10px] font-mono-code uppercase tracking-wider text-[#78746D] block">
-                  Achievements
+                <span className="text-[10px] font-mono-code uppercase tracking-wider text-[#78746D] font-medium block">
+                  05 / ACHIEVEMENTS
                 </span>
                 <h3 className="font-serif-display text-xl text-[#1A1918] font-normal tracking-tight">
                   Projects &amp; Certificates
