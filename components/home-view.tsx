@@ -118,6 +118,7 @@ export function HomeView() {
   const [showContactModal, setShowContactModal] = React.useState<boolean>(false);
   const [showAboutModal, setShowAboutModal] = React.useState<boolean>(false);
   const [showPhilosophyModal, setShowPhilosophyModal] = React.useState<boolean>(false);
+  const [showNetworkModal, setShowNetworkModal] = React.useState<boolean>(false);
   const [activePreviewIndex, setActivePreviewIndex] = React.useState<number>(0);
 
   return (
@@ -289,7 +290,7 @@ export function HomeView() {
         </div>
 
         {/* =================================================================== */}
-        {/* 3. BOTTOM BENTO ROW (CLEAN ARROW ICONS & POLISHED NETWORK SECTION)  */}
+        {/* 3. BOTTOM BENTO ROW (WITH SECTION 04 WARM-SAND MODAL TRIGGER)        */}
         {/* =================================================================== */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-3 sm:gap-4 shrink-0">
           
@@ -343,55 +344,174 @@ export function HomeView() {
             </div>
           </div>
 
-          {/* Social Links Pill (Bottom-Right, 3 cols - Clean Arrow Glyphs) */}
-          <div className="md:col-span-3 sand-card p-3.5 sm:p-4 flex flex-col justify-between">
-            <span className="text-[10px] font-mono-code uppercase tracking-wider text-[#78746D] font-medium">
-              04 / NETWORK
-            </span>
+          {/* Social Links Pill (Bottom-Right, 3 cols - Warm Sand Card with Modal Trigger) */}
+          <div
+            onClick={() => setShowNetworkModal(true)}
+            className="md:col-span-3 sand-card p-3.5 sm:p-4 flex flex-col justify-between cursor-pointer hover:bg-[#DDD4C5] transition-all group"
+          >
+            <div className="flex items-center justify-between">
+              <span className="text-[10px] font-mono-code uppercase tracking-wider text-[#78746D] font-medium">
+                04 / NETWORK
+              </span>
+              <span className="text-xs font-mono-code text-[#78746D] group-hover:text-[#1A1918] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all">
+                ↗
+              </span>
+            </div>
 
             <div className="flex flex-col gap-1 py-1">
               <a
                 href="https://github.com/Ilyan321"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-[11px] sm:text-xs font-sans-clean font-semibold tracking-wider text-[#1A1918] hover:text-emerald-800 transition-colors uppercase flex items-center justify-between group"
+                onClick={(e) => e.stopPropagation()}
+                className="text-[11px] sm:text-xs font-sans-clean font-semibold tracking-wider text-[#1A1918] hover:text-emerald-800 transition-colors uppercase flex items-center justify-between"
               >
                 <span>GITHUB</span>
-                <span className="text-xs font-mono-code text-[#78746D] group-hover:text-[#1A1918] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all">
-                  ↗
-                </span>
+                <span className="text-xs font-mono-code text-[#78746D]">↗</span>
               </a>
               <a
                 href="https://linkedin.com/in/ilyan-khan-480341359"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-[11px] sm:text-xs font-sans-clean font-semibold tracking-wider text-[#1A1918] hover:text-emerald-800 transition-colors uppercase flex items-center justify-between group"
+                onClick={(e) => e.stopPropagation()}
+                className="text-[11px] sm:text-xs font-sans-clean font-semibold tracking-wider text-[#1A1918] hover:text-emerald-800 transition-colors uppercase flex items-center justify-between"
               >
                 <span>LINKEDIN</span>
-                <span className="text-xs font-mono-code text-[#78746D] group-hover:text-[#1A1918] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all">
-                  ↗
-                </span>
+                <span className="text-xs font-mono-code text-[#78746D]">↗</span>
               </a>
               <a
                 href="/CV.pdf"
                 download
-                className="text-[11px] sm:text-xs font-sans-clean font-semibold tracking-wider text-[#1A1918] hover:text-emerald-800 transition-colors uppercase flex items-center justify-between group"
+                onClick={(e) => e.stopPropagation()}
+                className="text-[11px] sm:text-xs font-sans-clean font-semibold tracking-wider text-[#1A1918] hover:text-emerald-800 transition-colors uppercase flex items-center justify-between"
               >
                 <span>RESUME (PDF)</span>
-                <span className="text-xs font-mono-code text-[#78746D] group-hover:text-[#1A1918] group-hover:translate-y-0.5 transition-all">
-                  ↓
-                </span>
+                <span className="text-xs font-mono-code text-[#78746D]">↓</span>
               </a>
             </div>
 
-            <div className="text-[9px] font-mono-code text-[#78746D] pt-1 border-t border-[rgba(26,25,24,0.12)]">
-              &copy; 2026 ILYAN KHAN
+            <div className="text-[9px] font-mono-code text-[#78746D] pt-1 border-t border-[rgba(26,25,24,0.12)] flex items-center justify-between">
+              <span>&copy; 2026 ILYAN KHAN</span>
+              <span className="text-[10px] font-sans-clean font-semibold text-[#1A1918] group-hover:underline">
+                View All &rarr;
+              </span>
             </div>
           </div>
 
         </div>
 
       </div>
+
+      {/* =================================================================== */}
+      {/* ✦ SECTION 04 / NETWORK MODAL (WARM SAND / LIGHT THEME)              */}
+      {/* =================================================================== */}
+      <AnimatePresence>
+        {showNetworkModal && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setShowNetworkModal(false)}
+              className="fixed inset-0 bg-[#1A1918]/85 backdrop-blur-sm"
+            />
+
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 16 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 16 }}
+              transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+              className="relative w-full max-w-md sand-card p-6 sm:p-8 space-y-5 shadow-2xl z-10 border border-[#1A1918]/20 max-h-[90vh] overflow-y-auto"
+            >
+              {/* Top-Right Close Button */}
+              <button
+                onClick={() => setShowNetworkModal(false)}
+                className="absolute top-5 right-5 p-2 text-[#78746D] hover:text-[#1A1918] rounded-full bg-[rgba(26,25,24,0.06)] hover:bg-[rgba(26,25,24,0.12)] transition-colors cursor-pointer"
+                aria-label="Close Network Modal"
+              >
+                <XIcon size={18} />
+              </button>
+
+              <div className="space-y-1">
+                <span className="text-[10px] font-mono-code uppercase tracking-wider text-[#78746D] font-medium">
+                  04 / GLOBAL NETWORK
+                </span>
+                <h2 className="font-serif-display text-2xl sm:text-3xl text-[#1A1918] font-normal tracking-tight">
+                  Find me online.
+                </h2>
+                <p className="text-xs font-sans-clean text-[#78746D]">
+                  Open-source code, research models &amp; professional profiles.
+                </p>
+              </div>
+
+              {/* Interactive Network Links (Warm Sand / Clean Editorial) */}
+              <div className="space-y-2.5 font-mono-code text-xs">
+                <a
+                  href="https://github.com/Ilyan321"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-between p-3.5 rounded-xl bg-[#DFD5C6] border border-[rgba(26,25,24,0.1)] text-[#1A1918] hover:border-[#1A1918] hover:bg-[#D5CBB9] transition-all group"
+                >
+                  <div className="flex items-center gap-2.5">
+                    <GithubIcon size={15} />
+                    <span className="font-sans-clean font-semibold text-xs">GitHub Profile</span>
+                  </div>
+                  <span className="text-[11px] text-[#78746D] group-hover:text-[#1A1918] flex items-center gap-1">
+                    <span>@Ilyan321</span>
+                    <span>↗</span>
+                  </span>
+                </a>
+
+                <a
+                  href="https://linkedin.com/in/ilyan-khan-480341359"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-between p-3.5 rounded-xl bg-[#DFD5C6] border border-[rgba(26,25,24,0.1)] text-[#1A1918] hover:border-[#1A1918] hover:bg-[#D5CBB9] transition-all group"
+                >
+                  <div className="flex items-center gap-2.5">
+                    <LinkedinIcon size={15} />
+                    <span className="font-sans-clean font-semibold text-xs">LinkedIn Network</span>
+                  </div>
+                  <span className="text-[11px] text-[#78746D] group-hover:text-[#1A1918] flex items-center gap-1">
+                    <span>Connect</span>
+                    <span>↗</span>
+                  </span>
+                </a>
+
+                <a
+                  href="https://huggingface.co/Ilyankhan69"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-between p-3.5 rounded-xl bg-[#DFD5C6] border border-[rgba(26,25,24,0.1)] text-[#1A1918] hover:border-[#1A1918] hover:bg-[#D5CBB9] transition-all group"
+                >
+                  <div className="flex items-center gap-2.5">
+                    <span className="text-base leading-none">🤗</span>
+                    <span className="font-sans-clean font-semibold text-xs">Hugging Face Hub</span>
+                  </div>
+                  <span className="text-[11px] text-[#78746D] group-hover:text-[#1A1918] flex items-center gap-1">
+                    <span>@Ilyankhan69</span>
+                    <span>↗</span>
+                  </span>
+                </a>
+
+                <a
+                  href="/CV.pdf"
+                  download
+                  className="flex items-center justify-between p-3.5 rounded-xl bg-[#1A1918] text-[#F3EFEA] hover:bg-black transition-all group"
+                >
+                  <div className="flex items-center gap-2.5">
+                    <FileTextIcon size={15} />
+                    <span className="font-sans-clean font-semibold text-xs">Download Resume (PDF)</span>
+                  </div>
+                  <span className="text-xs text-[#DFD5C6] group-hover:translate-y-0.5 transition-transform">
+                    ↓
+                  </span>
+                </a>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
 
       {/* =================================================================== */}
       {/* ✦ HOW I BUILD & PHILOSOPHY DRAWER / MODAL ✦                         */}
