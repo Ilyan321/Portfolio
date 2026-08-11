@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital,wght@0,400;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+@import "tailwindcss";
+
+:root {
+  --bg-canvas: #1A1918;
+  --bg-frame: #262523;
+  --bg-card: #E5DDD0;
+  --bg-card-hover: #DFD5C6;
+  --bg-card-dark: #2C2C2A;
+  --bg-card-dark-hover: #363633;
+  
+  --text-dark: #1A1918;
+  --text-light: #F3EFEA;
+  --text-muted: #78746D;
+  --text-muted-light: #A39E95;
+  
+  --border-subtle: rgba(26, 25, 24, 0.12);
+  --border-dark-subtle: rgba(243, 239, 234, 0.12);
+  
+  --accent-signal: #C55A38;
+}
+
+@layer base {
+  body {
+    background-color: var(--bg-canvas);
+    color: var(--text-dark);
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+.font-serif-display {
+  font-family: 'Instrument Serif', Georgia, serif;
+}
+
+.font-sans-clean {
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+}
+
+.font-mono-code {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* Warm Sand Card Utilities */
+.sand-card {
+  background-color: var(--bg-card);
+  color: var(--text-dark);
+  border-radius: 1.75rem;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.sand-card-dark {
+  background-color: var(--bg-card-dark);
+  color: var(--text-light);
+  border-radius: 1.75rem;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Custom Editorial Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-canvas);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--bg-card);
+  border-radius: 3px;
+}

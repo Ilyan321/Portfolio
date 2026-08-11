@@ -1,0 +1,693 @@
+'use client';
+
+import * as React from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import {
+  ExternalLinkIcon,
+  GithubIcon,
+  LinkedinIcon,
+  FileTextIcon,
+  XIcon,
+} from './ui/icons';
+
+interface ProjectItem {
+  id: string;
+  name: string;
+  subtitle: string;
+  tag: string;
+  grade: string;
+  category: string;
+  elevatorPitch: string;
+  challenge: string;
+  architecture: string[];
+  techStack: string[];
+  githubUrl: string;
+  demoUrl?: string;
+  huggingFaceUrl?: string;
+  highlights: { label: string; value: string }[];
+}
+
+// Exactly 3 Top Flagship Projects
+const FEATURED_PROJECTS: ProjectItem[] = [
+  {
+    id: 'sql-agent',
+    name: 'Schema-Aware SQL Agent',
+    subtitle: 'LoRA Fine-Tuned LLaMA-3 + AST Firewall',
+    tag: 'GenAI & Security',
+    grade: 'Grade 9.5 / 10',
+    category: 'LLM Fine-Tuning & AST Security',
+    elevatorPitch:
+      'A production-grade NLP-to-SQL autonomous pipeline powered by a LoRA fine-tuned LLaMA-3-8B model trained on the Yale Spider benchmark, shielded by a multi-layer deterministic Python AST security firewall that blocks destructive mutations (DROP/DELETE) and prevents schema leakage.',
+    challenge:
+      'Standard LLM text-to-SQL solutions hallucinate on multi-table joins and introduce severe database mutation vectors.',
+    architecture: [
+      'LoRA 4-bit Quantized Fine-Tuning on LLaMA-3-8B utilizing Unsloth and TRL on the Yale Spider benchmark.',
+      'Deterministic Python AST Security Firewall ensuring 100% read-only execution.',
+      'Dynamic Schema Extraction Layer injecting table structures and foreign keys into context prompts.',
+      'Public model weights published on Hugging Face Model Hub.',
+    ],
+    techStack: ['PyTorch', 'LLaMA-3-8B', 'Unsloth', 'LoRA / PEFT', 'Transformers', 'SQLite', 'Hugging Face'],
+    githubUrl: 'https://github.com/Ilyan321/Schema-Aware-SQL-Agent',
+    demoUrl: 'https://huggingface.co/Ilyankhan69/schema-aware-sql-agent',
+    huggingFaceUrl: 'https://huggingface.co/Ilyankhan69/schema-aware-sql-agent',
+    highlights: [
+      { label: 'Base Model', value: 'LLaMA-3-8B' },
+      { label: 'Fine-Tuning', value: 'LoRA (PEFT)' },
+      { label: 'Security', value: 'AST Read-Only' },
+      { label: 'Benchmark', value: 'Yale Spider' },
+    ],
+  },
+  {
+    id: 'hogwarts-archivist',
+    name: 'The Hogwarts Archivist',
+    subtitle: 'Source-Attributed RAG with FAISS & Groq',
+    tag: 'RAG Architecture',
+    grade: 'Grade 9.2 / 10',
+    category: 'Generative AI & RAG',
+    elevatorPitch:
+      'An enterprise-grade Retrieval-Augmented Generation (RAG) conversational intelligence system combining LangChain vector search, FAISS similarity indexing, and Groq LLaMA 3 high-speed inference with verifiable, paragraph-level source attribution.',
+    challenge:
+      'Eliminating LLM lore hallucinations through chapter-exact vector chunking and metadata binding.',
+    architecture: [
+      'Recursive text chunking with metadata binding chapter, book, and paragraph coordinates.',
+      'Sub-millisecond Euclidean similarity indexing via FAISS in-memory vector store.',
+      'Groq LLaMA-3 acceleration delivering responses at >500 tokens/second.',
+    ],
+    techStack: ['Python', 'LangChain', 'FAISS', 'Groq API', 'LLaMA-3', 'Streamlit'],
+    githubUrl: 'https://github.com/Ilyan321/Hogwarts_Archivist',
+    demoUrl: 'https://huggingface.co/spaces/Ilyankhan69/Hogwarts-Archivist',
+    huggingFaceUrl: 'https://huggingface.co/spaces/Ilyankhan69/Hogwarts-Archivist',
+    highlights: [
+      { label: 'Vector Index', value: 'FAISS Vector DB' },
+      { label: 'Speed', value: '>500 tok/sec' },
+      { label: 'Attribution', value: 'Paragraph Exact' },
+      { label: 'Platform', value: 'Hugging Face Space' },
+    ],
+  },
+  {
+    id: 'vibeguard',
+    name: 'VibeGuard Moderation',
+    subtitle: 'DistilBERT Multi-Label Toxicity Engine',
+    tag: 'Trust & Safety',
+    grade: 'Grade 9.0 / 10',
+    category: 'Safety & Moderation NLP',
+    elevatorPitch:
+      'An AI-driven real-time toxicity and harm detection engine powered by a fine-tuned DistilBERT transformer model trained on the Jigsaw multi-label dataset, delivering instant multi-category risk probability scoring and profanity filtering.',
+    challenge:
+      'Achieving sub-50ms CPU/GPU inference across 6 simultaneous toxicity classes for streaming chat applications.',
+    architecture: [
+      'Fine-tuned DistilBERT transformer reaching 86.67% validation accuracy.',
+      'Optimized sub-50ms inference latency for high-throughput moderation.',
+      'Interactive probability radar scoring across 6 harm vectors.',
+    ],
+    techStack: ['PyTorch', 'DistilBERT', 'Transformers', 'Datasets', 'Streamlit', 'Scikit-Learn'],
+    githubUrl: 'https://github.com/Ilyan321/VibeGuard',
+    demoUrl: 'https://huggingface.co/spaces/Ilyankhan69/VibeGuard',
+    huggingFaceUrl: 'https://huggingface.co/spaces/Ilyankhan69/VibeGuard',
+    highlights: [
+      { label: 'Model', value: 'DistilBERT Multi-label' },
+      { label: 'Accuracy', value: '86.67%' },
+      { label: 'Latency', value: '< 50ms per prompt' },
+      { label: 'Classes', value: '6 Toxicity Vectors' },
+    ],
+  },
+];
+
+export function HomeView() {
+  const [selectedProject, setSelectedProject] = React.useState<ProjectItem | null>(null);
+  const [showContactModal, setShowContactModal] = React.useState<boolean>(false);
+  const [showAboutModal, setShowAboutModal] = React.useState<boolean>(false);
+  const [activePreviewIndex, setActivePreviewIndex] = React.useState<number>(0);
+
+  return (
+    <main className="h-screen w-screen max-h-screen bg-[#1A1918] p-2 sm:p-4 lg:p-5 flex items-center justify-center overflow-hidden">
+      {/* Outer Dark Frame */}
+      <div className="w-full max-w-7xl h-full max-h-[96vh] bg-[#262523] rounded-[2rem] p-3 sm:p-5 lg:p-6 shadow-2xl border border-white/[0.06] flex flex-col justify-between overflow-hidden">
+        
+        {/* =================================================================== */}
+        {/* 1. TOP NAVIGATION BAR                                               */}
+        {/* =================================================================== */}
+        <header className="flex items-center justify-between px-2 py-1 shrink-0">
+          <div className="flex items-center gap-2">
+            <span className="font-mono-code text-xs sm:text-sm font-semibold tracking-widest text-[#F3EFEA] uppercase">
+              DEV / ILYAN
+            </span>
+          </div>
+
+          <nav className="flex items-center gap-6 sm:gap-8 text-xs font-sans-clean font-medium tracking-wide text-[#A39E95]">
+            <button
+              onClick={() => setShowAboutModal(true)}
+              className="hover:text-[#F3EFEA] transition-colors uppercase cursor-pointer"
+            >
+              ABOUT
+            </button>
+            <button
+              onClick={() => setSelectedProject(FEATURED_PROJECTS[0])}
+              className="hover:text-[#F3EFEA] transition-colors uppercase cursor-pointer"
+            >
+              PROJECTS
+            </button>
+            <button
+              onClick={() => setShowContactModal(true)}
+              className="hover:text-[#F3EFEA] transition-colors uppercase cursor-pointer"
+            >
+              CONTACT
+            </button>
+          </nav>
+        </header>
+
+        {/* =================================================================== */}
+        {/* 2. MAIN BENTO GRID - TOP ROW (CENTERED PORTRAIT 4.5 / 3 / 4.5)      */}
+        {/* =================================================================== */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-3 sm:gap-4 flex-1 min-h-0 py-1.5 sm:py-2">
+          
+          {/* Top-Left Card: 01 / CREDENTIALS (Decreased to 4.5/5 cols for centered photo) */}
+          <div className="lg:col-span-5 sand-card p-4 sm:p-6 flex flex-col justify-between relative overflow-hidden h-full">
+            <div className="flex items-start justify-between">
+              <span className="text-[10px] font-mono-code uppercase tracking-wider text-[#78746D] font-medium">
+                01 / CREDENTIALS
+              </span>
+              
+              {/* Abstract 4-Point Star Geometric Vector */}
+              <svg
+                width="22"
+                height="22"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                className="text-[#1A1918] opacity-80"
+              >
+                <path
+                  d="M12 0C12 6.62742 6.62742 12 0 12C6.62742 12 12 17.3726 12 24C12 17.3726 17.3726 12 24 12C17.3726 12 12 6.62742 12 0Z"
+                  fill="currentColor"
+                />
+              </svg>
+            </div>
+
+            {/* Headline with Italic Emphasis & Academic Credentials */}
+            <div className="space-y-2 my-auto py-1">
+              <h1 className="font-serif-display text-2xl sm:text-3xl lg:text-[2.25rem] leading-[1.12] text-[#1A1918] tracking-tight">
+                Let&apos;s create <span className="italic font-normal">robust system magic</span> for your next project.
+              </h1>
+              <p className="text-[11px] sm:text-xs font-sans-clean text-[#1A1918] leading-relaxed line-clamp-3">
+                2nd Year CSE student at QUEST Nawabshah with a <strong className="font-semibold text-black">3.10 CGPA</strong> &amp; 4 software internships (IntelliVerse, Arch Tech, Coretech, CodeAlpha).
+              </p>
+            </div>
+
+            {/* Bottom Row: Location & Academics Action */}
+            <div className="flex items-center justify-between pt-1.5 border-t border-[rgba(26,25,24,0.12)] text-[10px] sm:text-[11px] font-mono-code text-[#78746D]">
+              <span>QUEST Nawabshah, Sindh</span>
+              <button
+                onClick={() => setShowAboutModal(true)}
+                className="text-[#1A1918] font-semibold hover:underline cursor-pointer"
+              >
+                Academics &rarr;
+              </button>
+            </div>
+          </div>
+
+          {/* Portrait Card (Top-Center, Exactly 3 cols in the middle) */}
+          <div className="lg:col-span-3 sand-card p-2 sm:p-2.5 flex items-center justify-center relative overflow-hidden h-full">
+            <div className="w-full h-full rounded-[1.1rem] overflow-hidden relative shadow-inner bg-[#DFD5C6]">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/pp.jpeg"
+                alt="Ilyan Khan"
+                className="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-700"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#1A1918]/65 via-transparent to-transparent" />
+              <div className="absolute bottom-2 left-2.5 right-2.5 text-[#F3EFEA] font-sans-clean">
+                <span className="font-serif-display text-base font-normal block leading-tight">
+                  Ilyan Khan
+                </span>
+                <span className="text-[9px] font-mono-code text-[#DFD5C6] uppercase">
+                  Systems &bull; QUEST
+                </span>
+              </div>
+            </div>
+          </div>
+
+          {/* Interactive Projects List Card (Top-Right, 4 cols) */}
+          <div
+            id="projects-card"
+            className="lg:col-span-4 sand-card p-4 sm:p-5 flex flex-col justify-between h-full"
+          >
+            <div>
+              <div className="flex items-center justify-between pb-2 border-b border-[rgba(26,25,24,0.12)]">
+                <h3 className="font-serif-display text-xl text-[#1A1918] font-normal tracking-tight">
+                  Featured Systems
+                </h3>
+                <span className="text-[#1A1918] text-base font-serif-display">&nearr;</span>
+              </div>
+
+              {/* Dynamic Image / Spec Box Preview */}
+              <div className="my-2 p-2 rounded-lg bg-[#DFD5C6] border border-[rgba(26,25,24,0.08)] flex items-center justify-between">
+                <div>
+                  <span className="text-[9px] font-mono-code uppercase text-[#78746D] block">
+                    Active Architecture
+                  </span>
+                  <span className="text-[11px] font-sans-clean font-semibold text-[#1A1918]">
+                    {FEATURED_PROJECTS[activePreviewIndex].name}
+                  </span>
+                </div>
+                <span className="text-[10px] font-mono-code text-emerald-800 font-semibold px-1.5 py-0.5 rounded bg-emerald-100 border border-emerald-300">
+                  {FEATURED_PROJECTS[activePreviewIndex].grade}
+                </span>
+              </div>
+
+              {/* Exactly 3 Projects List */}
+              <div className="divide-y divide-[rgba(26,25,24,0.12)]">
+                {FEATURED_PROJECTS.map((proj, idx) => (
+                  <button
+                    key={proj.id}
+                    onMouseEnter={() => setActivePreviewIndex(idx)}
+                    onClick={() => setSelectedProject(proj)}
+                    className="w-full py-1.5 sm:py-2 flex items-center justify-between text-left group transition-colors cursor-pointer"
+                  >
+                    <div>
+                      <span className="text-xs font-sans-clean font-semibold text-[#1A1918] group-hover:text-emerald-800 transition-colors block">
+                        {proj.name}
+                      </span>
+                      <span className="text-[10px] font-mono-code text-[#78746D]">
+                        {proj.subtitle}
+                      </span>
+                    </div>
+                    <span className="text-xs font-mono-code text-[#78746D] group-hover:translate-x-1 group-hover:text-[#1A1918] transition-all">
+                      &rarr;
+                    </span>
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div className="pt-2 border-t border-[rgba(26,25,24,0.12)] text-[10px] font-mono-code text-[#78746D] flex justify-between items-center">
+              <span>Spider &bull; FAISS &bull; LLaMA-3</span>
+              <span className="text-[#1A1918] font-semibold">3 Flagships</span>
+            </div>
+          </div>
+        </div>
+
+        {/* =================================================================== */}
+        {/* 3. BOTTOM BENTO ROW (SYMMETRIC 5 / 4 / 3 COLUMNS)                   */}
+        {/* =================================================================== */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-3 sm:gap-4 shrink-0">
+          
+          {/* Philosophy Card (Bottom-Left, Decreased to 5 cols) */}
+          <div className="md:col-span-5 sand-card p-3.5 sm:p-4 flex flex-col justify-between space-y-1.5">
+            <div className="space-y-1">
+              <span className="text-[10px] font-mono-code uppercase tracking-wider text-[#78746D] font-medium">
+                02 / PHILOSOPHY
+              </span>
+              <p className="text-[11px] sm:text-xs font-sans-clean text-[#1A1918] leading-relaxed line-clamp-2">
+                Specialized in fine-tuning LLaMA-3 models with LoRA, architecting source-attributed FAISS vector RAG, and crafting modern web platforms.
+              </p>
+            </div>
+
+            <div className="flex items-center justify-between pt-1.5 border-t border-[rgba(26,25,24,0.12)] text-[10px] sm:text-[11px] font-mono-code text-[#78746D]">
+              <span>Generative AI &bull; Systems</span>
+              <button
+                onClick={() => setSelectedProject(FEATURED_PROJECTS[0])}
+                className="text-[#1A1918] font-semibold hover:underline cursor-pointer"
+              >
+                View Systems &rarr;
+              </button>
+            </div>
+          </div>
+
+          {/* Contact Card (Bottom-Center, 4 cols) */}
+          <div
+            onClick={() => setShowContactModal(true)}
+            className="md:col-span-4 sand-card-dark p-3.5 sm:p-4 flex flex-col justify-between cursor-pointer hover:bg-[#363633] transition-all group"
+          >
+            <div className="flex items-start justify-between">
+              <span className="text-[10px] font-mono-code uppercase tracking-wider text-[#A39E95] font-medium">
+                03 / GET IN TOUCH
+              </span>
+              <span className="font-serif-display text-lg text-[#F3EFEA] group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform">
+                &nearr;
+              </span>
+            </div>
+
+            <div className="py-1">
+              <h3 className="font-serif-display text-2xl sm:text-3xl text-[#F3EFEA] font-normal leading-tight">
+                Contact me
+              </h3>
+            </div>
+
+            <div className="text-[10px] sm:text-[11px] font-mono-code text-emerald-400 font-medium">
+              ilyaankhan342@gmail.com
+            </div>
+          </div>
+
+          {/* Social Links Pill (Bottom-Right, 3 cols) */}
+          <div className="md:col-span-3 sand-card p-3.5 sm:p-4 flex flex-col justify-between">
+            <span className="text-[10px] font-mono-code uppercase tracking-wider text-[#78746D] font-medium">
+              04 / NETWORK
+            </span>
+
+            <div className="flex flex-col gap-1 py-1">
+              <a
+                href="https://github.com/Ilyan321"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[11px] sm:text-xs font-sans-clean font-semibold tracking-wider text-[#1A1918] hover:text-emerald-800 transition-colors uppercase flex items-center justify-between"
+              >
+                <span>GITHUB</span>
+                <span className="text-[10px] font-mono-code text-[#78746D]">&nearr;</span>
+              </a>
+              <a
+                href="https://linkedin.com/in/ilyan-khan-480341359"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[11px] sm:text-xs font-sans-clean font-semibold tracking-wider text-[#1A1918] hover:text-emerald-800 transition-colors uppercase flex items-center justify-between"
+              >
+                <span>LINKEDIN</span>
+                <span className="text-[10px] font-mono-code text-[#78746D]">&nearr;</span>
+              </a>
+              <a
+                href="/CV.pdf"
+                download
+                className="text-[11px] sm:text-xs font-sans-clean font-semibold tracking-wider text-[#1A1918] hover:text-emerald-800 transition-colors uppercase flex items-center justify-between"
+              >
+                <span>RESUME (PDF)</span>
+                <span className="text-[10px] font-mono-code text-[#78746D]">&darr;</span>
+              </a>
+            </div>
+
+            <div className="text-[9px] font-mono-code text-[#78746D] pt-1 border-t border-[rgba(26,25,24,0.12)]">
+              &copy; 2026 ILYAN KHAN
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      {/* =================================================================== */}
+      {/* ✦ PROJECT DETAIL DRAWER / MODAL ✦                                    */}
+      {/* =================================================================== */}
+      <AnimatePresence>
+        {selectedProject && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setSelectedProject(null)}
+              className="fixed inset-0 bg-[#1A1918]/85 backdrop-blur-sm"
+            />
+
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 16 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 16 }}
+              transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+              className="relative w-full max-w-3xl sand-card p-6 sm:p-8 space-y-5 shadow-2xl z-10 max-h-[90vh] overflow-y-auto border border-[#1A1918]/20"
+            >
+              <button
+                onClick={() => setSelectedProject(null)}
+                className="absolute top-5 right-5 p-2 text-[#78746D] hover:text-[#1A1918] rounded-full bg-[rgba(26,25,24,0.06)] hover:bg-[rgba(26,25,24,0.12)] transition-colors cursor-pointer"
+                aria-label="Close Project Drawer"
+              >
+                <XIcon size={18} />
+              </button>
+
+              <div className="space-y-1.5 pr-8">
+                <div className="flex items-center gap-2">
+                  <span className="px-2 py-0.5 rounded text-[10px] font-mono-code bg-[#1A1918] text-[#F3EFEA] uppercase font-medium">
+                    {selectedProject.category}
+                  </span>
+                  <span className="px-2 py-0.5 rounded text-[10px] font-mono-code bg-emerald-800 text-white font-semibold">
+                    {selectedProject.grade}
+                  </span>
+                </div>
+                <h2 className="font-serif-display text-2xl sm:text-3xl font-normal text-[#1A1918] tracking-tight">
+                  {selectedProject.name}
+                </h2>
+                <p className="text-xs font-sans-clean text-[#78746D] leading-relaxed">
+                  {selectedProject.subtitle}
+                </p>
+              </div>
+
+              {/* Metric Highlights */}
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                {selectedProject.highlights.map((h, i) => (
+                  <div key={i} className="p-2.5 rounded-lg bg-[#DFD5C6] border border-[rgba(26,25,24,0.08)]">
+                    <span className="text-[9px] font-mono-code text-[#78746D] block uppercase">{h.label}</span>
+                    <span className="text-xs font-sans-clean font-bold text-[#1A1918]">{h.value}</span>
+                  </div>
+                ))}
+              </div>
+
+              {/* Technical Breakdown */}
+              <div className="space-y-3.5 text-xs font-sans-clean text-[#1A1918]">
+                <div className="space-y-1">
+                  <h4 className="font-mono-code text-[11px] text-[#78746D] uppercase tracking-wider font-semibold">
+                    1. Problem Formulation &amp; Challenge
+                  </h4>
+                  <p className="text-[#1A1918] leading-relaxed pl-3 border-l-2 border-[#1A1918]">
+                    {selectedProject.challenge}
+                  </p>
+                </div>
+
+                <div className="space-y-1.5">
+                  <h4 className="font-mono-code text-[11px] text-[#78746D] uppercase tracking-wider font-semibold">
+                    2. Core Architectural Engineering
+                  </h4>
+                  <ul className="space-y-1 pl-3 border-l-2 border-[#1A1918] text-[#1A1918]">
+                    {selectedProject.architecture.map((item, idx) => (
+                      <li key={idx} className="flex items-start gap-2">
+                        <span className="text-emerald-800 font-mono-code font-bold">&bull;</span>
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className="space-y-1.5">
+                  <h4 className="font-mono-code text-[11px] text-[#78746D] uppercase tracking-wider font-semibold">
+                    3. Tech Stack
+                  </h4>
+                  <div className="flex flex-wrap gap-1">
+                    {selectedProject.techStack.map((tech, idx) => (
+                      <span
+                        key={idx}
+                        className="px-2 py-0.5 rounded text-[11px] font-mono-code bg-[#DFD5C6] text-[#1A1918] border border-[rgba(26,25,24,0.12)] font-medium"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* Modal Footer Links */}
+              <div className="flex flex-wrap items-center justify-between gap-3 pt-3 border-t border-[rgba(26,25,24,0.12)]">
+                <a
+                  href={selectedProject.githubUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-mono-code border border-[#1A1918] text-[#1A1918] hover:bg-[#1A1918] hover:text-[#F3EFEA] transition-colors"
+                >
+                  <GithubIcon size={13} />
+                  <span>Inspect Source Code</span>
+                </a>
+
+                {selectedProject.demoUrl && (
+                  <a
+                    href={selectedProject.demoUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-lg text-xs font-mono-code bg-[#1A1918] text-[#F3EFEA] font-semibold hover:bg-black transition-colors"
+                  >
+                    <span>Launch Live Demo</span>
+                    <ExternalLinkIcon size={12} />
+                  </a>
+                )}
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
+
+      {/* =================================================================== */}
+      {/* ✦ CONTACT DRAWER / MODAL ✦                                          */}
+      {/* =================================================================== */}
+      <AnimatePresence>
+        {showContactModal && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setShowContactModal(false)}
+              className="fixed inset-0 bg-[#1A1918]/85 backdrop-blur-sm"
+            />
+
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 16 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 16 }}
+              transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+              className="relative w-full max-w-md sand-card-dark p-5 sm:p-7 space-y-5 shadow-2xl z-10 border border-white/10"
+            >
+              <button
+                onClick={() => setShowContactModal(false)}
+                className="absolute top-5 right-5 p-2 text-[#A39E95] hover:text-white rounded-full bg-white/[0.05] hover:bg-white/10 transition-colors cursor-pointer"
+              >
+                <XIcon size={18} />
+              </button>
+
+              <div>
+                <span className="text-[10px] font-mono-code uppercase tracking-wider text-[#A39E95]">
+                  DIRECT DISPATCH
+                </span>
+                <h2 className="font-serif-display text-2xl sm:text-3xl text-[#F3EFEA] font-normal mt-1">
+                  Let&apos;s connect.
+                </h2>
+                <p className="text-xs font-sans-clean text-[#A39E95] mt-0.5">
+                  Open for software engineering internships, AI research, and collaborative projects.
+                </p>
+              </div>
+
+              <div className="space-y-2.5 font-mono-code text-xs">
+                <a
+                  href="mailto:ilyaankhan342@gmail.com"
+                  className="flex items-center justify-between p-3 rounded-xl bg-[#262523] border border-white/10 text-[#F3EFEA] hover:border-emerald-400 transition-colors"
+                >
+                  <span className="text-[#A39E95]">Email:</span>
+                  <span className="text-emerald-400 font-semibold">ilyaankhan342@gmail.com</span>
+                </a>
+
+                <a
+                  href="https://wa.me/923213379342"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-between p-3 rounded-xl bg-[#262523] border border-white/10 text-[#F3EFEA] hover:border-cyan-400 transition-colors"
+                >
+                  <span className="text-[#A39E95]">WhatsApp:</span>
+                  <span className="text-cyan-400 font-semibold">+92 321 3379342</span>
+                </a>
+
+                <a
+                  href="/CV.pdf"
+                  download
+                  className="flex items-center justify-between p-3 rounded-xl bg-[#262523] border border-white/10 text-[#F3EFEA] hover:border-purple-400 transition-colors"
+                >
+                  <span className="text-[#A39E95]">Official CV:</span>
+                  <span className="text-purple-300 font-semibold">Download PDF &darr;</span>
+                </a>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
+
+      {/* =================================================================== */}
+      {/* ✦ ABOUT & ACADEMICS DRAWER / MODAL ✦                                */}
+      {/* =================================================================== */}
+      <AnimatePresence>
+        {showAboutModal && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setShowAboutModal(false)}
+              className="fixed inset-0 bg-[#1A1918]/85 backdrop-blur-sm"
+            />
+
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 16 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 16 }}
+              transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+              className="relative w-full max-w-2xl sand-card p-5 sm:p-7 space-y-5 shadow-2xl z-10 border border-[#1A1918]/20 max-h-[90vh] overflow-y-auto"
+            >
+              <button
+                onClick={() => setShowAboutModal(false)}
+                className="absolute top-5 right-5 p-2 text-[#78746D] hover:text-[#1A1918] rounded-full bg-[rgba(26,25,24,0.06)] hover:bg-[rgba(26,25,24,0.12)] transition-colors cursor-pointer"
+              >
+                <XIcon size={18} />
+              </button>
+
+              <div>
+                <span className="text-[10px] font-mono-code uppercase tracking-wider text-[#78746D]">
+                  ACADEMIC &amp; CAREER PROFILE
+                </span>
+                <h2 className="font-serif-display text-2xl sm:text-3xl text-[#1A1918] font-normal mt-1">
+                  About Ilyan Khan
+                </h2>
+                <p className="text-xs font-sans-clean text-[#78746D] mt-0.5 leading-relaxed">
+                  Undergraduate Computer Systems Engineer at QUEST Nawabshah, Sindh, Pakistan.
+                </p>
+              </div>
+
+              {/* Semester CGPA Breakdown */}
+              <div className="space-y-2.5">
+                <h4 className="font-mono-code text-[11px] text-[#78746D] uppercase font-semibold">
+                  QUEST Nawabshah Academic Transcript
+                </h4>
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+                  <div className="p-3 rounded-lg bg-[#DFD5C6] border border-[rgba(26,25,24,0.08)]">
+                    <span className="text-[9px] font-mono-code text-[#78746D] block">1ST SEMESTER</span>
+                    <span className="text-sm font-bold font-sans-clean text-[#1A1918]">3.13 / 4.00</span>
+                    <span className="text-[10px] font-mono-code text-[#78746D] block">78.25%</span>
+                  </div>
+                  <div className="p-3 rounded-lg bg-[#DFD5C6] border border-[rgba(26,25,24,0.08)]">
+                    <span className="text-[9px] font-mono-code text-[#78746D] block">2ND SEMESTER</span>
+                    <span className="text-sm font-bold font-sans-clean text-[#1A1918]">3.05 / 4.00</span>
+                    <span className="text-[10px] font-mono-code text-[#78746D] block">76.25%</span>
+                  </div>
+                  <div className="p-3 rounded-lg bg-[#1A1918] text-[#F3EFEA]">
+                    <span className="text-[9px] font-mono-code text-[#A39E95] block">1ST YEAR AGGREGATE</span>
+                    <span className="text-sm font-bold font-sans-clean text-white">3.10 / 4.00</span>
+                    <span className="text-[10px] font-mono-code text-emerald-400 block">77.50% Official</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* 4 Internships */}
+              <div className="space-y-2 pt-1">
+                <h4 className="font-mono-code text-[11px] text-[#78746D] uppercase font-semibold">
+                  4 Industry Internships
+                </h4>
+                <div className="divide-y divide-[rgba(26,25,24,0.12)] text-xs font-sans-clean">
+                  <div className="py-1.5 flex justify-between items-center">
+                    <div>
+                      <strong className="font-semibold text-[#1A1918] block text-xs">IntelliVerse</strong>
+                      <span className="text-[11px] text-[#78746D]">Python GenAI Developer Intern</span>
+                    </div>
+                    <span className="font-mono-code text-[10px] text-[#78746D]">Mar – May 2026</span>
+                  </div>
+                  <div className="py-1.5 flex justify-between items-center">
+                    <div>
+                      <strong className="font-semibold text-[#1A1918] block text-xs">Arch Technologies</strong>
+                      <span className="text-[11px] text-[#78746D]">Software Engineer Intern (C++)</span>
+                    </div>
+                    <span className="font-mono-code text-[10px] text-[#78746D]">Jan – Feb 2026</span>
+                  </div>
+                  <div className="py-1.5 flex justify-between items-center">
+                    <div>
+                      <strong className="font-semibold text-[#1A1918] block text-xs">Coretech Innovations</strong>
+                      <span className="text-[11px] text-[#78746D]">Software Engineer Intern</span>
+                    </div>
+                    <span className="font-mono-code text-[10px] text-[#78746D]">Dec 2025 – Jan 2026</span>
+                  </div>
+                  <div className="py-1.5 flex justify-between items-center">
+                    <div>
+                      <strong className="font-semibold text-[#1A1918] block text-xs">CodeAlpha</strong>
+                      <span className="text-[11px] text-[#78746D]">Software Engineer Intern</span>
+                    </div>
+                    <span className="font-mono-code text-[10px] text-[#78746D]">Dec 2025</span>
+                  </div>
+                </div>
+              </div>
+
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
+    </main>
+  );
+}
