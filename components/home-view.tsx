@@ -423,7 +423,7 @@ export function HomeView() {
 
             {/* Footer with Directory Trigger */}
             <div className="pt-2 border-t border-[rgba(26,25,24,0.12)] text-[10px] font-mono-code text-[#78746D] flex justify-between items-center">
-              <span>Fine-Tuning &bull; RAG &bull; Security</span>
+              <span>Caffeine &bull; Code &bull; Late Nights</span>
               <button
                 onClick={() => setShowDirectoryModal(true)}
                 className="text-[#1A1918] font-semibold hover:underline cursor-pointer flex items-center gap-0.5"
