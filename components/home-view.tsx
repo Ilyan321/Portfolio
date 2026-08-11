@@ -237,7 +237,7 @@ export function HomeView() {
         </header>
 
         {/* =================================================================== */}
-        {/* 2. MAIN BENTO GRID - TOP ROW (EXACT ORIGINAL SHAPE & SIZE)          */}
+        {/* 2. MAIN BENTO GRID - TOP ROW                                        */}
         {/* =================================================================== */}
         <div className="flex flex-col lg:flex-row gap-3 sm:gap-4 flex-1 min-h-0 py-1.5 sm:py-2">
           
@@ -307,45 +307,51 @@ export function HomeView() {
             </div>
           </div>
 
-          {/* Top-Right: Projects & Certifications Card (Exact Original 37.5% Width & Height) */}
+          {/* Top-Right: Projects & Certifications (Structured into 2 Distinct Sub-Sections) */}
           <div
             id="projects-card"
-            className="lg:w-[37.5%] sand-card p-4 sm:p-5 flex flex-col justify-between h-full"
+            className="lg:w-[37.5%] sand-card p-3.5 sm:p-4.5 flex flex-col justify-between h-full"
           >
-            <div>
-              {/* Card Header */}
-              <div className="flex items-center justify-between pb-1.5 border-b border-[rgba(26,25,24,0.12)]">
-                <div>
-                  <span className="text-[9px] font-mono-code uppercase tracking-wider text-[#78746D] block">
-                    FEATURED WORK
-                  </span>
-                  <h3 className="font-serif-display text-lg sm:text-xl text-[#1A1918] font-normal tracking-tight">
-                    Projects &amp; Credentials
-                  </h3>
-                </div>
-                <button
-                  onClick={() => setShowDirectoryModal(true)}
-                  className="text-[#1A1918] hover:text-emerald-800 text-sm font-mono-code transition-colors p-1 cursor-pointer"
-                  title="Open Full Directory"
-                >
-                  ↗
-                </button>
+            {/* Header */}
+            <div className="flex items-center justify-between pb-1 border-b border-[rgba(26,25,24,0.12)]">
+              <div>
+                <span className="text-[9px] font-mono-code uppercase tracking-wider text-[#78746D] block">
+                  SHOWCASE
+                </span>
+                <h3 className="font-serif-display text-lg text-[#1A1918] font-normal tracking-tight">
+                  Projects &amp; Credentials
+                </h3>
+              </div>
+              <button
+                onClick={() => setShowDirectoryModal(true)}
+                className="text-[#1A1918] hover:text-emerald-800 text-sm font-mono-code transition-colors p-1 cursor-pointer"
+                title="Open Full Directory"
+              >
+                ↗
+              </button>
+            </div>
+
+            {/* Sub-Section 1: Flagship Projects */}
+            <div className="space-y-1 my-0.5">
+              <div className="flex items-center justify-between">
+                <span className="text-[9px] font-mono-code uppercase tracking-wider text-[#78746D] font-semibold">
+                  01. FLAGSHIP SYSTEMS
+                </span>
+                <span className="text-[9px] font-mono-code text-[#78746D]">LATEST</span>
               </div>
 
-              {/* 2 Projects + 2 Certifications List (Compact & Symmetrical) */}
-              <div className="divide-y divide-[rgba(26,25,24,0.08)] text-left">
-                
-                {/* 1. Latest Project 1 */}
+              <div className="space-y-1">
+                {/* Project 1 */}
                 <button
                   onClick={() => setSelectedProject(ALL_PROJECTS[0])}
-                  className="w-full py-1.5 flex items-center justify-between group transition-colors cursor-pointer text-left"
+                  className="w-full p-1.5 rounded-lg bg-[#DFD5C6] hover:bg-[#D7CDBC] border border-[rgba(26,25,24,0.08)] flex items-center justify-between group transition-all cursor-pointer text-left"
                 >
-                  <div className="pr-2">
+                  <div className="pr-1.5 min-w-0">
                     <div className="flex items-center gap-1.5">
-                      <span className="text-[8px] font-mono-code uppercase px-1 py-0.2 rounded bg-emerald-100 text-emerald-800 font-bold border border-emerald-300">
+                      <span className="text-[8px] font-mono-code uppercase px-1 py-0.2 rounded bg-emerald-100 text-emerald-800 font-bold border border-emerald-300 shrink-0">
                         SYS
                       </span>
-                      <span className="text-[11px] sm:text-xs font-sans-clean font-semibold text-[#1A1918] group-hover:text-emerald-800 transition-colors truncate">
+                      <span className="text-[11px] font-sans-clean font-bold text-[#1A1918] group-hover:text-emerald-800 transition-colors truncate">
                         {ALL_PROJECTS[0].name}
                       </span>
                     </div>
@@ -358,17 +364,17 @@ export function HomeView() {
                   </span>
                 </button>
 
-                {/* 2. Latest Project 2 */}
+                {/* Project 2 */}
                 <button
                   onClick={() => setSelectedProject(ALL_PROJECTS[1])}
-                  className="w-full py-1.5 flex items-center justify-between group transition-colors cursor-pointer text-left"
+                  className="w-full p-1.5 rounded-lg bg-[#DFD5C6] hover:bg-[#D7CDBC] border border-[rgba(26,25,24,0.08)] flex items-center justify-between group transition-all cursor-pointer text-left"
                 >
-                  <div className="pr-2">
+                  <div className="pr-1.5 min-w-0">
                     <div className="flex items-center gap-1.5">
-                      <span className="text-[8px] font-mono-code uppercase px-1 py-0.2 rounded bg-emerald-100 text-emerald-800 font-bold border border-emerald-300">
+                      <span className="text-[8px] font-mono-code uppercase px-1 py-0.2 rounded bg-emerald-100 text-emerald-800 font-bold border border-emerald-300 shrink-0">
                         RAG
                       </span>
-                      <span className="text-[11px] sm:text-xs font-sans-clean font-semibold text-[#1A1918] group-hover:text-emerald-800 transition-colors truncate">
+                      <span className="text-[11px] font-sans-clean font-bold text-[#1A1918] group-hover:text-emerald-800 transition-colors truncate">
                         {ALL_PROJECTS[1].name}
                       </span>
                     </div>
@@ -380,23 +386,35 @@ export function HomeView() {
                     &rarr;
                   </span>
                 </button>
+              </div>
+            </div>
 
-                {/* 3. Latest Certification 1 */}
+            {/* Sub-Section 2: Verified Certifications */}
+            <div className="space-y-1 my-0.5">
+              <div className="flex items-center justify-between">
+                <span className="text-[9px] font-mono-code uppercase tracking-wider text-[#78746D] font-semibold">
+                  02. CERTIFICATIONS
+                </span>
+                <span className="text-[9px] font-mono-code text-[#78746D]">VERIFIED</span>
+              </div>
+
+              <div className="space-y-1">
+                {/* Cert 1 */}
                 <button
                   onClick={() => setSelectedCert(ALL_CERTIFICATES[0])}
-                  className="w-full py-1.5 flex items-center justify-between group transition-colors cursor-pointer text-left"
+                  className="w-full p-1.5 rounded-lg bg-[#DFD5C6] hover:bg-[#D7CDBC] border border-[rgba(26,25,24,0.08)] flex items-center justify-between group transition-all cursor-pointer text-left"
                 >
-                  <div className="pr-2">
+                  <div className="pr-1.5 min-w-0">
                     <div className="flex items-center gap-1.5">
-                      <span className="text-[8px] font-mono-code uppercase px-1 py-0.2 rounded bg-[#DFD5C6] text-[#1A1918] font-bold border border-[rgba(26,25,24,0.15)]">
+                      <span className="text-[8px] font-mono-code uppercase px-1 py-0.2 rounded bg-[#1A1918] text-[#F3EFEA] font-bold shrink-0">
                         CERT
                       </span>
-                      <span className="text-[11px] sm:text-xs font-sans-clean font-semibold text-[#1A1918] group-hover:text-emerald-800 transition-colors truncate">
+                      <span className="text-[11px] font-sans-clean font-bold text-[#1A1918] group-hover:text-emerald-800 transition-colors truncate">
                         {ALL_CERTIFICATES[0].title}
                       </span>
                     </div>
                     <span className="text-[9px] font-mono-code text-[#78746D] block truncate">
-                      {ALL_CERTIFICATES[0].issuer} &bull; Verified
+                      {ALL_CERTIFICATES[0].issuer} &bull; Security
                     </span>
                   </div>
                   <span className="text-xs font-mono-code text-[#78746D] group-hover:translate-x-0.5 group-hover:text-[#1A1918] transition-all shrink-0">
@@ -404,17 +422,17 @@ export function HomeView() {
                   </span>
                 </button>
 
-                {/* 4. Latest Certification 2 */}
+                {/* Cert 2 */}
                 <button
                   onClick={() => setSelectedCert(ALL_CERTIFICATES[1])}
-                  className="w-full py-1.5 flex items-center justify-between group transition-colors cursor-pointer text-left"
+                  className="w-full p-1.5 rounded-lg bg-[#DFD5C6] hover:bg-[#D7CDBC] border border-[rgba(26,25,24,0.08)] flex items-center justify-between group transition-all cursor-pointer text-left"
                 >
-                  <div className="pr-2">
+                  <div className="pr-1.5 min-w-0">
                     <div className="flex items-center gap-1.5">
-                      <span className="text-[8px] font-mono-code uppercase px-1 py-0.2 rounded bg-[#DFD5C6] text-[#1A1918] font-bold border border-[rgba(26,25,24,0.15)]">
+                      <span className="text-[8px] font-mono-code uppercase px-1 py-0.2 rounded bg-[#1A1918] text-[#F3EFEA] font-bold shrink-0">
                         CERT
                       </span>
-                      <span className="text-[11px] sm:text-xs font-sans-clean font-semibold text-[#1A1918] group-hover:text-emerald-800 transition-colors truncate">
+                      <span className="text-[11px] font-sans-clean font-bold text-[#1A1918] group-hover:text-emerald-800 transition-colors truncate">
                         {ALL_CERTIFICATES[1].title}
                       </span>
                     </div>
@@ -426,18 +444,17 @@ export function HomeView() {
                     &rarr;
                   </span>
                 </button>
-
               </div>
             </div>
 
             {/* Footer with Directory Trigger */}
             <div className="pt-1.5 border-t border-[rgba(26,25,24,0.12)] text-[10px] font-mono-code text-[#78746D] flex justify-between items-center">
-              <span>2 Systems &bull; 2 Certs</span>
+              <span>Spider &bull; FAISS &bull; Google</span>
               <button
                 onClick={() => setShowDirectoryModal(true)}
                 className="text-[#1A1918] font-semibold hover:underline cursor-pointer flex items-center gap-0.5"
               >
-                <span>Directory</span>
+                <span>Full Directory</span>
                 <span>&rarr;</span>
               </button>
             </div>
