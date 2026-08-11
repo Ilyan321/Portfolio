@@ -312,23 +312,23 @@ export function HomeView() {
             id="projects-card"
             className="lg:w-[37.5%] sand-card p-4 sm:p-5 flex flex-col justify-between h-full"
           >
-            {/* Header */}
-            <div className="flex items-center justify-between pb-2 border-b border-[rgba(26,25,24,0.12)]">
+            {/* Clickable Header */}
+            <div
+              onClick={() => setShowDirectoryModal(true)}
+              className="flex items-center justify-between pb-2 border-b border-[rgba(26,25,24,0.12)] cursor-pointer group hover:bg-[rgba(26,25,24,0.03)] -mx-1 px-1 rounded-t-lg transition-colors"
+              title="Open Full Achievements Directory"
+            >
               <div>
-                <span className="text-[10px] font-mono-code uppercase tracking-wider text-[#78746D] font-medium block">
+                <span className="text-[10px] font-mono-code uppercase tracking-wider text-[#78746D] font-medium block group-hover:text-[#1A1918] transition-colors">
                   05 / ACHIEVEMENTS
                 </span>
-                <h3 className="font-serif-display text-xl text-[#1A1918] font-normal tracking-tight">
+                <h3 className="font-serif-display text-xl text-[#1A1918] font-normal tracking-tight group-hover:text-emerald-900 transition-colors">
                   Projects &amp; Certificates
                 </h3>
               </div>
-              <button
-                onClick={() => setShowDirectoryModal(true)}
-                className="text-[#1A1918] hover:text-emerald-800 text-sm font-mono-code transition-colors p-1 cursor-pointer"
-                title="Open Full Directory"
-              >
+              <span className="text-[#1A1918] group-hover:text-emerald-800 text-sm font-mono-code group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all p-1">
                 ↗
-              </button>
+              </span>
             </div>
 
             {/* Clean Section 1: Projects */}
