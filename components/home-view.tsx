@@ -122,7 +122,7 @@ export function HomeView() {
   return (
     <main className="h-screen w-screen max-h-screen bg-[#1A1918] p-2 sm:p-4 lg:p-5 flex items-center justify-center overflow-hidden">
       {/* Outer Dark Frame */}
-      <div className="w-full max-w-7xl h-full max-h-[96vh] bg-[#262523] rounded-[2rem] p-3 sm:p-5 lg:p-6 shadow-2xl border border-white/[0.06] flex flex-col justify-between overflow-hidden">
+      <div className="w-full max-w-7xl h-full max-h-[96vh] bg-[#262523] rounded-[2rem] p-3 sm:p-5 lg:p-6 shadow-2xl border border-white/[0.06] flex flex-col justify-between overflow-hidden gap-3">
         
         {/* =================================================================== */}
         {/* 1. TOP NAVIGATION BAR                                               */}
@@ -157,12 +157,12 @@ export function HomeView() {
         </header>
 
         {/* =================================================================== */}
-        {/* 2. MAIN BENTO GRID - TOP ROW (AUTHENTIC PERSONAL VOICE)             */}
+        {/* 2. MAIN BENTO GRID - TOP ROW (SYMMETRICAL 5 / 2 / 5 COLUMNS)        */}
         {/* =================================================================== */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-3 sm:gap-4 flex-1 min-h-0 py-1.5 sm:py-2">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-3 sm:gap-4 flex-[1.1] min-h-0">
           
-          {/* Top-Left Card: 01 / BUILDER PROFILE */}
-          <div className="lg:col-span-5 sand-card p-4 sm:p-6 flex flex-col justify-between relative overflow-hidden h-full">
+          {/* Top-Left Card: 01 / ABOUT ME (5 cols) */}
+          <div className="lg:col-span-5 sand-card p-4 sm:p-5 flex flex-col justify-between relative overflow-hidden h-full">
             <div className="flex items-start justify-between">
               <span className="text-[10px] font-mono-code uppercase tracking-wider text-[#78746D] font-medium">
                 01 / ABOUT ME
@@ -170,8 +170,8 @@ export function HomeView() {
               
               {/* Abstract 4-Point Star Geometric Vector */}
               <svg
-                width="22"
-                height="22"
+                width="20"
+                height="20"
                 viewBox="0 0 24 24"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
@@ -184,12 +184,12 @@ export function HomeView() {
               </svg>
             </div>
 
-            {/* Authentic, Human-Authored Heading & Bio */}
-            <div className="space-y-2 my-auto py-1">
-              <h1 className="font-serif-display text-2xl sm:text-3xl lg:text-[2.25rem] leading-[1.12] text-[#1A1918] tracking-tight">
+            {/* Heading & Bio */}
+            <div className="space-y-1.5 my-auto py-1">
+              <h1 className="font-serif-display text-2xl sm:text-3xl lg:text-[2.2rem] leading-[1.12] text-[#1A1918] tracking-tight">
                 I build AI that <span className="italic font-normal">actually works</span> in the real world.
               </h1>
-              <p className="text-[11px] sm:text-xs font-sans-clean text-[#1A1918] leading-relaxed line-clamp-3">
+              <p className="text-[11px] sm:text-xs font-sans-clean text-[#1A1918] leading-relaxed">
                 2nd-year Systems Engineering student at QUEST Nawabshah (3.10 CGPA). Whether it&apos;s fine-tuning LLaMA-3 models with LoRA, building AST security firewalls, or shipping production web apps across 4 internships, I care about code that is fast, safe, and useful.
               </p>
             </div>
@@ -206,8 +206,8 @@ export function HomeView() {
             </div>
           </div>
 
-          {/* Portrait Card (Top-Center, 3 cols) */}
-          <div className="lg:col-span-3 sand-card p-2 sm:p-2.5 flex items-center justify-center relative overflow-hidden h-full">
+          {/* Portrait Card (Top-Center, Exactly 2 cols in the middle) */}
+          <div className="lg:col-span-2 sand-card p-2 flex items-center justify-center relative overflow-hidden h-full">
             <div className="w-full h-full rounded-[1.1rem] overflow-hidden relative shadow-inner bg-[#DFD5C6]">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
@@ -216,8 +216,8 @@ export function HomeView() {
                 className="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-700"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#1A1918]/65 via-transparent to-transparent" />
-              <div className="absolute bottom-2 left-2.5 right-2.5 text-[#F3EFEA] font-sans-clean">
-                <span className="font-serif-display text-base font-normal block leading-tight">
+              <div className="absolute bottom-2 left-2 right-2 text-[#F3EFEA] font-sans-clean">
+                <span className="font-serif-display text-sm sm:text-base font-normal block leading-tight">
                   Ilyan Khan
                 </span>
                 <span className="text-[9px] font-mono-code text-[#DFD5C6] uppercase">
@@ -227,10 +227,10 @@ export function HomeView() {
             </div>
           </div>
 
-          {/* Interactive Projects List Card (Top-Right, 4 cols) */}
+          {/* Interactive Projects List Card (Top-Right, Exactly 5 cols - EVEN WITH ABOUT ME) */}
           <div
             id="projects-card"
-            className="lg:col-span-4 sand-card p-4 sm:p-5 flex flex-col justify-between h-full"
+            className="lg:col-span-5 sand-card p-4 sm:p-5 flex flex-col justify-between h-full"
           >
             <div>
               <div className="flex items-center justify-between pb-2 border-b border-[rgba(26,25,24,0.12)]">
@@ -288,25 +288,27 @@ export function HomeView() {
         </div>
 
         {/* =================================================================== */}
-        {/* 3. BOTTOM BENTO ROW (GENUINE PHILOSOPHY & PRINCIPLES)               */}
+        {/* 3. BOTTOM BENTO ROW (EXPANDED HEIGHT - NO CRAMMED TEXT)             */}
         {/* =================================================================== */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-3 sm:gap-4 shrink-0">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-3 sm:gap-4 flex-1 min-h-0">
           
-          {/* Philosophy Card: Genuine Builder Principles */}
-          <div className="md:col-span-5 sand-card p-3.5 sm:p-4 flex flex-col justify-between space-y-1.5">
-            <div className="space-y-1">
+          {/* Philosophy Card: HOW I THINK (Expanded in height & width to show ALL text easily) */}
+          <div className="md:col-span-5 sand-card p-4 sm:p-5 flex flex-col justify-between h-full">
+            <div className="space-y-2">
               <div className="flex items-center justify-between">
                 <span className="text-[10px] font-mono-code uppercase tracking-wider text-[#78746D] font-medium">
                   02 / HOW I THINK
                 </span>
-                <span className="text-[10px] font-mono-code text-[#78746D]">NO HYPE</span>
+                <span className="text-[10px] font-mono-code text-[#78746D] px-2 py-0.5 rounded bg-[rgba(26,25,24,0.06)]">
+                  NO HYPE
+                </span>
               </div>
-              <p className="text-[11px] sm:text-xs font-sans-clean text-[#1A1918] leading-relaxed line-clamp-2">
+              <p className="text-xs sm:text-[13px] font-sans-clean text-[#1A1918] leading-relaxed">
                 I prioritize deterministic safety and source truth over empty AI hype. If an LLM generates SQL, an AST firewall must verify it. If it quotes knowledge, FAISS must cite chapter and paragraph.
               </p>
             </div>
 
-            <div className="flex items-center justify-between pt-1.5 border-t border-[rgba(26,25,24,0.12)] text-[10px] sm:text-[11px] font-mono-code text-[#78746D]">
+            <div className="flex items-center justify-between pt-2 border-t border-[rgba(26,25,24,0.12)] text-[11px] font-mono-code text-[#78746D]">
               <span>Ground Truth &bull; Fast Systems</span>
               <button
                 onClick={() => setSelectedProject(FEATURED_PROJECTS[0])}
@@ -320,13 +322,13 @@ export function HomeView() {
           {/* Contact Card (Bottom-Center, 4 cols) */}
           <div
             onClick={() => setShowContactModal(true)}
-            className="md:col-span-4 sand-card-dark p-3.5 sm:p-4 flex flex-col justify-between cursor-pointer hover:bg-[#363633] transition-all group"
+            className="md:col-span-4 sand-card-dark p-4 sm:p-5 flex flex-col justify-between cursor-pointer hover:bg-[#363633] transition-all group h-full"
           >
             <div className="flex items-start justify-between">
               <span className="text-[10px] font-mono-code uppercase tracking-wider text-[#A39E95] font-medium">
                 03 / GET IN TOUCH
               </span>
-              <span className="font-serif-display text-lg text-[#F3EFEA] group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform">
+              <span className="font-serif-display text-xl text-[#F3EFEA] group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform">
                 &nearr;
               </span>
             </div>
@@ -335,25 +337,28 @@ export function HomeView() {
               <h3 className="font-serif-display text-2xl sm:text-3xl text-[#F3EFEA] font-normal leading-tight">
                 Contact me
               </h3>
+              <p className="text-[11px] text-[#A39E95] mt-0.5">
+                Open for engineering roles, research &amp; projects.
+              </p>
             </div>
 
-            <div className="text-[10px] sm:text-[11px] font-mono-code text-emerald-400 font-medium">
+            <div className="text-[11px] font-mono-code text-emerald-400 font-medium truncate">
               ilyaankhan342@gmail.com
             </div>
           </div>
 
           {/* Social Links Pill (Bottom-Right, 3 cols) */}
-          <div className="md:col-span-3 sand-card p-3.5 sm:p-4 flex flex-col justify-between">
+          <div className="md:col-span-3 sand-card p-4 sm:p-5 flex flex-col justify-between h-full">
             <span className="text-[10px] font-mono-code uppercase tracking-wider text-[#78746D] font-medium">
               04 / NETWORK
             </span>
 
-            <div className="flex flex-col gap-1 py-1">
+            <div className="flex flex-col gap-1.5 py-1">
               <a
                 href="https://github.com/Ilyan321"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-[11px] sm:text-xs font-sans-clean font-semibold tracking-wider text-[#1A1918] hover:text-emerald-800 transition-colors uppercase flex items-center justify-between"
+                className="text-xs font-sans-clean font-semibold tracking-wider text-[#1A1918] hover:text-emerald-800 transition-colors uppercase flex items-center justify-between"
               >
                 <span>GITHUB</span>
                 <span className="text-[10px] font-mono-code text-[#78746D]">&nearr;</span>
@@ -362,7 +367,7 @@ export function HomeView() {
                 href="https://linkedin.com/in/ilyan-khan-480341359"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-[11px] sm:text-xs font-sans-clean font-semibold tracking-wider text-[#1A1918] hover:text-emerald-800 transition-colors uppercase flex items-center justify-between"
+                className="text-xs font-sans-clean font-semibold tracking-wider text-[#1A1918] hover:text-emerald-800 transition-colors uppercase flex items-center justify-between"
               >
                 <span>LINKEDIN</span>
                 <span className="text-[10px] font-mono-code text-[#78746D]">&nearr;</span>
@@ -370,14 +375,14 @@ export function HomeView() {
               <a
                 href="/CV.pdf"
                 download
-                className="text-[11px] sm:text-xs font-sans-clean font-semibold tracking-wider text-[#1A1918] hover:text-emerald-800 transition-colors uppercase flex items-center justify-between"
+                className="text-xs font-sans-clean font-semibold tracking-wider text-[#1A1918] hover:text-emerald-800 transition-colors uppercase flex items-center justify-between"
               >
                 <span>RESUME (PDF)</span>
                 <span className="text-[10px] font-mono-code text-[#78746D]">&darr;</span>
               </a>
             </div>
 
-            <div className="text-[9px] font-mono-code text-[#78746D] pt-1 border-t border-[rgba(26,25,24,0.12)]">
+            <div className="text-[9px] font-mono-code text-[#78746D] pt-1.5 border-t border-[rgba(26,25,24,0.12)]">
               &copy; 2026 ILYAN KHAN
             </div>
           </div>
