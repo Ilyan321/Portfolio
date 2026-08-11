@@ -288,26 +288,26 @@ export function HomeView() {
         </div>
 
         {/* =================================================================== */}
-        {/* 3. BOTTOM BENTO ROW (FULL MULTI-LINE TEXT FOR SECTION 02)           */}
+        {/* 3. BOTTOM BENTO ROW (AUTHENTIC STUDENT BUILDER PHILOSOPHY)          */}
         {/* =================================================================== */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-3 sm:gap-4 shrink-0">
           
-          {/* Philosophy Card (Bottom-Left, 5 cols - Full text visible without line-clamp) */}
+          {/* Philosophy Card (Bottom-Left, 5 cols - Authentic 4th Sem Builder Mindset) */}
           <div className="md:col-span-5 sand-card p-3.5 sm:p-4 flex flex-col justify-between space-y-1.5">
             <div className="space-y-1">
               <div className="flex items-center justify-between">
                 <span className="text-[10px] font-mono-code uppercase tracking-wider text-[#78746D] font-medium">
-                  02 / HOW I THINK
+                  02 / HOW I BUILD
                 </span>
-                <span className="text-[10px] font-mono-code text-[#78746D]">NO HYPE</span>
+                <span className="text-[10px] font-mono-code text-[#78746D]">FROM SCRATCH</span>
               </div>
               <p className="text-[11px] sm:text-xs font-sans-clean text-[#1A1918] leading-relaxed">
-                I prioritize deterministic safety and source truth over empty AI hype. If an LLM generates SQL, an AST firewall must verify it. If it quotes knowledge, FAISS must cite chapter and paragraph.
+                I believe the best way to learn is by building from scratch. I like bridging practical AI with solid software engineering to make fast, reliable projects.
               </p>
             </div>
 
             <div className="flex items-center justify-between pt-1.5 border-t border-[rgba(26,25,24,0.12)] text-[10px] sm:text-[11px] font-mono-code text-[#78746D]">
-              <span>Ground Truth &bull; Fast Systems</span>
+              <span>Hands-on Code &bull; Practical AI</span>
               <button
                 onClick={() => setSelectedProject(FEATURED_PROJECTS[0])}
                 className="text-[#1A1918] font-semibold hover:underline cursor-pointer"
