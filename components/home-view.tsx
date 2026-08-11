@@ -238,7 +238,7 @@ export function HomeView() {
                 <h3 className="font-serif-display text-xl text-[#1A1918] font-normal tracking-tight">
                   Featured Systems
                 </h3>
-                <span className="text-[#1A1918] text-base font-serif-display">&nearr;</span>
+                <span className="text-[#1A1918] text-base font-serif-display">↗</span>
               </div>
 
               {/* Dynamic Image / Spec Box Preview */}
@@ -289,7 +289,7 @@ export function HomeView() {
         </div>
 
         {/* =================================================================== */}
-        {/* 3. BOTTOM BENTO ROW (CLEAN SECTION 03 CONTACT CARD)                 */}
+        {/* 3. BOTTOM BENTO ROW (CLEAN ARROW ICONS & POLISHED NETWORK SECTION)  */}
         {/* =================================================================== */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-3 sm:gap-4 shrink-0">
           
@@ -318,7 +318,7 @@ export function HomeView() {
             </div>
           </div>
 
-          {/* Contact Card (Bottom-Center, 4 cols - Clean Arrow & Dispatch) */}
+          {/* Contact Card (Bottom-Center, 4 cols) */}
           <div
             onClick={() => setShowContactModal(true)}
             className="md:col-span-4 sand-card-dark p-3.5 sm:p-4 flex flex-col justify-between cursor-pointer hover:bg-[#363633] transition-all group"
@@ -327,7 +327,7 @@ export function HomeView() {
               <span className="text-[10px] font-mono-code uppercase tracking-wider text-[#A39E95] font-medium">
                 03 / GET IN TOUCH
               </span>
-              <span className="text-sm text-[#F3EFEA] font-mono-code group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform">
+              <span className="text-sm text-[#F3EFEA] font-mono-code group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform">
                 ↗
               </span>
             </div>
@@ -343,7 +343,7 @@ export function HomeView() {
             </div>
           </div>
 
-          {/* Social Links Pill (Bottom-Right, 3 cols) */}
+          {/* Social Links Pill (Bottom-Right, 3 cols - Clean Arrow Glyphs) */}
           <div className="md:col-span-3 sand-card p-3.5 sm:p-4 flex flex-col justify-between">
             <span className="text-[10px] font-mono-code uppercase tracking-wider text-[#78746D] font-medium">
               04 / NETWORK
@@ -354,27 +354,33 @@ export function HomeView() {
                 href="https://github.com/Ilyan321"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-[11px] sm:text-xs font-sans-clean font-semibold tracking-wider text-[#1A1918] hover:text-emerald-800 transition-colors uppercase flex items-center justify-between"
+                className="text-[11px] sm:text-xs font-sans-clean font-semibold tracking-wider text-[#1A1918] hover:text-emerald-800 transition-colors uppercase flex items-center justify-between group"
               >
                 <span>GITHUB</span>
-                <span className="text-[10px] font-mono-code text-[#78746D]">&nearr;</span>
+                <span className="text-xs font-mono-code text-[#78746D] group-hover:text-[#1A1918] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all">
+                  ↗
+                </span>
               </a>
               <a
                 href="https://linkedin.com/in/ilyan-khan-480341359"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-[11px] sm:text-xs font-sans-clean font-semibold tracking-wider text-[#1A1918] hover:text-emerald-800 transition-colors uppercase flex items-center justify-between"
+                className="text-[11px] sm:text-xs font-sans-clean font-semibold tracking-wider text-[#1A1918] hover:text-emerald-800 transition-colors uppercase flex items-center justify-between group"
               >
                 <span>LINKEDIN</span>
-                <span className="text-[10px] font-mono-code text-[#78746D]">&nearr;</span>
+                <span className="text-xs font-mono-code text-[#78746D] group-hover:text-[#1A1918] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all">
+                  ↗
+                </span>
               </a>
               <a
                 href="/CV.pdf"
                 download
-                className="text-[11px] sm:text-xs font-sans-clean font-semibold tracking-wider text-[#1A1918] hover:text-emerald-800 transition-colors uppercase flex items-center justify-between"
+                className="text-[11px] sm:text-xs font-sans-clean font-semibold tracking-wider text-[#1A1918] hover:text-emerald-800 transition-colors uppercase flex items-center justify-between group"
               >
                 <span>RESUME (PDF)</span>
-                <span className="text-[10px] font-mono-code text-[#78746D]">&darr;</span>
+                <span className="text-xs font-mono-code text-[#78746D] group-hover:text-[#1A1918] group-hover:translate-y-0.5 transition-all">
+                  ↓
+                </span>
               </a>
             </div>
 
@@ -468,7 +474,7 @@ export function HomeView() {
                   className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-xs font-mono-code bg-[#1A1918] text-[#F3EFEA] font-semibold hover:bg-black transition-colors"
                 >
                   <GithubIcon size={13} />
-                  <span>Inspect All Repositories on GitHub &nearr;</span>
+                  <span>Inspect All Repositories on GitHub ↗</span>
                 </a>
               </div>
             </motion.div>
@@ -668,7 +674,7 @@ export function HomeView() {
                   className="flex items-center justify-between p-3 rounded-xl bg-[#262523] border border-white/10 text-[#F3EFEA] hover:border-purple-400 transition-colors"
                 >
                   <span className="text-[#A39E95]">Official CV:</span>
-                  <span className="text-purple-300 font-semibold">Download PDF &darr;</span>
+                  <span className="text-purple-300 font-semibold">Download PDF ↓</span>
                 </a>
               </div>
             </motion.div>
