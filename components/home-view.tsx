@@ -157,11 +157,11 @@ export function HomeView() {
         </header>
 
         {/* =================================================================== */}
-        {/* 2. MAIN BENTO GRID - TOP ROW (ABOUT ME WIDTH LOWERED BY FEW PIXELS) */}
+        {/* 2. MAIN BENTO GRID - TOP ROW (FULL MULTI-LINE TEXT RENDERING)       */}
         {/* =================================================================== */}
         <div className="flex flex-col lg:flex-row gap-3 sm:gap-4 flex-1 min-h-0 py-1.5 sm:py-2">
           
-          {/* Top-Left Card: 01 / ABOUT ME (Lowered width to ~38.5% for refined proportion) */}
+          {/* Top-Left Card: 01 / ABOUT ME (All lines shown naturally without line-clamp truncation) */}
           <div className="lg:w-[38.5%] sand-card p-4 sm:p-5 flex flex-col justify-between relative overflow-hidden h-full">
             <div className="flex items-start justify-between">
               <span className="text-[10px] font-mono-code uppercase tracking-wider text-[#78746D] font-medium">
@@ -184,12 +184,12 @@ export function HomeView() {
               </svg>
             </div>
 
-            {/* Heading & Bio */}
+            {/* Heading & Full Multi-Line Bio */}
             <div className="space-y-1.5 my-auto py-1">
               <h1 className="font-serif-display text-2xl sm:text-3xl lg:text-[2.15rem] leading-[1.12] text-[#1A1918] tracking-tight">
                 I build AI that <span className="italic font-normal">actually works</span> in the real world.
               </h1>
-              <p className="text-[11px] sm:text-xs font-sans-clean text-[#1A1918] leading-relaxed line-clamp-3">
+              <p className="text-[11px] sm:text-xs font-sans-clean text-[#1A1918] leading-relaxed">
                 2nd-year Systems Engineering student at QUEST Nawabshah (3.10 CGPA). Whether it&apos;s fine-tuning LLaMA-3 models with LoRA, building AST security firewalls, or shipping production web apps across 4 internships, I care about code that is fast, safe, and useful.
               </p>
             </div>
