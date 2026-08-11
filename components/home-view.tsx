@@ -117,6 +117,7 @@ export function HomeView() {
   const [selectedProject, setSelectedProject] = React.useState<ProjectItem | null>(null);
   const [showContactModal, setShowContactModal] = React.useState<boolean>(false);
   const [showAboutModal, setShowAboutModal] = React.useState<boolean>(false);
+  const [showPhilosophyModal, setShowPhilosophyModal] = React.useState<boolean>(false);
   const [activePreviewIndex, setActivePreviewIndex] = React.useState<number>(0);
 
   return (
@@ -288,11 +289,11 @@ export function HomeView() {
         </div>
 
         {/* =================================================================== */}
-        {/* 3. BOTTOM BENTO ROW (AUTHENTIC STUDENT BUILDER PHILOSOPHY)          */}
+        {/* 3. BOTTOM BENTO ROW (WITH DEDICATED PHILOSOPHY DRAWER TRIGGER)      */}
         {/* =================================================================== */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-3 sm:gap-4 shrink-0">
           
-          {/* Philosophy Card (Bottom-Left, 5 cols - Authentic 4th Sem Builder Mindset) */}
+          {/* Philosophy Card (Bottom-Left, 5 cols - Dedicated Modal Trigger) */}
           <div className="md:col-span-5 sand-card p-3.5 sm:p-4 flex flex-col justify-between space-y-1.5">
             <div className="space-y-1">
               <div className="flex items-center justify-between">
@@ -309,10 +310,10 @@ export function HomeView() {
             <div className="flex items-center justify-between pt-1.5 border-t border-[rgba(26,25,24,0.12)] text-[10px] sm:text-[11px] font-mono-code text-[#78746D]">
               <span>Hands-on Code &bull; Practical AI</span>
               <button
-                onClick={() => setSelectedProject(FEATURED_PROJECTS[0])}
+                onClick={() => setShowPhilosophyModal(true)}
                 className="text-[#1A1918] font-semibold hover:underline cursor-pointer"
               >
-                Inspect Code &rarr;
+                How I Build &rarr;
               </button>
             </div>
           </div>
@@ -385,6 +386,100 @@ export function HomeView() {
         </div>
 
       </div>
+
+      {/* =================================================================== */}
+      {/* ✦ HOW I BUILD & PHILOSOPHY DRAWER / MODAL ✦                         */}
+      {/* =================================================================== */}
+      <AnimatePresence>
+        {showPhilosophyModal && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setShowPhilosophyModal(false)}
+              className="fixed inset-0 bg-[#1A1918]/85 backdrop-blur-sm"
+            />
+
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 16 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 16 }}
+              transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+              className="relative w-full max-w-2xl sand-card p-6 sm:p-8 space-y-5 shadow-2xl z-10 border border-[#1A1918]/20 max-h-[90vh] overflow-y-auto"
+            >
+              <button
+                onClick={() => setShowPhilosophyModal(false)}
+                className="absolute top-5 right-5 p-2 text-[#78746D] hover:text-[#1A1918] rounded-full bg-[rgba(26,25,24,0.06)] hover:bg-[rgba(26,25,24,0.12)] transition-colors cursor-pointer"
+              >
+                <XIcon size={18} />
+              </button>
+
+              <div className="space-y-1">
+                <span className="text-[10px] font-mono-code uppercase tracking-wider text-[#78746D] font-medium">
+                  02 / ENGINEERING MINDSET
+                </span>
+                <h2 className="font-serif-display text-2xl sm:text-3xl text-[#1A1918] font-normal tracking-tight">
+                  How I Build &amp; Learn
+                </h2>
+                <p className="text-xs font-sans-clean text-[#78746D]">
+                  Student Engineer Perspective &bull; QUEST Nawabshah
+                </p>
+              </div>
+
+              {/* Core Builder Quote Box */}
+              <div className="p-4 rounded-xl bg-[#DFD5C6] border border-[rgba(26,25,24,0.1)]">
+                <p className="font-serif-display text-lg sm:text-xl text-[#1A1918] italic leading-snug">
+                  &ldquo;I believe the best way to learn is by building from scratch. I like bridging practical AI with solid software engineering to make fast, reliable projects.&rdquo;
+                </p>
+                <span className="text-[10px] font-mono-code text-[#78746D] block mt-2">
+                  — Ilyan Khan, 2nd Year Computer Systems Engineering
+                </span>
+              </div>
+
+              {/* Core Principles Breakdown */}
+              <div className="space-y-3 text-xs font-sans-clean text-[#1A1918]">
+                <div className="p-3 rounded-lg bg-[rgba(26,25,24,0.04)] border border-[rgba(26,25,24,0.08)]">
+                  <strong className="font-mono-code text-[11px] uppercase text-[#1A1918] block mb-1">
+                    1. Hands-on Experimentation
+                  </strong>
+                  <p className="text-[#78746D] leading-relaxed">
+                    Instead of only running tutorials, I like fine-tuning open-source LLMs, benchmarking datasets on Hugging Face, and writing low-level C++ algorithms to understand how computers execute code.
+                  </p>
+                </div>
+
+                <div className="p-3 rounded-lg bg-[rgba(26,25,24,0.04)] border border-[rgba(26,25,24,0.08)]">
+                  <strong className="font-mono-code text-[11px] uppercase text-[#1A1918] block mb-1">
+                    2. Practical &amp; Safe Software
+                  </strong>
+                  <p className="text-[#78746D] leading-relaxed">
+                    Whether it is an attendance management system for students or an NLP-to-SQL agent with an AST parser firewall, I prioritize software that actually works reliably in real hands.
+                  </p>
+                </div>
+              </div>
+
+              {/* Footer Links */}
+              <div className="flex items-center justify-between pt-3 border-t border-[rgba(26,25,24,0.12)]">
+                <a
+                  href="https://github.com/Ilyan321"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-xs font-mono-code bg-[#1A1918] text-[#F3EFEA] font-semibold hover:bg-black transition-colors"
+                >
+                  <GithubIcon size={13} />
+                  <span>Inspect All Repositories on GitHub &nearr;</span>
+                </a>
+                <button
+                  onClick={() => setShowPhilosophyModal(false)}
+                  className="text-xs font-mono-code text-[#78746D] hover:text-[#1A1918] cursor-pointer"
+                >
+                  Close
+                </button>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
 
       {/* =================================================================== */}
       {/* ✦ PROJECT DETAIL DRAWER / MODAL ✦                                    */}
