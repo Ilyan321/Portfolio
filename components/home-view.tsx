@@ -157,11 +157,11 @@ export function HomeView() {
         </header>
 
         {/* =================================================================== */}
-        {/* 2. MAIN BENTO GRID - TOP ROW (CENTERED PORTRAIT 4.5 / 3 / 4.5)      */}
+        {/* 2. MAIN BENTO GRID - TOP ROW (CENTERED PORTRAIT)                    */}
         {/* =================================================================== */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-3 sm:gap-4 flex-1 min-h-0 py-1.5 sm:py-2">
           
-          {/* Top-Left Card: 01 / CREDENTIALS (Decreased to 4.5/5 cols for centered photo) */}
+          {/* Top-Left Card: 01 / CREDENTIALS */}
           <div className="lg:col-span-5 sand-card p-4 sm:p-6 flex flex-col justify-between relative overflow-hidden h-full">
             <div className="flex items-start justify-between">
               <span className="text-[10px] font-mono-code uppercase tracking-wider text-[#78746D] font-medium">
@@ -184,10 +184,10 @@ export function HomeView() {
               </svg>
             </div>
 
-            {/* Headline with Italic Emphasis & Academic Credentials */}
+            {/* Authentic Engineering Headline */}
             <div className="space-y-2 my-auto py-1">
               <h1 className="font-serif-display text-2xl sm:text-3xl lg:text-[2.25rem] leading-[1.12] text-[#1A1918] tracking-tight">
-                Let&apos;s create <span className="italic font-normal">robust system magic</span> for your next project.
+                Engineering <span className="italic font-normal">applied AI systems</span> &amp; reliable software.
               </h1>
               <p className="text-[11px] sm:text-xs font-sans-clean text-[#1A1918] leading-relaxed line-clamp-3">
                 2nd Year CSE student at QUEST Nawabshah with a <strong className="font-semibold text-black">3.10 CGPA</strong> &amp; 4 software internships (IntelliVerse, Arch Tech, Coretech, CodeAlpha).
@@ -206,7 +206,7 @@ export function HomeView() {
             </div>
           </div>
 
-          {/* Portrait Card (Top-Center, Exactly 3 cols in the middle) */}
+          {/* Portrait Card (Top-Center, 3 cols) */}
           <div className="lg:col-span-3 sand-card p-2 sm:p-2.5 flex items-center justify-center relative overflow-hidden h-full">
             <div className="w-full h-full rounded-[1.1rem] overflow-hidden relative shadow-inner bg-[#DFD5C6]">
               {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -288,11 +288,11 @@ export function HomeView() {
         </div>
 
         {/* =================================================================== */}
-        {/* 3. BOTTOM BENTO ROW (SYMMETRIC 5 / 4 / 3 COLUMNS)                   */}
+        {/* 3. BOTTOM BENTO ROW                                                 */}
         {/* =================================================================== */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-3 sm:gap-4 shrink-0">
           
-          {/* Philosophy Card (Bottom-Left, Decreased to 5 cols) */}
+          {/* Philosophy Card (Bottom-Left, 5 cols) */}
           <div className="md:col-span-5 sand-card p-3.5 sm:p-4 flex flex-col justify-between space-y-1.5">
             <div className="space-y-1">
               <span className="text-[10px] font-mono-code uppercase tracking-wider text-[#78746D] font-medium">
