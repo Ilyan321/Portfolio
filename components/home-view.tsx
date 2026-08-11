@@ -289,11 +289,11 @@ export function HomeView() {
         </div>
 
         {/* =================================================================== */}
-        {/* 3. BOTTOM BENTO ROW                                                 */}
+        {/* 3. BOTTOM BENTO ROW (CLEAN SECTION 03 CONTACT CARD)                 */}
         {/* =================================================================== */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-3 sm:gap-4 shrink-0">
           
-          {/* Philosophy Card (Bottom-Left, 5 cols - Dedicated Modal Trigger) */}
+          {/* Philosophy Card (Bottom-Left, 5 cols) */}
           <div className="md:col-span-5 sand-card p-3.5 sm:p-4 flex flex-col justify-between space-y-1.5">
             <div className="space-y-1">
               <div className="flex items-center justify-between">
@@ -318,7 +318,7 @@ export function HomeView() {
             </div>
           </div>
 
-          {/* Contact Card (Bottom-Center, 4 cols) */}
+          {/* Contact Card (Bottom-Center, 4 cols - Clean Arrow & Dispatch) */}
           <div
             onClick={() => setShowContactModal(true)}
             className="md:col-span-4 sand-card-dark p-3.5 sm:p-4 flex flex-col justify-between cursor-pointer hover:bg-[#363633] transition-all group"
@@ -327,8 +327,8 @@ export function HomeView() {
               <span className="text-[10px] font-mono-code uppercase tracking-wider text-[#A39E95] font-medium">
                 03 / GET IN TOUCH
               </span>
-              <span className="font-serif-display text-lg text-[#F3EFEA] group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform">
-                &nearr;
+              <span className="text-sm text-[#F3EFEA] font-mono-code group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform">
+                ↗
               </span>
             </div>
 
@@ -408,7 +408,6 @@ export function HomeView() {
               transition={{ type: 'spring', stiffness: 300, damping: 30 }}
               className="relative w-full max-w-2xl sand-card p-6 sm:p-8 space-y-5 shadow-2xl z-10 border border-[#1A1918]/20 max-h-[90vh] overflow-y-auto"
             >
-              {/* Standard Top-Right Close Button */}
               <button
                 onClick={() => setShowPhilosophyModal(false)}
                 className="absolute top-5 right-5 p-2 text-[#78746D] hover:text-[#1A1918] rounded-full bg-[rgba(26,25,24,0.06)] hover:bg-[rgba(26,25,24,0.12)] transition-colors cursor-pointer"
@@ -460,7 +459,7 @@ export function HomeView() {
                 </div>
               </div>
 
-              {/* Footer Link (Clean, consistent with other modals) */}
+              {/* Footer Link */}
               <div className="pt-3 border-t border-[rgba(26,25,24,0.12)]">
                 <a
                   href="https://github.com/Ilyan321"
