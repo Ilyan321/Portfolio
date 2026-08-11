@@ -157,11 +157,11 @@ export function HomeView() {
         </header>
 
         {/* =================================================================== */}
-        {/* 2. MAIN BENTO GRID - TOP ROW (FULL MULTI-LINE TEXT RENDERING)       */}
+        {/* 2. MAIN BENTO GRID - TOP ROW                                        */}
         {/* =================================================================== */}
         <div className="flex flex-col lg:flex-row gap-3 sm:gap-4 flex-1 min-h-0 py-1.5 sm:py-2">
           
-          {/* Top-Left Card: 01 / ABOUT ME (All lines shown naturally without line-clamp truncation) */}
+          {/* Top-Left Card: 01 / ABOUT ME */}
           <div className="lg:w-[38.5%] sand-card p-4 sm:p-5 flex flex-col justify-between relative overflow-hidden h-full">
             <div className="flex items-start justify-between">
               <span className="text-[10px] font-mono-code uppercase tracking-wider text-[#78746D] font-medium">
@@ -288,11 +288,11 @@ export function HomeView() {
         </div>
 
         {/* =================================================================== */}
-        {/* 3. BOTTOM BENTO ROW                                                 */}
+        {/* 3. BOTTOM BENTO ROW (FULL MULTI-LINE TEXT FOR SECTION 02)           */}
         {/* =================================================================== */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-3 sm:gap-4 shrink-0">
           
-          {/* Philosophy Card (Bottom-Left, 5 cols) */}
+          {/* Philosophy Card (Bottom-Left, 5 cols - Full text visible without line-clamp) */}
           <div className="md:col-span-5 sand-card p-3.5 sm:p-4 flex flex-col justify-between space-y-1.5">
             <div className="space-y-1">
               <div className="flex items-center justify-between">
@@ -301,7 +301,7 @@ export function HomeView() {
                 </span>
                 <span className="text-[10px] font-mono-code text-[#78746D]">NO HYPE</span>
               </div>
-              <p className="text-[11px] sm:text-xs font-sans-clean text-[#1A1918] leading-relaxed line-clamp-2">
+              <p className="text-[11px] sm:text-xs font-sans-clean text-[#1A1918] leading-relaxed">
                 I prioritize deterministic safety and source truth over empty AI hype. If an LLM generates SQL, an AST firewall must verify it. If it quotes knowledge, FAISS must cite chapter and paragraph.
               </p>
             </div>
