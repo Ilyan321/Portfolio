@@ -1005,39 +1005,15 @@ export function HomeView() {
                 </p>
               </div>
 
-              {/* Certificate Image or Document Preview */}
-              <div className="w-full rounded-xl overflow-hidden border border-[rgba(26,25,24,0.15)] bg-[#DFD5C6] shadow-md">
-                {selectedCert.imagePath.endsWith('.pdf') ? (
-                  <div className="p-6 sm:p-8 text-center space-y-3 bg-[#DFD5C6]">
-                    <div className="w-12 h-12 mx-auto rounded-full bg-[#1A1918] text-[#F3EFEA] flex items-center justify-center font-mono-code font-bold text-xs tracking-wider shadow">
-                      PDF
-                    </div>
-                    <div>
-                      <h4 className="text-sm font-sans-clean font-bold text-[#1A1918]">
-                        Official Verified Credential Document
-                      </h4>
-                      <p className="text-[11px] font-mono-code text-[#78746D]">
-                        {selectedCert.issuer} &bull; {selectedCert.credentialId}
-                      </p>
-                    </div>
-                    <a
-                      href={selectedCert.imagePath}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-xs font-mono-code bg-[#1A1918] text-[#F3EFEA] font-semibold hover:bg-black transition-colors"
-                    >
-                      <span>Open Verified Certificate PDF</span>
-                      <ExternalLinkIcon size={12} />
-                    </a>
-                  </div>
-                ) : (
-                  /* eslint-disable-next-line @next/next/no-img-element */
-                  <img
-                    src={selectedCert.imagePath}
-                    alt={selectedCert.title}
-                    className="w-full h-auto object-cover max-h-72"
-                  />
-                )}
+              {/* Certificate Image or Document Preview (Full View, Never Cropped) */}
+              <div className="w-full rounded-xl overflow-hidden border border-[rgba(26,25,24,0.15)] bg-[#1A1918]/5 p-1 sm:p-2 shadow-inner">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={selectedCert.imagePath}
+                  alt={selectedCert.title}
+                  className="w-full h-auto max-h-[65vh] object-contain rounded-lg shadow-md mx-auto block"
+                  loading="lazy"
+                />
               </div>
 
               {/* Description & Competencies */}
