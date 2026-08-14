@@ -1643,6 +1643,21 @@ export function HomeView() {
                 </div>
               </div>
 
+              {/* CV Download CTA */}
+              <div className="pt-2">
+                <a
+                  href="/CV.pdf"
+                  download
+                  className="w-full flex items-center justify-between p-3 rounded-xl bg-[#1A1918] text-[#F3EFEA] hover:bg-black active:bg-neutral-900 transition-colors group text-xs font-mono-code"
+                >
+                  <div className="flex items-center gap-2">
+                    <FileTextIcon size={14} />
+                    <span className="font-sans-clean font-semibold">Download Full Official Resume (PDF)</span>
+                  </div>
+                  <span className="text-[#DFD5C6] group-hover:translate-y-0.5 transition-transform">↓</span>
+                </a>
+              </div>
+
             </motion.div>
           </div>
         )}
