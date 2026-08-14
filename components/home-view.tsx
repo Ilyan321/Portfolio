@@ -243,7 +243,7 @@ export function HomeView() {
         <div className="flex flex-col lg:flex-row gap-3 sm:gap-4 flex-1 min-h-0 py-1 sm:py-2">
           
           {/* Top-Left Card: 01 / ABOUT ME */}
-          <div className="w-full lg:w-[33%] sand-card p-4 sm:p-5 flex flex-col justify-between relative overflow-hidden min-h-[220px] lg:min-h-0 lg:h-full gap-3 lg:gap-0">
+          <div className="w-full lg:w-[38.5%] sand-card p-4 sm:p-5 flex flex-col justify-between relative overflow-hidden min-h-[220px] lg:min-h-0 lg:h-full gap-3 lg:gap-0">
             <div className="flex items-start justify-between">
               <span className="text-[10px] font-mono-code uppercase tracking-wider text-[#78746D] font-medium">
                 01 / ABOUT ME
@@ -287,16 +287,16 @@ export function HomeView() {
             </div>
           </div>
 
-          {/* Portrait Card (Top-Center, substantially larger, prominent length & face zoom) */}
-          <div className="w-full lg:w-[33%] sand-card p-2 sm:p-2.5 flex items-center justify-center relative overflow-hidden h-[26rem] sm:h-[30rem] lg:h-full shrink-0">
+          {/* Portrait Card (Exact original 24% width on desktop, responsive clear face framing on mobile) */}
+          <div className="w-full lg:w-[24%] sand-card p-2 sm:p-2.5 flex items-center justify-center relative overflow-hidden h-80 sm:h-96 lg:h-full shrink-0">
             <div className="w-full h-full rounded-[1.1rem] overflow-hidden relative shadow-inner bg-[#DFD5C6]">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/pp.jpeg"
                 alt="Ilyan Khan"
-                className="w-full h-full object-cover object-[center_30%] scale-[1.35] sm:scale-[1.38] hover:scale-[1.45] transition-transform duration-700"
+                className="w-full h-full object-cover object-[center_28%] scale-[1.25] lg:scale-100 lg:object-top hover:scale-[1.3] lg:hover:scale-105 transition-transform duration-700"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#1A1918]/70 via-[#1A1918]/15 via-30% to-transparent pointer-events-none" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#1A1918]/65 via-transparent to-transparent pointer-events-none" />
               <div className="absolute bottom-2.5 left-3 right-3 text-[#F3EFEA] font-sans-clean">
                 <span className="font-serif-display text-base sm:text-lg lg:text-base font-normal block leading-tight">
                   Ilyan Khan
@@ -308,10 +308,10 @@ export function HomeView() {
             </div>
           </div>
 
-          {/* Top-Right: Pure High-Craft Editorial Showcase */}
+          {/* Top-Right: Pure High-Craft Editorial Showcase (Exact original 37.5% width on desktop) */}
           <div
             id="projects-card"
-            className="w-full lg:w-[34%] sand-card p-4 sm:p-5 flex flex-col justify-between min-h-[260px] lg:min-h-0 lg:h-full gap-2 lg:gap-0"
+            className="w-full lg:w-[37.5%] sand-card p-4 sm:p-5 flex flex-col justify-between min-h-[260px] lg:min-h-0 lg:h-full gap-2 lg:gap-0"
           >
             {/* Clickable Header */}
             <div
