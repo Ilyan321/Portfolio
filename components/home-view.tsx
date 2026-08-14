@@ -35,6 +35,7 @@ interface CertificateItem {
   tag: string;
   credentialId?: string;
   imagePath: string;
+  pdfPath?: string;
   description: string;
   skills: string[];
 }
@@ -307,7 +308,7 @@ const ALL_PROJECTS: ProjectItem[] = [
   },
 ];
 
-// Verified Certifications List (All 6 Verified Credentials)
+// Verified Certifications List (All 9 Verified Credentials)
 const ALL_CERTIFICATES: CertificateItem[] = [
   {
     id: 'cybersecurity',
@@ -358,13 +359,40 @@ const ALL_CERTIFICATES: CertificateItem[] = [
     skills: ['Scrum Framework', 'Sprint Planning', 'Kanban Boards', 'Jira Software', 'Agile Delivery'],
   },
   {
+    id: 'claude-code-action',
+    title: 'Claude Code in Action',
+    issuer: 'Anthropic Education',
+    issueDate: 'July 2026',
+    tag: 'Agentic Coding & CLI',
+    credentialId: 'ANTH-CCA-2026',
+    imagePath: '/certificates/claude-code-in-action-1.png',
+    pdfPath: '/certificates/claude-code-in-action.pdf',
+    description:
+      'Official Anthropic certification in deploying agentic command-line developer workflows, terminal autonomy, multi-file code editing, tool execution, and automated testing loops with Claude Code.',
+    skills: ['Claude Code CLI', 'Agentic Workflows', 'Terminal Automation', 'Context Engineering', 'Codebase Refactoring'],
+  },
+  {
+    id: 'claude-code-101',
+    title: 'Claude Code 101',
+    issuer: 'Anthropic Education',
+    issueDate: 'July 2026',
+    tag: 'Agentic Engineering',
+    credentialId: 'ANTH-CC-101',
+    imagePath: '/certificates/claude-code-101-1.png',
+    pdfPath: '/certificates/claude-code-101.pdf',
+    description:
+      'Foundational mastery of the Claude Code command-line tool, configuration management, project permissions, cost control, subagent orchestration, and prompt customization.',
+    skills: ['Claude Code Setup', 'Subagent Management', 'Shell Integration', 'Tool Permissions', 'Developer Experience'],
+  },
+  {
     id: 'ai-fluency',
-    title: 'AI Fluency Professional',
-    issuer: 'Anthropic / FlyRank AI',
+    title: 'AI Fluency: Framework & Foundations',
+    issuer: 'Anthropic / UCC / HEA',
     issueDate: '2026',
     tag: 'Frontier AI & Reasoning',
     credentialId: 'ANTH-AIF-2026',
-    imagePath: '/certificates/AI Fluency.pdf',
+    imagePath: '/certificates/ai-fluency-1.png',
+    pdfPath: '/certificates/AI Fluency.pdf',
     description:
       'Professional qualification in frontier Large Language Model fluency, multi-step chain-of-thought reasoning, agentic workflow architecture, and enterprise AI evaluation.',
     skills: ['Frontier LLMs', 'Applied Reasoning', 'Agentic Workflows', 'Model Evaluation', 'AI Strategy'],
@@ -372,14 +400,28 @@ const ALL_CERTIFICATES: CertificateItem[] = [
   {
     id: 'claude-101',
     title: 'Claude 101 Mastery',
-    issuer: 'Anthropic / FlyRank AI',
+    issuer: 'Anthropic Education',
     issueDate: '2026',
     tag: 'Applied AI & Tool Use',
     credentialId: 'ANTH-CLD-101',
-    imagePath: '/certificates/Claude 101.pdf',
+    imagePath: '/certificates/claude-101-1.png',
+    pdfPath: '/certificates/Claude 101.pdf',
     description:
       'Specialized qualification in Anthropic Claude architecture, advanced system prompt design, structured tool use / function calling, and context window optimization.',
     skills: ['Claude Architecture', 'System Prompts', 'Structured Tool Use', 'Context Engineering', 'API Integration'],
+  },
+  {
+    id: 'genai-mastermind',
+    title: 'Generative AI Mastermind',
+    issuer: 'Outskill',
+    issueDate: '2026',
+    tag: 'GenAI Mastermind',
+    credentialId: 'OUTSKILL-GAI-2026',
+    imagePath: '/certificates/internship-cert-1.png',
+    pdfPath: '/certificates/internship-cert.pdf',
+    description:
+      'Comprehensive executive masterclass on state-of-the-art Generative AI systems, multimodal LLM pipelines, autonomous agents, and enterprise AI workflow automation.',
+    skills: ['Generative AI', 'Agentic Pipelines', 'Prompt Architecture', 'Automation Workflows', 'Multimodal AI'],
   },
 ];
 
@@ -1022,10 +1064,23 @@ export function HomeView() {
               </div>
 
               {/* Footer */}
-              <div className="pt-3 border-t border-[rgba(26,25,24,0.12)] flex items-center justify-between">
-                <span className="text-[10px] font-mono-code text-[#78746D]">
-                  Credential ID: {selectedCert.credentialId || 'GCC-VERIFIED'}
-                </span>
+              <div className="pt-3 border-t border-[rgba(26,25,24,0.12)] flex flex-wrap items-center justify-between gap-2">
+                <div className="flex items-center gap-3">
+                  <span className="text-[10px] font-mono-code text-[#78746D]">
+                    Credential ID: {selectedCert.credentialId || 'GCC-VERIFIED'}
+                  </span>
+                  {selectedCert.pdfPath && (
+                    <a
+                      href={selectedCert.pdfPath}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-[10px] font-mono-code font-semibold text-emerald-900 hover:underline flex items-center gap-0.5"
+                    >
+                      <span>Official PDF</span>
+                      <ExternalLinkIcon size={10} />
+                    </a>
+                  )}
+                </div>
                 <button
                   onClick={() => setSelectedCert(null)}
                   className="text-xs font-mono-code text-[#1A1918] font-semibold hover:underline cursor-pointer"

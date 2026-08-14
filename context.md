@@ -232,8 +232,11 @@ All verified certificates located in `public/` and `public/certificates/`:
 | 2 | **Google AI Essentials** | Google | `/certificates/ai-essentials.png` | PNG | Generative AI, LLM Workflow Design, Ethical AI, Prompt Strategies |
 | 3 | **Google Prompting Essentials** | Google | `/certificates/prompting-essentials.png` | PNG | Chain-of-Thought, Few-Shot Conditioning, System Prompts, Guardrails |
 | 4 | **Agile with Atlassian Jira** | Atlassian | `/certificates/agile-essentials.png` | PNG | Scrum, Sprint Planning, Kanban Boards, Agile Lifecycle Management |
-| 5 | **AI Fluency Professional** | Anthropic / FlyRank AI | `/certificates/AI Fluency.pdf` | PDF | Frontier LLMs, Applied Reasoning, Agentic AI Workflows |
-| 6 | **Claude 101 Mastery** | Anthropic / FlyRank AI | `/certificates/Claude 101.pdf` | PDF | Claude Architecture, System Prompts, Structured Tool Use |
+| 5 | **Claude Code in Action** | Anthropic Education | `/certificates/claude-code-in-action.pdf` | PNG + PDF | Terminal Autonomy, Agentic Workflows, Multi-file Refactoring, Claude Code CLI |
+| 6 | **Claude Code 101** | Anthropic Education | `/certificates/claude-code-101.pdf` | PNG + PDF | Claude Code CLI, Permissions, Tool Execution, Subagent Orchestration |
+| 7 | **AI Fluency: Framework & Foundations** | Anthropic / UCC / HEA | `/certificates/AI Fluency.pdf` | PNG + PDF | Frontier LLMs, Applied Reasoning, Agentic AI Workflows |
+| 8 | **Claude 101 Mastery** | Anthropic Education | `/certificates/Claude 101.pdf` | PNG + PDF | Claude Architecture, System Prompts, Structured Tool Use |
+| 9 | **Generative AI Mastermind** | Outskill | `/certificates/internship-cert.pdf` | PNG + PDF | GenAI Pipelines, Multimodal Models, Prompt Architecture, AI Automation |
 
 ---
 
