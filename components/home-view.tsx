@@ -568,10 +568,22 @@ export function HomeView() {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
               transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+              drag="y"
+              dragDirectionLock
+              dragSnapToOrigin
+              dragConstraints={{ top: 0, bottom: 0 }}
+              dragElastic={{ top: 0.05, bottom: 0.75 }}
+              onDragEnd={(_, info) => {
+                if (info.offset.y > 80 || info.velocity.y > 300) {
+                  setShowDirectoryModal(false);
+                }
+              }}
               className="relative w-full max-w-3xl sand-card p-5 sm:p-7 lg:p-8 space-y-4 sm:space-y-5 shadow-2xl z-10 max-h-[88vh] sm:max-h-[90vh] overflow-y-auto border border-[#1A1918]/20 rounded-t-[1.75rem] rounded-b-none sm:rounded-[1.75rem] pb-[max(1.5rem,env(safe-area-inset-bottom))]"
             >
-              {/* Mobile Drag Indicator */}
-              <div className="w-10 h-1 rounded-full bg-[#1A1918]/20 mx-auto -mt-2 mb-2 sm:hidden" />
+              {/* Mobile Drag Indicator & Touch Area */}
+              <div className="w-full flex justify-center pt-0 pb-3 -mt-2 sm:hidden cursor-grab active:cursor-grabbing touch-none select-none">
+                <div className="w-12 h-1.5 rounded-full bg-[#1A1918]/25" />
+              </div>
 
               {/* Close Button */}
               <button
@@ -702,10 +714,22 @@ export function HomeView() {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
               transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+              drag="y"
+              dragDirectionLock
+              dragSnapToOrigin
+              dragConstraints={{ top: 0, bottom: 0 }}
+              dragElastic={{ top: 0.05, bottom: 0.75 }}
+              onDragEnd={(_, info) => {
+                if (info.offset.y > 80 || info.velocity.y > 300) {
+                  setSelectedCert(null);
+                }
+              }}
               className="relative w-full max-w-2xl sand-card p-5 sm:p-7 lg:p-8 space-y-4 sm:space-y-5 shadow-2xl z-10 max-h-[88vh] sm:max-h-[90vh] overflow-y-auto border border-[#1A1918]/20 rounded-t-[1.75rem] rounded-b-none sm:rounded-[1.75rem] pb-[max(1.5rem,env(safe-area-inset-bottom))]"
             >
-              {/* Mobile Drag Indicator */}
-              <div className="w-10 h-1 rounded-full bg-[#1A1918]/20 mx-auto -mt-2 mb-2 sm:hidden" />
+              {/* Mobile Drag Indicator & Touch Area */}
+              <div className="w-full flex justify-center pt-0 pb-3 -mt-2 sm:hidden cursor-grab active:cursor-grabbing touch-none select-none">
+                <div className="w-12 h-1.5 rounded-full bg-[#1A1918]/25" />
+              </div>
 
               {/* Close Button */}
               <button
@@ -802,10 +826,22 @@ export function HomeView() {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
               transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+              drag="y"
+              dragDirectionLock
+              dragSnapToOrigin
+              dragConstraints={{ top: 0, bottom: 0 }}
+              dragElastic={{ top: 0.05, bottom: 0.75 }}
+              onDragEnd={(_, info) => {
+                if (info.offset.y > 80 || info.velocity.y > 300) {
+                  setSelectedProject(null);
+                }
+              }}
               className="relative w-full max-w-3xl sand-card p-5 sm:p-7 lg:p-8 space-y-4 sm:space-y-5 shadow-2xl z-10 max-h-[88vh] sm:max-h-[90vh] overflow-y-auto border border-[#1A1918]/20 rounded-t-[1.75rem] rounded-b-none sm:rounded-[1.75rem] pb-[max(1.5rem,env(safe-area-inset-bottom))]"
             >
-              {/* Mobile Drag Indicator */}
-              <div className="w-10 h-1 rounded-full bg-[#1A1918]/20 mx-auto -mt-2 mb-2 sm:hidden" />
+              {/* Mobile Drag Indicator & Touch Area */}
+              <div className="w-full flex justify-center pt-0 pb-3 -mt-2 sm:hidden cursor-grab active:cursor-grabbing touch-none select-none">
+                <div className="w-12 h-1.5 rounded-full bg-[#1A1918]/25" />
+              </div>
 
               <button
                 onClick={() => setSelectedProject(null)}
@@ -932,10 +968,22 @@ export function HomeView() {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
               transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+              drag="y"
+              dragDirectionLock
+              dragSnapToOrigin
+              dragConstraints={{ top: 0, bottom: 0 }}
+              dragElastic={{ top: 0.05, bottom: 0.75 }}
+              onDragEnd={(_, info) => {
+                if (info.offset.y > 80 || info.velocity.y > 300) {
+                  setShowPhilosophyModal(false);
+                }
+              }}
               className="relative w-full max-w-2xl sand-card p-5 sm:p-7 lg:p-8 space-y-4 sm:space-y-5 shadow-2xl z-10 border border-[#1A1918]/20 max-h-[88vh] sm:max-h-[90vh] overflow-y-auto rounded-t-[1.75rem] rounded-b-none sm:rounded-[1.75rem] pb-[max(1.5rem,env(safe-area-inset-bottom))]"
             >
-              {/* Mobile Drag Indicator */}
-              <div className="w-10 h-1 rounded-full bg-[#1A1918]/20 mx-auto -mt-2 mb-2 sm:hidden" />
+              {/* Mobile Drag Indicator & Touch Area */}
+              <div className="w-full flex justify-center pt-0 pb-3 -mt-2 sm:hidden cursor-grab active:cursor-grabbing touch-none select-none">
+                <div className="w-12 h-1.5 rounded-full bg-[#1A1918]/25" />
+              </div>
 
               <button
                 onClick={() => setShowPhilosophyModal(false)}
@@ -1024,10 +1072,22 @@ export function HomeView() {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
               transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+              drag="y"
+              dragDirectionLock
+              dragSnapToOrigin
+              dragConstraints={{ top: 0, bottom: 0 }}
+              dragElastic={{ top: 0.05, bottom: 0.75 }}
+              onDragEnd={(_, info) => {
+                if (info.offset.y > 80 || info.velocity.y > 300) {
+                  setShowNetworkModal(false);
+                }
+              }}
               className="relative w-full max-w-md sand-card p-5 sm:p-7 space-y-4 sm:space-y-5 shadow-2xl z-10 border border-[#1A1918]/20 max-h-[88vh] sm:max-h-[90vh] overflow-y-auto rounded-t-[1.75rem] rounded-b-none sm:rounded-[1.75rem] pb-[max(1.5rem,env(safe-area-inset-bottom))]"
             >
-              {/* Mobile Drag Indicator */}
-              <div className="w-10 h-1 rounded-full bg-[#1A1918]/20 mx-auto -mt-2 mb-2 sm:hidden" />
+              {/* Mobile Drag Indicator & Touch Area */}
+              <div className="w-full flex justify-center pt-0 pb-3 -mt-2 sm:hidden cursor-grab active:cursor-grabbing touch-none select-none">
+                <div className="w-12 h-1.5 rounded-full bg-[#1A1918]/25" />
+              </div>
 
               <button
                 onClick={() => setShowNetworkModal(false)}
@@ -1136,10 +1196,22 @@ export function HomeView() {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
               transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+              drag="y"
+              dragDirectionLock
+              dragSnapToOrigin
+              dragConstraints={{ top: 0, bottom: 0 }}
+              dragElastic={{ top: 0.05, bottom: 0.75 }}
+              onDragEnd={(_, info) => {
+                if (info.offset.y > 80 || info.velocity.y > 300) {
+                  setShowContactModal(false);
+                }
+              }}
               className="relative w-full max-w-md sand-card-dark p-5 sm:p-7 space-y-4 sm:space-y-5 shadow-2xl z-10 border border-white/10 rounded-t-[1.75rem] rounded-b-none sm:rounded-[1.75rem] max-h-[88vh] sm:max-h-[90vh] overflow-y-auto pb-[max(1.5rem,env(safe-area-inset-bottom))]"
             >
-              {/* Mobile Drag Indicator */}
-              <div className="w-10 h-1 rounded-full bg-white/20 mx-auto -mt-2 mb-2 sm:hidden" />
+              {/* Mobile Drag Indicator & Touch Area */}
+              <div className="w-full flex justify-center pt-0 pb-3 -mt-2 sm:hidden cursor-grab active:cursor-grabbing touch-none select-none">
+                <div className="w-12 h-1.5 rounded-full bg-white/30" />
+              </div>
 
               <button
                 onClick={() => setShowContactModal(false)}
@@ -1212,10 +1284,22 @@ export function HomeView() {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
               transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+              drag="y"
+              dragDirectionLock
+              dragSnapToOrigin
+              dragConstraints={{ top: 0, bottom: 0 }}
+              dragElastic={{ top: 0.05, bottom: 0.75 }}
+              onDragEnd={(_, info) => {
+                if (info.offset.y > 80 || info.velocity.y > 300) {
+                  setShowAboutModal(false);
+                }
+              }}
               className="relative w-full max-w-2xl sand-card p-5 sm:p-7 space-y-4 sm:space-y-5 shadow-2xl z-10 border border-[#1A1918]/20 max-h-[88vh] sm:max-h-[90vh] overflow-y-auto rounded-t-[1.75rem] rounded-b-none sm:rounded-[1.75rem] pb-[max(1.5rem,env(safe-area-inset-bottom))]"
             >
-              {/* Mobile Drag Indicator */}
-              <div className="w-10 h-1 rounded-full bg-[#1A1918]/20 mx-auto -mt-2 mb-2 sm:hidden" />
+              {/* Mobile Drag Indicator & Touch Area */}
+              <div className="w-full flex justify-center pt-0 pb-3 -mt-2 sm:hidden cursor-grab active:cursor-grabbing touch-none select-none">
+                <div className="w-12 h-1.5 rounded-full bg-[#1A1918]/25" />
+              </div>
 
               <button
                 onClick={() => setShowAboutModal(false)}
