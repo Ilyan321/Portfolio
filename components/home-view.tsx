@@ -39,7 +39,7 @@ interface CertificateItem {
   skills: string[];
 }
 
-// Curated Projects List
+// Curated Projects List (All Flagship Projects)
 const ALL_PROJECTS: ProjectItem[] = [
   {
     id: 'sql-agent',
@@ -114,8 +114,8 @@ const ALL_PROJECTS: ProjectItem[] = [
     ],
     techStack: ['PyTorch', 'DistilBERT', 'Transformers', 'Datasets', 'Streamlit', 'Scikit-Learn'],
     githubUrl: 'https://github.com/Ilyan321/VibeGuard',
-    demoUrl: 'https://huggingface.co/spaces/Ilyankhan69/VibeGuard',
-    huggingFaceUrl: 'https://huggingface.co/spaces/Ilyankhan69/VibeGuard',
+    demoUrl: 'https://huggingface.co/spaces/Ilyan321/vibeguard',
+    huggingFaceUrl: 'https://huggingface.co/spaces/Ilyan321/vibeguard',
     highlights: [
       { label: 'Model', value: 'DistilBERT Multi-label' },
       { label: 'Accuracy', value: '86.67%' },
@@ -123,9 +123,191 @@ const ALL_PROJECTS: ProjectItem[] = [
       { label: 'Classes', value: '6 Toxicity Vectors' },
     ],
   },
+  {
+    id: 'slasher-vision',
+    name: 'Slasher-Vision-35mm',
+    subtitle: 'Custom SDXL Diffusion LoRA for 35mm Retro Cinema',
+    tag: 'Generative AI & Vision',
+    grade: 'Grade 8.9 / 10',
+    category: 'Diffusion Models & LoRA Fine-Tuning',
+    elevatorPitch:
+      'A specialized Low-Rank Adaptation (LoRA) for Stable Diffusion XL (SDXL) designed to synthesize authentic 1980s 35mm film grain, anamorphic flare, and vintage cinematography aesthetics, stripping away generic digital smoothness.',
+    challenge:
+      'Isolating high-frequency film grain and optical distortion artifacts during training without degrading subject prompt fidelity.',
+    architecture: [
+      'Low-Rank Adaptation fine-tuned across SDXL UNet cross-attention layers.',
+      'Trained on curated vintage 35mm horror and thriller cinematography stills.',
+      'Published weights and usage triggers on Hugging Face Model Hub.',
+    ],
+    techStack: ['PyTorch', 'SDXL', 'Diffusers', 'LoRA / PEFT', 'Hugging Face', 'Python'],
+    githubUrl: 'https://github.com/Ilyan321/Slasher-Vision-35mm',
+    demoUrl: 'https://huggingface.co/Ilyankhan69/slasher-vision-35mm',
+    huggingFaceUrl: 'https://huggingface.co/Ilyankhan69/slasher-vision-35mm',
+    highlights: [
+      { label: 'Base Model', value: 'SDXL 1.0' },
+      { label: 'Technique', value: 'Cross-Attention LoRA' },
+      { label: 'Aesthetic', value: '35mm Film Grain' },
+      { label: 'Platform', value: 'Hugging Face Hub' },
+    ],
+  },
+  {
+    id: 'edufocus',
+    name: 'EduFocus Attendance Portal',
+    subtitle: 'React 18 & Supabase Real-Time Attendance SPA',
+    tag: 'Full-Stack Web',
+    grade: 'Grade 8.8 / 10',
+    category: 'Web Engineering & Real-Time Sync',
+    elevatorPitch:
+      'A modern Single Page Application (SPA) for real-time academic attendance tracking, built with React 18, Vite 5, Tailwind CSS 4, and Supabase PostgreSQL with real-time sync, role-based authentication, and automated classroom analytics.',
+    challenge:
+      'Providing instantaneous bi-directional roster synchronization across simultaneous teachers while maintaining offline resilient local state.',
+    architecture: [
+      'Bi-directional state sync via Supabase PostgreSQL and Row-Level Security (RLS).',
+      'Quick-click status toggling with instant streak metrics and analytics.',
+      'Responsive glassmorphic UI built with Tailwind CSS 4 and Vite 5.',
+    ],
+    techStack: ['React 18', 'Vite 5', 'Tailwind CSS 4', 'Supabase', 'PostgreSQL', 'TypeScript'],
+    githubUrl: 'https://github.com/Ilyan321/attendance-app',
+    demoUrl: 'https://Ilyan321.github.io/attendance-app/',
+    highlights: [
+      { label: 'Frontend', value: 'React 18 + Vite 5' },
+      { label: 'Database', value: 'Supabase PostgreSQL' },
+      { label: 'Security', value: 'Row-Level (RLS)' },
+      { label: 'Deploy', value: 'GitHub Pages' },
+    ],
+  },
+  {
+    id: 'spatial-classroom',
+    name: 'Spatial Classroom',
+    subtitle: 'Gamified Reverse-Tutor AI (Feynman Technique)',
+    tag: 'AI Education & Edge',
+    grade: 'Grade 8.7 / 10',
+    category: 'Conversational AI & State Machines',
+    elevatorPitch:
+      'A reverse-classroom web application testing user comprehension of complex technical concepts via the Feynman Technique — users teach a stubborn, easily confused 12-year-old AI student named Leo.',
+    challenge:
+      'Orchestrating dual-stream LLM threads concurrently to manage student cognitive state and coach the teacher in real-time.',
+    architecture: [
+      'Reverse-Tutor state machine tracking comprehension (0-100%) and patience depletion.',
+      'Netlify Edge Function orchestrating two simultaneous Groq LLaMA 3 threads.',
+      'Document grounding extracting uploaded notes and PDFs into inquiry constraints.',
+    ],
+    techStack: ['JavaScript', 'Netlify Edge Functions', 'Groq LLaMA 3', 'HTML5 Canvas', 'CSS3'],
+    githubUrl: 'https://github.com/Ilyan321/spatial-classroom',
+    highlights: [
+      { label: 'Method', value: 'Feynman Technique' },
+      { label: 'Backend', value: 'Netlify Edge' },
+      { label: 'Inference', value: 'Groq LLaMA 3' },
+      { label: 'State', value: 'Cognitive Engine' },
+    ],
+  },
+  {
+    id: 'email-spam-filter',
+    name: 'Email Spam Filter (DistilBERT)',
+    subtitle: '99.05% Accuracy Transformer Classifier on Enron',
+    tag: 'NLP & Security',
+    grade: 'Grade 8.5 / 10',
+    category: 'Transformer Fine-Tuning & Evaluation',
+    elevatorPitch:
+      'An end-to-end NLP classification pipeline fine-tuning DistilBERT on the Enron email dataset, delivering 99.05% test accuracy with hosted zero-code browser inference on Hugging Face.',
+    challenge:
+      'Minimizing false positives on business-critical communications while maintaining sub-millisecond evaluation speed.',
+    architecture: [
+      'Fine-tuned DistilBERT transformer reaching 99.05% test accuracy and 99.06% F1-score.',
+      'Mixed-precision fp16 cloud training on dual Kaggle T4 GPUs with early stopping.',
+      'Public model card with interactive Hugging Face API widget.',
+    ],
+    techStack: ['PyTorch', 'DistilBERT', 'Transformers', 'Datasets', 'Hugging Face', 'Python'],
+    githubUrl: 'https://github.com/Ilyan321/email-spam-filter-model',
+    demoUrl: 'https://huggingface.co/Ilyankhan69/email-spam-filter',
+    huggingFaceUrl: 'https://huggingface.co/Ilyankhan69/email-spam-filter',
+    highlights: [
+      { label: 'Model', value: 'DistilBERT' },
+      { label: 'Accuracy', value: '99.05%' },
+      { label: 'F1 Score', value: '99.06%' },
+      { label: 'Dataset', value: 'Enron Spam' },
+    ],
+  },
+  {
+    id: 'school-attendance',
+    name: 'School Attendance System',
+    subtitle: 'Next.js 15 App Router & Strict TypeScript Platform',
+    tag: 'Full-Stack Web',
+    grade: 'Grade 8.4 / 10',
+    category: 'Modern Web Architecture',
+    elevatorPitch:
+      'A scalable school administration platform engineered with Next.js 15 App Router, TypeScript, and Tailwind CSS, featuring institutional schedule orchestration, multi-class attendance logs, and PRD-driven modular architecture.',
+    challenge:
+      'Structuring scalable multi-tenant administrative schemas with end-to-end type safety and Server Component rendering.',
+    architecture: [
+      'Next.js 15 App Router with React Server Components (RSC) and server actions.',
+      'Strict TypeScript type definitions covering session roles, class models, and schemas.',
+      'Role-differentiated dashboards for institution administrators, faculty, and students.',
+    ],
+    techStack: ['Next.js 15', 'React 19', 'TypeScript', 'Tailwind CSS 4', 'PostgreSQL', 'ESLint'],
+    githubUrl: 'https://github.com/Ilyan321/school-attendance-system',
+    highlights: [
+      { label: 'Framework', value: 'Next.js 15 (RSC)' },
+      { label: 'Language', value: 'TypeScript 5' },
+      { label: 'Styling', value: 'Tailwind CSS 4' },
+      { label: 'Architecture', value: 'Server Actions' },
+    ],
+  },
+  {
+    id: 'ai-summarizer',
+    name: 'AI Content Summarizer & Translator',
+    subtitle: 'Groq LLaMA 3.1 Scraping & Polyglot Engine',
+    tag: 'GenAI Utilities',
+    grade: 'Grade 8.2 / 10',
+    category: 'Web Scraping & Polyglot Translation',
+    elevatorPitch:
+      'An automated web content ingestion and synthesis platform that scrapes live article URLs, generates structured summaries using Groq LLaMA 3.1, and translates outputs into 7 global languages.',
+    challenge:
+      'Cleaning messy DOM boilerplates and navigation trees to extract pure article text before LLM context ingestion.',
+    architecture: [
+      'BeautifulSoup4 web scraper removing HTML boilerplate, navbars, and advertisements.',
+      'Tunable summary brevity engine powered by Groq LLaMA 3.1 8B inference.',
+      '7-language instant translation (Spanish, French, German, Chinese, Arabic, Urdu, Japanese).',
+    ],
+    techStack: ['Python', 'Streamlit', 'Groq API', 'LLaMA-3.1', 'BeautifulSoup4', 'Requests'],
+    githubUrl: 'https://github.com/Ilyan321/AI_Content_Summarizer',
+    highlights: [
+      { label: 'Scraper', value: 'BeautifulSoup4' },
+      { label: 'LLM', value: 'Groq LLaMA 3.1' },
+      { label: 'Languages', value: '7 Global Languages' },
+      { label: 'UI', value: 'Streamlit' },
+    ],
+  },
+  {
+    id: 'weather-ai',
+    name: 'Weather AI & Style Advisor',
+    subtitle: 'OpenWeatherMap + Groq LLaMA 3.3 Context Advisor',
+    tag: 'Applied GenAI',
+    grade: 'Grade 8.0 / 10',
+    category: 'API Integration & Reasoning',
+    elevatorPitch:
+      'A real-time meteorological intelligence utility that combines live OpenWeatherMap sensory data with Groq LLaMA 3.3 reasoning to generate personalized, climate-adaptive outfit recommendations and outdoor activity guidance.',
+    challenge:
+      'Translating numeric meteorological variables into practical fabric, layering, and lifestyle suggestions in real time.',
+    architecture: [
+      'Live meteorological data ingestion (temperature, precipitation, humidity, UV index).',
+      'Context-aware style advice generated via Groq LLaMA 3.3 inference.',
+      'Live hosted deployment on Hugging Face Spaces.',
+    ],
+    techStack: ['Python', 'Streamlit', 'Groq API', 'LLaMA-3.3', 'OpenWeatherMap API'],
+    githubUrl: 'https://github.com/Ilyan321/Weather_App',
+    demoUrl: 'https://huggingface.co/spaces/Ilyankhan69/WeatherApp',
+    huggingFaceUrl: 'https://huggingface.co/spaces/Ilyankhan69/WeatherApp',
+    highlights: [
+      { label: 'API', value: 'OpenWeather REST' },
+      { label: 'Reasoning', value: 'Groq LLaMA 3.3' },
+      { label: 'Latency', value: '< 1 second' },
+      { label: 'Platform', value: 'Hugging Face Space' },
+    ],
+  },
 ];
 
-// Verified Certifications List
+// Verified Certifications List (All 6 Verified Credentials)
 const ALL_CERTIFICATES: CertificateItem[] = [
   {
     id: 'cybersecurity',
@@ -174,6 +356,30 @@ const ALL_CERTIFICATES: CertificateItem[] = [
     description:
       'Industry qualification in Agile project management, sprint backlogs, Kanban execution, story point estimation, and production software lifecycle delivery with Jira.',
     skills: ['Scrum Framework', 'Sprint Planning', 'Kanban Boards', 'Jira Software', 'Agile Delivery'],
+  },
+  {
+    id: 'ai-fluency',
+    title: 'AI Fluency Professional',
+    issuer: 'Anthropic / FlyRank AI',
+    issueDate: '2026',
+    tag: 'Frontier AI & Reasoning',
+    credentialId: 'ANTH-AIF-2026',
+    imagePath: '/certificates/AI Fluency.pdf',
+    description:
+      'Professional qualification in frontier Large Language Model fluency, multi-step chain-of-thought reasoning, agentic workflow architecture, and enterprise AI evaluation.',
+    skills: ['Frontier LLMs', 'Applied Reasoning', 'Agentic Workflows', 'Model Evaluation', 'AI Strategy'],
+  },
+  {
+    id: 'claude-101',
+    title: 'Claude 101 Mastery',
+    issuer: 'Anthropic / FlyRank AI',
+    issueDate: '2026',
+    tag: 'Applied AI & Tool Use',
+    credentialId: 'ANTH-CLD-101',
+    imagePath: '/certificates/Claude 101.pdf',
+    description:
+      'Specialized qualification in Anthropic Claude architecture, advanced system prompt design, structured tool use / function calling, and context window optimization.',
+    skills: ['Claude Architecture', 'System Prompts', 'Structured Tool Use', 'Context Engineering', 'API Integration'],
   },
 ];
 
@@ -757,14 +963,39 @@ export function HomeView() {
                 </p>
               </div>
 
-              {/* Certificate Image Frame Preview */}
+              {/* Certificate Image or Document Preview */}
               <div className="w-full rounded-xl overflow-hidden border border-[rgba(26,25,24,0.15)] bg-[#DFD5C6] shadow-md">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={selectedCert.imagePath}
-                  alt={selectedCert.title}
-                  className="w-full h-auto object-cover max-h-72"
-                />
+                {selectedCert.imagePath.endsWith('.pdf') ? (
+                  <div className="p-6 sm:p-8 text-center space-y-3 bg-[#DFD5C6]">
+                    <div className="w-12 h-12 mx-auto rounded-full bg-[#1A1918] text-[#F3EFEA] flex items-center justify-center font-mono-code font-bold text-xs tracking-wider shadow">
+                      PDF
+                    </div>
+                    <div>
+                      <h4 className="text-sm font-sans-clean font-bold text-[#1A1918]">
+                        Official Verified Credential Document
+                      </h4>
+                      <p className="text-[11px] font-mono-code text-[#78746D]">
+                        {selectedCert.issuer} &bull; {selectedCert.credentialId}
+                      </p>
+                    </div>
+                    <a
+                      href={selectedCert.imagePath}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-xs font-mono-code bg-[#1A1918] text-[#F3EFEA] font-semibold hover:bg-black transition-colors"
+                    >
+                      <span>Open Verified Certificate PDF</span>
+                      <ExternalLinkIcon size={12} />
+                    </a>
+                  </div>
+                ) : (
+                  /* eslint-disable-next-line @next/next/no-img-element */
+                  <img
+                    src={selectedCert.imagePath}
+                    alt={selectedCert.title}
+                    className="w-full h-auto object-cover max-h-72"
+                  />
+                )}
               </div>
 
               {/* Description & Competencies */}
