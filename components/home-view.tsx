@@ -188,24 +188,24 @@ export function HomeView() {
   const [showNetworkModal, setShowNetworkModal] = React.useState<boolean>(false);
 
   return (
-    <main className="h-screen w-screen max-h-screen bg-[#1A1918] p-2 sm:p-4 lg:p-5 flex items-center justify-center overflow-hidden">
+    <main className="min-h-screen w-full lg:h-screen lg:max-h-screen bg-[#1A1918] p-2.5 sm:p-4 lg:p-5 flex items-center justify-center overflow-y-auto lg:overflow-hidden">
       {/* Outer Dark Frame */}
-      <div className="w-full max-w-7xl h-full max-h-[96vh] bg-[#262523] rounded-[2rem] p-3 sm:p-5 lg:p-6 shadow-2xl border border-white/[0.06] flex flex-col justify-between overflow-hidden">
+      <div className="w-full max-w-7xl min-h-screen lg:min-h-0 lg:h-full lg:max-h-[96vh] bg-[#262523] rounded-2xl sm:rounded-[2rem] p-3.5 sm:p-5 lg:p-6 shadow-2xl border border-white/[0.06] flex flex-col justify-between overflow-visible lg:overflow-hidden gap-3 sm:gap-4 lg:gap-0 my-auto">
         
         {/* =================================================================== */}
         {/* 1. TOP NAVIGATION BAR                                               */}
         {/* =================================================================== */}
-        <header className="flex items-center justify-between px-2 py-1 shrink-0">
-          <div className="flex items-center gap-2">
+        <header className="flex items-center justify-between px-1 sm:px-2 py-1 shrink-0 gap-2">
+          <div className="flex items-center gap-2 shrink-0">
             <span className="font-mono-code text-xs sm:text-sm font-semibold tracking-widest text-[#F3EFEA] uppercase">
               DEV / ILYAN
             </span>
           </div>
 
-          <nav className="flex items-center gap-6 sm:gap-8 text-xs font-sans-clean font-medium tracking-wide text-[#A39E95]">
+          <nav className="flex items-center gap-3 sm:gap-6 lg:gap-8 text-[11px] sm:text-xs font-sans-clean font-medium tracking-wide text-[#A39E95] overflow-x-auto no-scrollbar py-0.5">
             <button
               onClick={() => setShowAboutModal(true)}
-              className="hover:text-[#F3EFEA] transition-colors uppercase cursor-pointer"
+              className="hover:text-[#F3EFEA] active:text-white transition-colors uppercase cursor-pointer whitespace-nowrap"
             >
               ABOUT
             </button>
@@ -214,7 +214,7 @@ export function HomeView() {
                 setDirectoryTab('projects');
                 setShowDirectoryModal(true);
               }}
-              className="hover:text-[#F3EFEA] transition-colors uppercase cursor-pointer"
+              className="hover:text-[#F3EFEA] active:text-white transition-colors uppercase cursor-pointer whitespace-nowrap"
             >
               PROJECTS
             </button>
@@ -223,13 +223,14 @@ export function HomeView() {
                 setDirectoryTab('certificates');
                 setShowDirectoryModal(true);
               }}
-              className="hover:text-[#F3EFEA] transition-colors uppercase cursor-pointer"
+              className="hover:text-[#F3EFEA] active:text-white transition-colors uppercase cursor-pointer whitespace-nowrap"
             >
-              CERTIFICATIONS
+              <span className="hidden sm:inline">CERTIFICATIONS</span>
+              <span className="sm:hidden">CERTS</span>
             </button>
             <button
               onClick={() => setShowContactModal(true)}
-              className="hover:text-[#F3EFEA] transition-colors uppercase cursor-pointer"
+              className="hover:text-[#F3EFEA] active:text-white transition-colors uppercase cursor-pointer whitespace-nowrap"
             >
               CONTACT
             </button>
@@ -239,10 +240,10 @@ export function HomeView() {
         {/* =================================================================== */}
         {/* 2. MAIN BENTO GRID - TOP ROW                                        */}
         {/* =================================================================== */}
-        <div className="flex flex-col lg:flex-row gap-3 sm:gap-4 flex-1 min-h-0 py-1.5 sm:py-2">
+        <div className="flex flex-col lg:flex-row gap-3 sm:gap-4 flex-1 min-h-0 py-1 sm:py-2">
           
           {/* Top-Left Card: 01 / ABOUT ME */}
-          <div className="lg:w-[38.5%] sand-card p-4 sm:p-5 flex flex-col justify-between relative overflow-hidden h-full">
+          <div className="w-full lg:w-[38.5%] sand-card p-4 sm:p-5 flex flex-col justify-between relative overflow-hidden min-h-[220px] lg:min-h-0 lg:h-full gap-3 lg:gap-0">
             <div className="flex items-start justify-between">
               <span className="text-[10px] font-mono-code uppercase tracking-wider text-[#78746D] font-medium">
                 01 / ABOUT ME
@@ -287,7 +288,7 @@ export function HomeView() {
           </div>
 
           {/* Portrait Card (Top-Center, ~24% width in the middle) */}
-          <div className="lg:w-[24%] sand-card p-2 sm:p-2.5 flex items-center justify-center relative overflow-hidden h-full">
+          <div className="w-full lg:w-[24%] sand-card p-2 sm:p-2.5 flex items-center justify-center relative overflow-hidden h-64 sm:h-72 lg:h-full shrink-0">
             <div className="w-full h-full rounded-[1.1rem] overflow-hidden relative shadow-inner bg-[#DFD5C6]">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
@@ -296,8 +297,8 @@ export function HomeView() {
                 className="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-700"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#1A1918]/65 via-transparent to-transparent" />
-              <div className="absolute bottom-2 left-2.5 right-2.5 text-[#F3EFEA] font-sans-clean">
-                <span className="font-serif-display text-base font-normal block leading-tight">
+              <div className="absolute bottom-2.5 left-3 right-3 text-[#F3EFEA] font-sans-clean">
+                <span className="font-serif-display text-base sm:text-lg lg:text-base font-normal block leading-tight">
                   Ilyan Khan
                 </span>
                 <span className="text-[9px] font-mono-code text-[#DFD5C6] uppercase">
@@ -310,7 +311,7 @@ export function HomeView() {
           {/* Top-Right: Pure High-Craft Editorial Showcase (De-slopped & Clean) */}
           <div
             id="projects-card"
-            className="lg:w-[37.5%] sand-card p-4 sm:p-5 flex flex-col justify-between h-full"
+            className="w-full lg:w-[37.5%] sand-card p-4 sm:p-5 flex flex-col justify-between min-h-[260px] lg:min-h-0 lg:h-full gap-2 lg:gap-0"
           >
             {/* Clickable Header */}
             <div
@@ -341,7 +342,7 @@ export function HomeView() {
                 {/* Project 1 */}
                 <button
                   onClick={() => setSelectedProject(ALL_PROJECTS[0])}
-                  className="w-full py-1.5 flex items-center justify-between group transition-colors cursor-pointer text-left"
+                  className="w-full py-1.5 flex items-center justify-between group transition-colors cursor-pointer text-left active:bg-black/5 rounded-md px-1 -mx-1"
                 >
                   <div className="pr-2 min-w-0">
                     <span className="text-xs font-sans-clean font-semibold text-[#1A1918] group-hover:text-emerald-800 transition-colors block truncate">
@@ -359,7 +360,7 @@ export function HomeView() {
                 {/* Project 2 */}
                 <button
                   onClick={() => setSelectedProject(ALL_PROJECTS[1])}
-                  className="w-full py-1.5 flex items-center justify-between group transition-colors cursor-pointer text-left"
+                  className="w-full py-1.5 flex items-center justify-between group transition-colors cursor-pointer text-left active:bg-black/5 rounded-md px-1 -mx-1"
                 >
                   <div className="pr-2 min-w-0">
                     <span className="text-xs font-sans-clean font-semibold text-[#1A1918] group-hover:text-emerald-800 transition-colors block truncate">
@@ -386,7 +387,7 @@ export function HomeView() {
                 {/* Cert 1 */}
                 <button
                   onClick={() => setSelectedCert(ALL_CERTIFICATES[0])}
-                  className="w-full py-1.5 flex items-center justify-between group transition-colors cursor-pointer text-left"
+                  className="w-full py-1.5 flex items-center justify-between group transition-colors cursor-pointer text-left active:bg-black/5 rounded-md px-1 -mx-1"
                 >
                   <div className="pr-2 min-w-0">
                     <span className="text-xs font-sans-clean font-semibold text-[#1A1918] group-hover:text-emerald-800 transition-colors block truncate">
@@ -404,7 +405,7 @@ export function HomeView() {
                 {/* Cert 2 */}
                 <button
                   onClick={() => setSelectedCert(ALL_CERTIFICATES[1])}
-                  className="w-full py-1.5 flex items-center justify-between group transition-colors cursor-pointer text-left"
+                  className="w-full py-1.5 flex items-center justify-between group transition-colors cursor-pointer text-left active:bg-black/5 rounded-md px-1 -mx-1"
                 >
                   <div className="pr-2 min-w-0">
                     <span className="text-xs font-sans-clean font-semibold text-[#1A1918] group-hover:text-emerald-800 transition-colors block truncate">
@@ -441,7 +442,7 @@ export function HomeView() {
         <div className="grid grid-cols-1 md:grid-cols-12 gap-3 sm:gap-4 shrink-0">
           
           {/* Philosophy Card (Bottom-Left, 5 cols) */}
-          <div className="md:col-span-5 sand-card p-3.5 sm:p-4 flex flex-col justify-between space-y-1.5">
+          <div className="md:col-span-5 sand-card p-3.5 sm:p-4 flex flex-col justify-between space-y-2 sm:space-y-1.5 min-h-[110px]">
             <div className="space-y-1">
               <div className="flex items-center justify-between">
                 <span className="text-[10px] font-mono-code uppercase tracking-wider text-[#78746D] font-medium">
@@ -468,7 +469,7 @@ export function HomeView() {
           {/* Contact Card (Bottom-Center, 4 cols) */}
           <div
             onClick={() => setShowContactModal(true)}
-            className="md:col-span-4 sand-card-dark p-3.5 sm:p-4 flex flex-col justify-between cursor-pointer hover:bg-[#363633] transition-all group"
+            className="md:col-span-4 sand-card-dark p-3.5 sm:p-4 flex flex-col justify-between cursor-pointer hover:bg-[#363633] active:scale-[0.99] transition-all group min-h-[110px]"
           >
             <div className="flex items-start justify-between">
               <span className="text-[10px] font-mono-code uppercase tracking-wider text-[#A39E95] font-medium">
@@ -493,7 +494,7 @@ export function HomeView() {
           {/* Social Links Pill (Bottom-Right, 3 cols) */}
           <div
             onClick={() => setShowNetworkModal(true)}
-            className="md:col-span-3 sand-card p-3.5 sm:p-4 flex flex-col justify-between cursor-pointer hover:bg-[#DDD4C5] transition-all group"
+            className="md:col-span-3 sand-card p-3.5 sm:p-4 flex flex-col justify-between cursor-pointer hover:bg-[#DDD4C5] active:scale-[0.99] transition-all group min-h-[110px]"
           >
             <div className="flex items-center justify-between">
               <span className="text-[10px] font-mono-code uppercase tracking-wider text-[#78746D] font-medium">
@@ -510,7 +511,7 @@ export function HomeView() {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={(e) => e.stopPropagation()}
-                className="text-[11px] sm:text-xs font-sans-clean font-semibold tracking-wider text-[#1A1918] hover:text-emerald-800 transition-colors uppercase flex items-center justify-between"
+                className="text-[11px] sm:text-xs font-sans-clean font-semibold tracking-wider text-[#1A1918] hover:text-emerald-800 transition-colors uppercase flex items-center justify-between py-0.5"
               >
                 <span>GITHUB</span>
                 <span className="text-xs font-mono-code text-[#78746D]">↗</span>
@@ -520,7 +521,7 @@ export function HomeView() {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={(e) => e.stopPropagation()}
-                className="text-[11px] sm:text-xs font-sans-clean font-semibold tracking-wider text-[#1A1918] hover:text-emerald-800 transition-colors uppercase flex items-center justify-between"
+                className="text-[11px] sm:text-xs font-sans-clean font-semibold tracking-wider text-[#1A1918] hover:text-emerald-800 transition-colors uppercase flex items-center justify-between py-0.5"
               >
                 <span>LINKEDIN</span>
                 <span className="text-xs font-mono-code text-[#78746D]">↗</span>
@@ -529,7 +530,7 @@ export function HomeView() {
                 href="/CV.pdf"
                 download
                 onClick={(e) => e.stopPropagation()}
-                className="text-[11px] sm:text-xs font-sans-clean font-semibold tracking-wider text-[#1A1918] hover:text-emerald-800 transition-colors uppercase flex items-center justify-between"
+                className="text-[11px] sm:text-xs font-sans-clean font-semibold tracking-wider text-[#1A1918] hover:text-emerald-800 transition-colors uppercase flex items-center justify-between py-0.5"
               >
                 <span>RESUME (PDF)</span>
                 <span className="text-xs font-mono-code text-[#78746D]">↓</span>
@@ -553,7 +554,7 @@ export function HomeView() {
       {/* =================================================================== */}
       <AnimatePresence>
         {showDirectoryModal && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
+          <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 lg:p-6 overflow-y-auto">
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -563,22 +564,25 @@ export function HomeView() {
             />
 
             <motion.div
-              initial={{ opacity: 0, scale: 0.95, y: 16 }}
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: 16 }}
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
               transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-              className="relative w-full max-w-3xl sand-card p-6 sm:p-8 space-y-5 shadow-2xl z-10 max-h-[90vh] overflow-y-auto border border-[#1A1918]/20"
+              className="relative w-full max-w-3xl sand-card p-5 sm:p-7 lg:p-8 space-y-4 sm:space-y-5 shadow-2xl z-10 max-h-[88vh] sm:max-h-[90vh] overflow-y-auto border border-[#1A1918]/20 rounded-t-[1.75rem] rounded-b-none sm:rounded-[1.75rem] pb-[max(1.5rem,env(safe-area-inset-bottom))]"
             >
+              {/* Mobile Drag Indicator */}
+              <div className="w-10 h-1 rounded-full bg-[#1A1918]/20 mx-auto -mt-2 mb-2 sm:hidden" />
+
               {/* Close Button */}
               <button
                 onClick={() => setShowDirectoryModal(false)}
-                className="absolute top-5 right-5 p-2 text-[#78746D] hover:text-[#1A1918] rounded-full bg-[rgba(26,25,24,0.06)] hover:bg-[rgba(26,25,24,0.12)] transition-colors cursor-pointer"
+                className="absolute top-4 sm:top-5 right-4 sm:right-5 p-2 text-[#78746D] hover:text-[#1A1918] rounded-full bg-[rgba(26,25,24,0.06)] hover:bg-[rgba(26,25,24,0.12)] transition-colors cursor-pointer"
                 aria-label="Close Directory"
               >
                 <XIcon size={18} />
               </button>
 
-              <div>
+              <div className="pr-8">
                 <span className="text-[10px] font-mono-code uppercase tracking-wider text-[#78746D] font-medium">
                   ACHIEVEMENTS DIRECTORY
                 </span>
@@ -591,10 +595,10 @@ export function HomeView() {
               </div>
 
               {/* 2-Section Tab Switcher */}
-              <div className="flex items-center gap-2 p-1 rounded-xl bg-[#DFD5C6] border border-[rgba(26,25,24,0.1)]">
+              <div className="flex items-center gap-1.5 sm:gap-2 p-1 rounded-xl bg-[#DFD5C6] border border-[rgba(26,25,24,0.1)]">
                 <button
                   onClick={() => setDirectoryTab('projects')}
-                  className={`flex-1 py-2 px-3 rounded-lg text-xs font-mono-code font-semibold transition-all cursor-pointer ${
+                  className={`flex-1 py-2 px-2.5 sm:px-3 rounded-lg text-[11px] sm:text-xs font-mono-code font-semibold transition-all cursor-pointer truncate ${
                     directoryTab === 'projects'
                       ? 'bg-[#1A1918] text-[#F3EFEA] shadow'
                       : 'text-[#78746D] hover:text-[#1A1918]'
@@ -604,13 +608,13 @@ export function HomeView() {
                 </button>
                 <button
                   onClick={() => setDirectoryTab('certificates')}
-                  className={`flex-1 py-2 px-3 rounded-lg text-xs font-mono-code font-semibold transition-all cursor-pointer ${
+                  className={`flex-1 py-2 px-2.5 sm:px-3 rounded-lg text-[11px] sm:text-xs font-mono-code font-semibold transition-all cursor-pointer truncate ${
                     directoryTab === 'certificates'
                       ? 'bg-[#1A1918] text-[#F3EFEA] shadow'
                       : 'text-[#78746D] hover:text-[#1A1918]'
                   }`}
                 >
-                  Verified Certifications ({ALL_CERTIFICATES.length})
+                  Verified Certs ({ALL_CERTIFICATES.length})
                 </button>
               </div>
 
@@ -621,7 +625,7 @@ export function HomeView() {
                     <div
                       key={proj.id}
                       onClick={() => setSelectedProject(proj)}
-                      className="p-4 rounded-xl bg-[#DFD5C6] border border-[rgba(26,25,24,0.1)] hover:border-[#1A1918] transition-all cursor-pointer group flex flex-col sm:flex-row sm:items-center justify-between gap-2"
+                      className="p-3.5 sm:p-4 rounded-xl bg-[#DFD5C6] border border-[rgba(26,25,24,0.1)] hover:border-[#1A1918] transition-all cursor-pointer group flex flex-col sm:flex-row sm:items-center justify-between gap-2"
                     >
                       <div className="space-y-1">
                         <div className="flex items-center gap-2">
@@ -651,7 +655,7 @@ export function HomeView() {
                     <div
                       key={cert.id}
                       onClick={() => setSelectedCert(cert)}
-                      className="p-4 rounded-xl bg-[#DFD5C6] border border-[rgba(26,25,24,0.1)] hover:border-[#1A1918] transition-all cursor-pointer group flex flex-col sm:flex-row sm:items-center justify-between gap-2"
+                      className="p-3.5 sm:p-4 rounded-xl bg-[#DFD5C6] border border-[rgba(26,25,24,0.1)] hover:border-[#1A1918] transition-all cursor-pointer group flex flex-col sm:flex-row sm:items-center justify-between gap-2"
                     >
                       <div className="space-y-1">
                         <div className="flex items-center gap-2">
@@ -684,7 +688,7 @@ export function HomeView() {
       {/* =================================================================== */}
       <AnimatePresence>
         {selectedCert && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
+          <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 lg:p-6 overflow-y-auto">
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -694,16 +698,19 @@ export function HomeView() {
             />
 
             <motion.div
-              initial={{ opacity: 0, scale: 0.95, y: 16 }}
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: 16 }}
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
               transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-              className="relative w-full max-w-2xl sand-card p-6 sm:p-8 space-y-5 shadow-2xl z-10 max-h-[90vh] overflow-y-auto border border-[#1A1918]/20"
+              className="relative w-full max-w-2xl sand-card p-5 sm:p-7 lg:p-8 space-y-4 sm:space-y-5 shadow-2xl z-10 max-h-[88vh] sm:max-h-[90vh] overflow-y-auto border border-[#1A1918]/20 rounded-t-[1.75rem] rounded-b-none sm:rounded-[1.75rem] pb-[max(1.5rem,env(safe-area-inset-bottom))]"
             >
+              {/* Mobile Drag Indicator */}
+              <div className="w-10 h-1 rounded-full bg-[#1A1918]/20 mx-auto -mt-2 mb-2 sm:hidden" />
+
               {/* Close Button */}
               <button
                 onClick={() => setSelectedCert(null)}
-                className="absolute top-5 right-5 p-2 text-[#78746D] hover:text-[#1A1918] rounded-full bg-[rgba(26,25,24,0.06)] hover:bg-[rgba(26,25,24,0.12)] transition-colors cursor-pointer"
+                className="absolute top-4 sm:top-5 right-4 sm:right-5 p-2 text-[#78746D] hover:text-[#1A1918] rounded-full bg-[rgba(26,25,24,0.06)] hover:bg-[rgba(26,25,24,0.12)] transition-colors cursor-pointer"
                 aria-label="Close Credential Drawer"
               >
                 <XIcon size={18} />
@@ -781,7 +788,7 @@ export function HomeView() {
       {/* =================================================================== */}
       <AnimatePresence>
         {selectedProject && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
+          <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 lg:p-6 overflow-y-auto">
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -791,15 +798,18 @@ export function HomeView() {
             />
 
             <motion.div
-              initial={{ opacity: 0, scale: 0.95, y: 16 }}
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: 16 }}
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
               transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-              className="relative w-full max-w-3xl sand-card p-6 sm:p-8 space-y-5 shadow-2xl z-10 max-h-[90vh] overflow-y-auto border border-[#1A1918]/20"
+              className="relative w-full max-w-3xl sand-card p-5 sm:p-7 lg:p-8 space-y-4 sm:space-y-5 shadow-2xl z-10 max-h-[88vh] sm:max-h-[90vh] overflow-y-auto border border-[#1A1918]/20 rounded-t-[1.75rem] rounded-b-none sm:rounded-[1.75rem] pb-[max(1.5rem,env(safe-area-inset-bottom))]"
             >
+              {/* Mobile Drag Indicator */}
+              <div className="w-10 h-1 rounded-full bg-[#1A1918]/20 mx-auto -mt-2 mb-2 sm:hidden" />
+
               <button
                 onClick={() => setSelectedProject(null)}
-                className="absolute top-5 right-5 p-2 text-[#78746D] hover:text-[#1A1918] rounded-full bg-[rgba(26,25,24,0.06)] hover:bg-[rgba(26,25,24,0.12)] transition-colors cursor-pointer"
+                className="absolute top-4 sm:top-5 right-4 sm:right-5 p-2 text-[#78746D] hover:text-[#1A1918] rounded-full bg-[rgba(26,25,24,0.06)] hover:bg-[rgba(26,25,24,0.12)] transition-colors cursor-pointer"
                 aria-label="Close Project Drawer"
               >
                 <XIcon size={18} />
@@ -908,7 +918,7 @@ export function HomeView() {
       {/* =================================================================== */}
       <AnimatePresence>
         {showPhilosophyModal && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
+          <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 lg:p-6 overflow-y-auto">
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -918,21 +928,24 @@ export function HomeView() {
             />
 
             <motion.div
-              initial={{ opacity: 0, scale: 0.95, y: 16 }}
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: 16 }}
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
               transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-              className="relative w-full max-w-2xl sand-card p-6 sm:p-8 space-y-5 shadow-2xl z-10 border border-[#1A1918]/20 max-h-[90vh] overflow-y-auto"
+              className="relative w-full max-w-2xl sand-card p-5 sm:p-7 lg:p-8 space-y-4 sm:space-y-5 shadow-2xl z-10 border border-[#1A1918]/20 max-h-[88vh] sm:max-h-[90vh] overflow-y-auto rounded-t-[1.75rem] rounded-b-none sm:rounded-[1.75rem] pb-[max(1.5rem,env(safe-area-inset-bottom))]"
             >
+              {/* Mobile Drag Indicator */}
+              <div className="w-10 h-1 rounded-full bg-[#1A1918]/20 mx-auto -mt-2 mb-2 sm:hidden" />
+
               <button
                 onClick={() => setShowPhilosophyModal(false)}
-                className="absolute top-5 right-5 p-2 text-[#78746D] hover:text-[#1A1918] rounded-full bg-[rgba(26,25,24,0.06)] hover:bg-[rgba(26,25,24,0.12)] transition-colors cursor-pointer"
+                className="absolute top-4 sm:top-5 right-4 sm:right-5 p-2 text-[#78746D] hover:text-[#1A1918] rounded-full bg-[rgba(26,25,24,0.06)] hover:bg-[rgba(26,25,24,0.12)] transition-colors cursor-pointer"
                 aria-label="Close Modal"
               >
                 <XIcon size={18} />
               </button>
 
-              <div className="space-y-1">
+              <div className="space-y-1 pr-8">
                 <span className="text-[10px] font-mono-code uppercase tracking-wider text-[#78746D] font-medium">
                   02 / ENGINEERING MINDSET
                 </span>
@@ -945,8 +958,8 @@ export function HomeView() {
               </div>
 
               {/* Core Builder Quote Box */}
-              <div className="p-4 rounded-xl bg-[#DFD5C6] border border-[rgba(26,25,24,0.1)]">
-                <p className="font-serif-display text-lg sm:text-xl text-[#1A1918] italic leading-snug">
+              <div className="p-3.5 sm:p-4 rounded-xl bg-[#DFD5C6] border border-[rgba(26,25,24,0.1)]">
+                <p className="font-serif-display text-base sm:text-xl text-[#1A1918] italic leading-snug">
                   &ldquo;I believe the best way to learn is by building from scratch. I like bridging practical AI with solid software engineering to make fast, reliable projects.&rdquo;
                 </p>
                 <span className="text-[10px] font-mono-code text-[#78746D] block mt-2">
@@ -955,7 +968,7 @@ export function HomeView() {
               </div>
 
               {/* Core Principles Breakdown */}
-              <div className="space-y-3 text-xs font-sans-clean text-[#1A1918]">
+              <div className="space-y-2.5 sm:space-y-3 text-xs font-sans-clean text-[#1A1918]">
                 <div className="p-3 rounded-lg bg-[rgba(26,25,24,0.04)] border border-[rgba(26,25,24,0.08)]">
                   <strong className="font-mono-code text-[11px] uppercase text-[#1A1918] block mb-1">
                     1. Hands-on Experimentation
@@ -997,7 +1010,7 @@ export function HomeView() {
       {/* =================================================================== */}
       <AnimatePresence>
         {showNetworkModal && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
+          <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 lg:p-6 overflow-y-auto">
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -1007,21 +1020,24 @@ export function HomeView() {
             />
 
             <motion.div
-              initial={{ opacity: 0, scale: 0.95, y: 16 }}
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: 16 }}
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
               transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-              className="relative w-full max-w-md sand-card p-6 sm:p-8 space-y-5 shadow-2xl z-10 border border-[#1A1918]/20 max-h-[90vh] overflow-y-auto"
+              className="relative w-full max-w-md sand-card p-5 sm:p-7 space-y-4 sm:space-y-5 shadow-2xl z-10 border border-[#1A1918]/20 max-h-[88vh] sm:max-h-[90vh] overflow-y-auto rounded-t-[1.75rem] rounded-b-none sm:rounded-[1.75rem] pb-[max(1.5rem,env(safe-area-inset-bottom))]"
             >
+              {/* Mobile Drag Indicator */}
+              <div className="w-10 h-1 rounded-full bg-[#1A1918]/20 mx-auto -mt-2 mb-2 sm:hidden" />
+
               <button
                 onClick={() => setShowNetworkModal(false)}
-                className="absolute top-5 right-5 p-2 text-[#78746D] hover:text-[#1A1918] rounded-full bg-[rgba(26,25,24,0.06)] hover:bg-[rgba(26,25,24,0.12)] transition-colors cursor-pointer"
+                className="absolute top-4 sm:top-5 right-4 sm:right-5 p-2 text-[#78746D] hover:text-[#1A1918] rounded-full bg-[rgba(26,25,24,0.06)] hover:bg-[rgba(26,25,24,0.12)] transition-colors cursor-pointer"
                 aria-label="Close Network Modal"
               >
                 <XIcon size={18} />
               </button>
 
-              <div className="space-y-1">
+              <div className="space-y-1 pr-8">
                 <span className="text-[10px] font-mono-code uppercase tracking-wider text-[#78746D] font-medium">
                   04 / GLOBAL NETWORK
                 </span>
@@ -1038,7 +1054,7 @@ export function HomeView() {
                   href="https://github.com/Ilyan321"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-between p-3.5 rounded-xl bg-[#DFD5C6] border border-[rgba(26,25,24,0.1)] text-[#1A1918] hover:border-[#1A1918] hover:bg-[#D5CBB9] transition-all group"
+                  className="flex items-center justify-between p-3.5 rounded-xl bg-[#DFD5C6] border border-[rgba(26,25,24,0.1)] text-[#1A1918] hover:border-[#1A1918] hover:bg-[#D5CBB9] active:bg-[#CFC3B0] transition-all group"
                 >
                   <div className="flex items-center gap-2.5">
                     <GithubIcon size={15} />
@@ -1054,7 +1070,7 @@ export function HomeView() {
                   href="https://linkedin.com/in/ilyan-khan-480341359"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-between p-3.5 rounded-xl bg-[#DFD5C6] border border-[rgba(26,25,24,0.1)] text-[#1A1918] hover:border-[#1A1918] hover:bg-[#D5CBB9] transition-all group"
+                  className="flex items-center justify-between p-3.5 rounded-xl bg-[#DFD5C6] border border-[rgba(26,25,24,0.1)] text-[#1A1918] hover:border-[#1A1918] hover:bg-[#D5CBB9] active:bg-[#CFC3B0] transition-all group"
                 >
                   <div className="flex items-center gap-2.5">
                     <LinkedinIcon size={15} />
@@ -1070,7 +1086,7 @@ export function HomeView() {
                   href="https://huggingface.co/Ilyankhan69"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-between p-3.5 rounded-xl bg-[#DFD5C6] border border-[rgba(26,25,24,0.1)] text-[#1A1918] hover:border-[#1A1918] hover:bg-[#D5CBB9] transition-all group"
+                  className="flex items-center justify-between p-3.5 rounded-xl bg-[#DFD5C6] border border-[rgba(26,25,24,0.1)] text-[#1A1918] hover:border-[#1A1918] hover:bg-[#D5CBB9] active:bg-[#CFC3B0] transition-all group"
                 >
                   <div className="flex items-center gap-2.5">
                     <span className="text-base leading-none">🤗</span>
@@ -1085,7 +1101,7 @@ export function HomeView() {
                 <a
                   href="/CV.pdf"
                   download
-                  className="flex items-center justify-between p-3.5 rounded-xl bg-[#1A1918] text-[#F3EFEA] hover:bg-black transition-all group"
+                  className="flex items-center justify-between p-3.5 rounded-xl bg-[#1A1918] text-[#F3EFEA] hover:bg-black active:bg-neutral-900 transition-all group"
                 >
                   <div className="flex items-center gap-2.5">
                     <FileTextIcon size={15} />
@@ -1106,7 +1122,7 @@ export function HomeView() {
       {/* =================================================================== */}
       <AnimatePresence>
         {showContactModal && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6">
+          <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 lg:p-6 overflow-y-auto">
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -1116,20 +1132,23 @@ export function HomeView() {
             />
 
             <motion.div
-              initial={{ opacity: 0, scale: 0.95, y: 16 }}
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: 16 }}
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
               transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-              className="relative w-full max-w-md sand-card-dark p-5 sm:p-7 space-y-5 shadow-2xl z-10 border border-white/10"
+              className="relative w-full max-w-md sand-card-dark p-5 sm:p-7 space-y-4 sm:space-y-5 shadow-2xl z-10 border border-white/10 rounded-t-[1.75rem] rounded-b-none sm:rounded-[1.75rem] max-h-[88vh] sm:max-h-[90vh] overflow-y-auto pb-[max(1.5rem,env(safe-area-inset-bottom))]"
             >
+              {/* Mobile Drag Indicator */}
+              <div className="w-10 h-1 rounded-full bg-white/20 mx-auto -mt-2 mb-2 sm:hidden" />
+
               <button
                 onClick={() => setShowContactModal(false)}
-                className="absolute top-5 right-5 p-2 text-[#A39E95] hover:text-white rounded-full bg-white/[0.05] hover:bg-white/10 transition-colors cursor-pointer"
+                className="absolute top-4 sm:top-5 right-4 sm:right-5 p-2 text-[#A39E95] hover:text-white rounded-full bg-white/[0.05] hover:bg-white/10 transition-colors cursor-pointer"
               >
                 <XIcon size={18} />
               </button>
 
-              <div>
+              <div className="pr-8">
                 <span className="text-[10px] font-mono-code uppercase tracking-wider text-[#A39E95]">
                   DIRECT DISPATCH
                 </span>
@@ -1144,17 +1163,17 @@ export function HomeView() {
               <div className="space-y-2.5 font-mono-code text-xs">
                 <a
                   href="mailto:ilyaankhan342@gmail.com"
-                  className="flex items-center justify-between p-3 rounded-xl bg-[#262523] border border-white/10 text-[#F3EFEA] hover:border-emerald-400 transition-colors"
+                  className="flex items-center justify-between p-3.5 rounded-xl bg-[#262523] border border-white/10 text-[#F3EFEA] hover:border-emerald-400 active:bg-[#1f1e1c] transition-colors"
                 >
                   <span className="text-[#A39E95]">Email:</span>
-                  <span className="text-emerald-400 font-semibold">ilyaankhan342@gmail.com</span>
+                  <span className="text-emerald-400 font-semibold truncate pl-2">ilyaankhan342@gmail.com</span>
                 </a>
 
                 <a
                   href="https://wa.me/923213379342"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-between p-3 rounded-xl bg-[#262523] border border-white/10 text-[#F3EFEA] hover:border-cyan-400 transition-colors"
+                  className="flex items-center justify-between p-3.5 rounded-xl bg-[#262523] border border-white/10 text-[#F3EFEA] hover:border-cyan-400 active:bg-[#1f1e1c] transition-colors"
                 >
                   <span className="text-[#A39E95]">WhatsApp:</span>
                   <span className="text-cyan-400 font-semibold">+92 321 3379342</span>
@@ -1163,7 +1182,7 @@ export function HomeView() {
                 <a
                   href="/CV.pdf"
                   download
-                  className="flex items-center justify-between p-3 rounded-xl bg-[#262523] border border-white/10 text-[#F3EFEA] hover:border-purple-400 transition-colors"
+                  className="flex items-center justify-between p-3.5 rounded-xl bg-[#262523] border border-white/10 text-[#F3EFEA] hover:border-purple-400 active:bg-[#1f1e1c] transition-colors"
                 >
                   <span className="text-[#A39E95]">Official CV:</span>
                   <span className="text-purple-300 font-semibold">Download PDF ↓</span>
@@ -1179,7 +1198,7 @@ export function HomeView() {
       {/* =================================================================== */}
       <AnimatePresence>
         {showAboutModal && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
+          <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 lg:p-6 overflow-y-auto">
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -1189,20 +1208,23 @@ export function HomeView() {
             />
 
             <motion.div
-              initial={{ opacity: 0, scale: 0.95, y: 16 }}
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: 16 }}
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
               transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-              className="relative w-full max-w-2xl sand-card p-5 sm:p-7 space-y-5 shadow-2xl z-10 border border-[#1A1918]/20 max-h-[90vh] overflow-y-auto"
+              className="relative w-full max-w-2xl sand-card p-5 sm:p-7 space-y-4 sm:space-y-5 shadow-2xl z-10 border border-[#1A1918]/20 max-h-[88vh] sm:max-h-[90vh] overflow-y-auto rounded-t-[1.75rem] rounded-b-none sm:rounded-[1.75rem] pb-[max(1.5rem,env(safe-area-inset-bottom))]"
             >
+              {/* Mobile Drag Indicator */}
+              <div className="w-10 h-1 rounded-full bg-[#1A1918]/20 mx-auto -mt-2 mb-2 sm:hidden" />
+
               <button
                 onClick={() => setShowAboutModal(false)}
-                className="absolute top-5 right-5 p-2 text-[#78746D] hover:text-[#1A1918] rounded-full bg-[rgba(26,25,24,0.06)] hover:bg-[rgba(26,25,24,0.12)] transition-colors cursor-pointer"
+                className="absolute top-4 sm:top-5 right-4 sm:right-5 p-2 text-[#78746D] hover:text-[#1A1918] rounded-full bg-[rgba(26,25,24,0.06)] hover:bg-[rgba(26,25,24,0.12)] transition-colors cursor-pointer"
               >
                 <XIcon size={18} />
               </button>
 
-              <div>
+              <div className="pr-8">
                 <span className="text-[10px] font-mono-code uppercase tracking-wider text-[#78746D]">
                   ACADEMIC &amp; CAREER PROFILE
                 </span>
@@ -1244,28 +1266,28 @@ export function HomeView() {
                   4 Industry Internships
                 </h4>
                 <div className="divide-y divide-[rgba(26,25,24,0.12)] text-xs font-sans-clean">
-                  <div className="py-1.5 flex justify-between items-center">
+                  <div className="py-2 flex justify-between items-center">
                     <div>
                       <strong className="font-semibold text-[#1A1918] block text-xs">IntelliVerse</strong>
                       <span className="text-[11px] text-[#78746D]">Python GenAI Developer Intern</span>
                     </div>
                     <span className="font-mono-code text-[10px] text-[#78746D]">Mar – May 2026</span>
                   </div>
-                  <div className="py-1.5 flex justify-between items-center">
+                  <div className="py-2 flex justify-between items-center">
                     <div>
                       <strong className="font-semibold text-[#1A1918] block text-xs">Arch Technologies</strong>
                       <span className="text-[11px] text-[#78746D]">Software Engineer Intern (C++)</span>
                     </div>
                     <span className="font-mono-code text-[10px] text-[#78746D]">Jan – Feb 2026</span>
                   </div>
-                  <div className="py-1.5 flex justify-between items-center">
+                  <div className="py-2 flex justify-between items-center">
                     <div>
                       <strong className="font-semibold text-[#1A1918] block text-xs">Coretech Innovations</strong>
                       <span className="text-[11px] text-[#78746D]">Software Engineer Intern</span>
                     </div>
                     <span className="font-mono-code text-[10px] text-[#78746D]">Dec 2025 – Jan 2026</span>
                   </div>
-                  <div className="py-1.5 flex justify-between items-center">
+                  <div className="py-2 flex justify-between items-center">
                     <div>
                       <strong className="font-semibold text-[#1A1918] block text-xs">CodeAlpha</strong>
                       <span className="text-[11px] text-[#78746D]">Software Engineer Intern</span>
