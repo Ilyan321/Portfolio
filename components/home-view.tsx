@@ -44,17 +44,17 @@ const ALL_PROJECTS: ProjectItem[] = [
   {
     id: 'sql-agent',
     name: 'Schema-Aware SQL Agent',
-    subtitle: 'LoRA Fine-Tuned LLaMA-3 + AST Firewall',
-    tag: 'GenAI & Security',
+    subtitle: 'LoRA Fine-Tuned LLaMA-3 + AST Security Guardrail',
+    tag: 'AI & Security Systems',
     grade: 'Grade 9.5 / 10',
-    category: 'LLM Fine-Tuning & AST Security',
+    category: 'LLM Fine-Tuning & AST Parsers',
     elevatorPitch:
-      'A production-grade NLP-to-SQL autonomous pipeline powered by a LoRA fine-tuned LLaMA-3-8B model trained on the Yale Spider benchmark, shielded by a multi-layer deterministic Python AST security firewall that blocks destructive mutations (DROP/DELETE) and prevents schema leakage.',
+      'A natural language to SQL translation system built with a LoRA fine-tuned LLaMA-3-8B model trained on the Yale Spider benchmark, shielded by a deterministic Python AST parser that enforces read-only execution and prevents schema leakage.',
     challenge:
-      'Standard LLM text-to-SQL solutions hallucinate on multi-table joins and introduce severe database mutation vectors.',
+      'Eliminating multi-table join hallucinations while enforcing strict database integrity at the AST compilation level.',
     architecture: [
       'LoRA 4-bit Quantized Fine-Tuning on LLaMA-3-8B utilizing Unsloth and TRL on the Yale Spider benchmark.',
-      'Deterministic Python AST Security Firewall ensuring 100% read-only execution.',
+      'Deterministic Python AST Security Guardrail ensuring 100% read-only SQL execution.',
       'Dynamic Schema Extraction Layer injecting table structures and foreign keys into context prompts.',
       'Public model weights published on Hugging Face Model Hub.',
     ],
@@ -65,7 +65,7 @@ const ALL_PROJECTS: ProjectItem[] = [
     highlights: [
       { label: 'Base Model', value: 'LLaMA-3-8B' },
       { label: 'Fine-Tuning', value: 'LoRA (PEFT)' },
-      { label: 'Security', value: 'AST Read-Only' },
+      { label: 'Guardrail', value: 'AST Read-Only' },
       { label: 'Benchmark', value: 'Yale Spider' },
     ],
   },
@@ -73,13 +73,13 @@ const ALL_PROJECTS: ProjectItem[] = [
     id: 'hogwarts-archivist',
     name: 'The Hogwarts Archivist',
     subtitle: 'Source-Attributed RAG with FAISS & Groq',
-    tag: 'RAG Architecture',
+    tag: 'Retrieval & RAG Systems',
     grade: 'Grade 9.2 / 10',
-    category: 'Generative AI & RAG',
+    category: 'Vector Search & RAG Architecture',
     elevatorPitch:
-      'An enterprise-grade Retrieval-Augmented Generation (RAG) conversational intelligence system combining LangChain vector search, FAISS similarity indexing, and Groq LLaMA 3 high-speed inference with verifiable, paragraph-level source attribution.',
+      'A high-speed conversational research engine combining LangChain vector search, FAISS Euclidean similarity indexing, and Groq LLaMA-3 inference with precise, verifiable paragraph-level source attribution.',
     challenge:
-      'Eliminating LLM lore hallucinations through chapter-exact vector chunking and metadata binding.',
+      'Grounding LLM responses against large document corpuses with zero hallucinations and exact paragraph citation.',
     architecture: [
       'Recursive text chunking with metadata binding chapter, book, and paragraph coordinates.',
       'Sub-millisecond Euclidean similarity indexing via FAISS in-memory vector store.',
@@ -91,7 +91,7 @@ const ALL_PROJECTS: ProjectItem[] = [
     huggingFaceUrl: 'https://huggingface.co/spaces/Ilyankhan69/Hogwarts-Archivist',
     highlights: [
       { label: 'Vector Index', value: 'FAISS Vector DB' },
-      { label: 'Speed', value: '>500 tok/sec' },
+      { label: 'Inference', value: '>500 tok/sec' },
       { label: 'Attribution', value: 'Paragraph Exact' },
       { label: 'Platform', value: 'Hugging Face Space' },
     ],
@@ -99,14 +99,14 @@ const ALL_PROJECTS: ProjectItem[] = [
   {
     id: 'vibeguard',
     name: 'VibeGuard Moderation',
-    subtitle: 'DistilBERT Multi-Label Toxicity Engine',
-    tag: 'Trust & Safety',
+    subtitle: 'DistilBERT Multi-Label Toxicity Classifier',
+    tag: 'NLP & Safety Systems',
     grade: 'Grade 9.0 / 10',
-    category: 'Safety & Moderation NLP',
+    category: 'Transformer NLP & Classification',
     elevatorPitch:
-      'An AI-driven real-time toxicity and harm detection engine powered by a fine-tuned DistilBERT transformer model trained on the Jigsaw multi-label dataset, delivering instant multi-category risk probability scoring and profanity filtering.',
+      'A real-time toxicity and harm classification model fine-tuned on DistilBERT using the Jigsaw multi-label dataset, delivering fast sub-50ms inference latency and probability radar scoring across 6 risk categories.',
     challenge:
-      'Achieving sub-50ms CPU/GPU inference across 6 simultaneous toxicity classes for streaming chat applications.',
+      'Optimizing multi-label transformer inference latency for fast, reliable moderation workflows.',
     architecture: [
       'Fine-tuned DistilBERT transformer reaching 86.67% validation accuracy.',
       'Optimized sub-50ms inference latency for high-throughput moderation.',
@@ -243,7 +243,7 @@ export function HomeView() {
         <div className="flex flex-col lg:flex-row gap-3 sm:gap-4 flex-1 min-h-0 py-1 sm:py-2">
           
           {/* Top-Left Card: 01 / ABOUT ME */}
-          <div className="w-full lg:w-[38.5%] sand-card p-4 sm:p-5 flex flex-col justify-between relative overflow-hidden min-h-[220px] lg:min-h-0 lg:h-full gap-3 lg:gap-0">
+          <div className="w-full lg:w-[37%] sand-card p-4 sm:p-5 flex flex-col justify-between relative overflow-hidden min-h-[220px] lg:min-h-0 lg:h-full gap-3 lg:gap-0">
             <div className="flex items-start justify-between">
               <span className="text-[10px] font-mono-code uppercase tracking-wider text-[#78746D] font-medium">
                 01 / ABOUT ME
@@ -268,10 +268,10 @@ export function HomeView() {
             {/* Heading & Full Multi-Line Bio */}
             <div className="space-y-1.5 my-auto py-1">
               <h1 className="font-serif-display text-2xl sm:text-3xl lg:text-[2.15rem] leading-[1.12] text-[#1A1918] tracking-tight">
-                I build AI that <span className="italic font-normal">actually works</span> in the real world.
+                Building practical AI &amp; systems from <span className="italic font-normal">first principles</span>.
               </h1>
               <p className="text-[11px] sm:text-xs font-sans-clean text-[#1A1918] leading-relaxed">
-                2nd-year Systems Engineering student at QUEST Nawabshah (3.10 CGPA). Whether it&apos;s fine-tuning LLaMA-3 models with LoRA, building AST security firewalls, or shipping production web apps across 4 internships, I care about code that is fast, safe, and useful.
+                2nd-year Computer Systems Engineering student at QUEST Nawabshah (3.10 CGPA). Exploring the intersection of open-source LLM fine-tuning, AST security guardrails, and software systems — backed by 4 technical internships and a focus on clean, reliable code.
               </p>
             </div>
 
@@ -282,36 +282,36 @@ export function HomeView() {
                 onClick={() => setShowAboutModal(true)}
                 className="text-[#1A1918] font-semibold hover:underline cursor-pointer"
               >
-                My Transcript &amp; Internships &rarr;
+                My Academic Record &amp; Internships &rarr;
               </button>
             </div>
           </div>
 
-          {/* Portrait Card (Top-Center, ~24% width in the middle) */}
-          <div className="w-full lg:w-[24%] sand-card p-2 sm:p-2.5 flex items-center justify-center relative overflow-hidden h-64 sm:h-72 lg:h-full shrink-0">
+          {/* Portrait Card (Top-Center, widened with clear face focal framing) */}
+          <div className="w-full lg:w-[27%] sand-card p-2 sm:p-2.5 flex items-center justify-center relative overflow-hidden h-72 sm:h-80 lg:h-full shrink-0">
             <div className="w-full h-full rounded-[1.1rem] overflow-hidden relative shadow-inner bg-[#DFD5C6]">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/pp.jpeg"
                 alt="Ilyan Khan"
-                className="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-700"
+                className="w-full h-full object-cover object-[center_22%] scale-105 hover:scale-110 transition-transform duration-700"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#1A1918]/65 via-transparent to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#1A1918]/60 via-transparent to-transparent pointer-events-none" />
               <div className="absolute bottom-2.5 left-3 right-3 text-[#F3EFEA] font-sans-clean">
                 <span className="font-serif-display text-base sm:text-lg lg:text-base font-normal block leading-tight">
                   Ilyan Khan
                 </span>
                 <span className="text-[9px] font-mono-code text-[#DFD5C6] uppercase">
-                  Systems &bull; QUEST
+                  Systems Engineering &bull; QUEST
                 </span>
               </div>
             </div>
           </div>
 
-          {/* Top-Right: Pure High-Craft Editorial Showcase (De-slopped & Clean) */}
+          {/* Top-Right: Pure High-Craft Editorial Showcase */}
           <div
             id="projects-card"
-            className="w-full lg:w-[37.5%] sand-card p-4 sm:p-5 flex flex-col justify-between min-h-[260px] lg:min-h-0 lg:h-full gap-2 lg:gap-0"
+            className="w-full lg:w-[36%] sand-card p-4 sm:p-5 flex flex-col justify-between min-h-[260px] lg:min-h-0 lg:h-full gap-2 lg:gap-0"
           >
             {/* Clickable Header */}
             <div
@@ -321,10 +321,10 @@ export function HomeView() {
             >
               <div>
                 <span className="text-[10px] font-mono-code uppercase tracking-wider text-[#78746D] font-medium block group-hover:text-[#1A1918] transition-colors">
-                  05 / ACHIEVEMENTS
+                  05 / TECHNICAL WORK
                 </span>
                 <h3 className="font-serif-display text-xl text-[#1A1918] font-normal tracking-tight group-hover:text-emerald-900 transition-colors">
-                  Projects &amp; Certificates
+                  Projects &amp; Certifications
                 </h3>
               </div>
               <span className="text-[#1A1918] group-hover:text-emerald-800 text-sm font-mono-code group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all p-1">
@@ -335,7 +335,7 @@ export function HomeView() {
             {/* Clean Section 1: Projects */}
             <div className="space-y-1 py-1">
               <span className="text-[10px] font-mono-code uppercase tracking-wider text-[#78746D] font-medium block">
-                Projects
+                Featured Projects
               </span>
 
               <div className="divide-y divide-[rgba(26,25,24,0.08)]">
@@ -380,7 +380,7 @@ export function HomeView() {
             {/* Clean Section 2: Certifications */}
             <div className="space-y-1 py-1 border-t border-[rgba(26,25,24,0.08)]">
               <span className="text-[10px] font-mono-code uppercase tracking-wider text-[#78746D] font-medium block">
-                Certifications
+                Verified Certifications
               </span>
 
               <div className="divide-y divide-[rgba(26,25,24,0.08)]">
@@ -424,7 +424,7 @@ export function HomeView() {
 
             {/* Footer with Directory Trigger */}
             <div className="pt-2 border-t border-[rgba(26,25,24,0.12)] text-[10px] font-mono-code text-[#78746D] flex justify-between items-center">
-              <span>Caffeine &bull; Code &bull; Late Nights</span>
+              <span>Systems Engineering &bull; Open Source</span>
               <button
                 onClick={() => setShowDirectoryModal(true)}
                 className="text-[#1A1918] font-semibold hover:underline cursor-pointer flex items-center gap-0.5"
@@ -446,12 +446,12 @@ export function HomeView() {
             <div className="space-y-1">
               <div className="flex items-center justify-between">
                 <span className="text-[10px] font-mono-code uppercase tracking-wider text-[#78746D] font-medium">
-                  02 / HOW I BUILD
+                  02 / HOW I LEARN &amp; BUILD
                 </span>
-                <span className="text-[10px] font-mono-code text-[#78746D]">FROM SCRATCH</span>
+                <span className="text-[10px] font-mono-code text-[#78746D]">FIRST PRINCIPLES</span>
               </div>
               <p className="text-[11px] sm:text-xs font-sans-clean text-[#1A1918] leading-relaxed">
-                I believe the best way to learn is by building from scratch. I like bridging practical AI with solid software engineering to make fast, reliable projects.
+                I believe engineering is best mastered by building from scratch. I bridge foundational computer systems theory with practical AI — writing clean, tested code that turns academic concepts into reliable software.
               </p>
             </div>
 
@@ -461,7 +461,7 @@ export function HomeView() {
                 onClick={() => setShowPhilosophyModal(true)}
                 className="text-[#1A1918] font-semibold hover:underline cursor-pointer"
               >
-                How I Build &rarr;
+                Learning Philosophy &rarr;
               </button>
             </div>
           </div>
@@ -473,7 +473,7 @@ export function HomeView() {
           >
             <div className="flex items-start justify-between">
               <span className="text-[10px] font-mono-code uppercase tracking-wider text-[#A39E95] font-medium">
-                03 / GET IN TOUCH
+                03 / CONNECT &amp; COLLABORATE
               </span>
               <span className="text-sm text-[#F3EFEA] font-mono-code group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform">
                 ↗
@@ -482,7 +482,7 @@ export function HomeView() {
 
             <div className="py-1">
               <h3 className="font-serif-display text-2xl sm:text-3xl text-[#F3EFEA] font-normal leading-tight">
-                Contact me
+                Get in touch
               </h3>
             </div>
 
@@ -498,7 +498,7 @@ export function HomeView() {
           >
             <div className="flex items-center justify-between">
               <span className="text-[10px] font-mono-code uppercase tracking-wider text-[#78746D] font-medium">
-                04 / NETWORK
+                04 / PROFILES &amp; RESUME
               </span>
               <span className="text-xs font-mono-code text-[#78746D] group-hover:text-[#1A1918] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all">
                 ↗
@@ -584,10 +584,10 @@ export function HomeView() {
 
               <div className="pr-8">
                 <span className="text-[10px] font-mono-code uppercase tracking-wider text-[#78746D] font-medium">
-                  ACHIEVEMENTS DIRECTORY
+                  05 / ACADEMIC &amp; TECHNICAL DIRECTORY
                 </span>
                 <h2 className="font-serif-display text-2xl sm:text-3xl text-[#1A1918] font-normal tracking-tight">
-                  Projects &amp; Certificates
+                  Projects &amp; Verified Certifications
                 </h2>
                 <p className="text-xs font-sans-clean text-[#78746D] mt-0.5">
                   Select any project or certificate to inspect full architectural details &amp; credentials.
@@ -604,7 +604,7 @@ export function HomeView() {
                       : 'text-[#78746D] hover:text-[#1A1918]'
                   }`}
                 >
-                  Flagship Systems ({ALL_PROJECTS.length})
+                  Flagship Projects ({ALL_PROJECTS.length})
                 </button>
                 <button
                   onClick={() => setDirectoryTab('certificates')}
@@ -614,7 +614,7 @@ export function HomeView() {
                       : 'text-[#78746D] hover:text-[#1A1918]'
                   }`}
                 >
-                  Verified Certs ({ALL_CERTIFICATES.length})
+                  Verified Credentials ({ALL_CERTIFICATES.length})
                 </button>
               </div>
 
@@ -950,17 +950,17 @@ export function HomeView() {
                   02 / ENGINEERING MINDSET
                 </span>
                 <h2 className="font-serif-display text-2xl sm:text-3xl text-[#1A1918] font-normal tracking-tight">
-                  How I Build &amp; Learn
+                  How I Learn &amp; Build
                 </h2>
                 <p className="text-xs font-sans-clean text-[#78746D]">
-                  Student Engineer Perspective &bull; QUEST Nawabshah
+                  Undergraduate Systems Engineering &bull; QUEST Nawabshah
                 </p>
               </div>
 
               {/* Core Builder Quote Box */}
               <div className="p-3.5 sm:p-4 rounded-xl bg-[#DFD5C6] border border-[rgba(26,25,24,0.1)]">
                 <p className="font-serif-display text-base sm:text-xl text-[#1A1918] italic leading-snug">
-                  &ldquo;I believe the best way to learn is by building from scratch. I like bridging practical AI with solid software engineering to make fast, reliable projects.&rdquo;
+                  &ldquo;The deepest way to understand any system is to build it from first principles. I connect foundational computer systems principles with practical AI to create fast, reliable software.&rdquo;
                 </p>
                 <span className="text-[10px] font-mono-code text-[#78746D] block mt-2">
                   — Ilyan Khan, 2nd Year Computer Systems Engineering
@@ -971,19 +971,19 @@ export function HomeView() {
               <div className="space-y-2.5 sm:space-y-3 text-xs font-sans-clean text-[#1A1918]">
                 <div className="p-3 rounded-lg bg-[rgba(26,25,24,0.04)] border border-[rgba(26,25,24,0.08)]">
                   <strong className="font-mono-code text-[11px] uppercase text-[#1A1918] block mb-1">
-                    1. Hands-on Experimentation
+                    1. First-Principles Exploration
                   </strong>
                   <p className="text-[#78746D] leading-relaxed">
-                    Instead of only running tutorials, I like fine-tuning open-source LLMs, benchmarking datasets on Hugging Face, and writing low-level C++ algorithms to understand how computers execute code.
+                    Rather than relying solely on high-level APIs, I dive into fine-tuning open-source models (LoRA/PEFT), analyzing dataset representations on Hugging Face, and writing low-level C++ algorithms to master runtime execution and memory efficiency.
                   </p>
                 </div>
 
                 <div className="p-3 rounded-lg bg-[rgba(26,25,24,0.04)] border border-[rgba(26,25,24,0.08)]">
                   <strong className="font-mono-code text-[11px] uppercase text-[#1A1918] block mb-1">
-                    2. Practical &amp; Safe Software
+                    2. Deterministic &amp; Useful Software
                   </strong>
                   <p className="text-[#78746D] leading-relaxed">
-                    Whether it is an attendance management system for students or an NLP-to-SQL agent with an AST parser firewall, I prioritize software that actually works reliably in real hands.
+                    From student management systems to AST security firewalls for LLMs, I prioritize software that is fast, mathematically verifiable, and practically useful in real hands.
                   </p>
                 </div>
               </div>
@@ -1150,13 +1150,13 @@ export function HomeView() {
 
               <div className="pr-8">
                 <span className="text-[10px] font-mono-code uppercase tracking-wider text-[#A39E95]">
-                  DIRECT DISPATCH
+                  DIRECT CONTACT
                 </span>
                 <h2 className="font-serif-display text-2xl sm:text-3xl text-[#F3EFEA] font-normal mt-1">
                   Let&apos;s connect.
                 </h2>
                 <p className="text-xs font-sans-clean text-[#A39E95] mt-0.5">
-                  Open for software engineering internships, AI research, and collaborative projects.
+                  Open for software engineering internships, AI research initiatives, and technical collaborations.
                 </p>
               </div>
 
