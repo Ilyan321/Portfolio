@@ -369,9 +369,11 @@ export default function AdminDashboard() {
 
       {editingProject && (
         <div className="fixed inset-0 bg-black/80 flex items-center justify-center p-4">
-          <div className="bg-[#111] border border-neutral-800 rounded-xl p-6 w-full max-w-2xl max-h-[90vh] overflow-y-auto">
-            <h2 className="font-semibold mb-4">{isAddingProject ? "Add New Project" : "Edit Project"}</h2>
-            <div className="grid grid-cols-2 gap-4">
+          <div className="bg-[#111] border border-neutral-800 rounded-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto relative">
+            <div className="sticky top-0 bg-[#111] z-10 p-6 pb-4 border-b border-neutral-800/50 mb-4">
+              <h2 className="font-serif-display text-2xl tracking-tight text-[#F3EFEA]">{isAddingProject ? "Add New Project" : "Edit Project"}</h2>
+            </div>
+            <div className="grid grid-cols-2 gap-4 px-6 pb-6">
               {['name', 'subtitle', 'tag', 'category', 'sort_order', 'github_url', 'demo_url'].map(field => (
                 <div key={field}>
                   <label className="block text-xs text-neutral-500 mb-1">{field}</label>
@@ -401,9 +403,11 @@ export default function AdminDashboard() {
 
       {editingCert && (
         <div className="fixed inset-0 bg-black/80 flex items-center justify-center p-4 z-50">
-          <div className="bg-[#111] border border-neutral-800 rounded-xl p-6 w-full max-w-2xl max-h-[90vh] overflow-y-auto">
-            <h2 className="font-semibold mb-4">{isAddingCert ? "Add New Certificate" : "Edit Certificate"}</h2>
-            <div className="grid grid-cols-2 gap-4">
+          <div className="bg-[#111] border border-neutral-800 rounded-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto relative">
+            <div className="sticky top-0 bg-[#111] z-10 p-6 pb-4 border-b border-neutral-800/50 mb-4">
+              <h2 className="font-serif-display text-2xl tracking-tight text-[#F3EFEA]">{isAddingCert ? "Add New Certificate" : "Edit Certificate"}</h2>
+            </div>
+            <div className="grid grid-cols-2 gap-4 px-6 pb-6">
               {['title', 'issuer', 'issue_date', 'tag', 'credential_id', 'image_path', 'sort_order'].map(field => (
                 <div key={field}>
                   <label className="block text-xs text-neutral-500 mb-1">{field}</label>
