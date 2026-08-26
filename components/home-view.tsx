@@ -152,13 +152,13 @@ export function HomeView({ projects, profile, certificates }: HomeViewProps) {
           </div>
 
           {/* Portrait Card (Exact original 24% width on desktop, responsive clear face framing on mobile) */}
-          <div className="w-full lg:w-[24%] sand-card-dark border border-[#363633] p-2 sm:p-2.5 flex items-center justify-center relative overflow-hidden h-80 sm:h-96 lg:h-full shrink-0">
-            <div className="w-full h-full rounded-[1.1rem] overflow-hidden relative shadow-inner bg-[#DFD5C6]">
+          <div className="w-full lg:w-[24%] sand-card-dark border border-[#363633] p-2 sm:p-2.5 flex items-center justify-center relative overflow-hidden h-auto lg:h-full shrink-0">
+            <div className="w-full h-auto lg:h-full rounded-[1.1rem] overflow-hidden relative shadow-inner bg-[#DFD5C6]">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/pp.jpeg"
                 alt={profile?.name ?? 'Ilyan Khan'}
-                className="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-700"
+                className="w-full h-auto lg:h-full object-cover lg:object-top hover:scale-105 transition-transform duration-700"
               />
               <div className="absolute top-0 left-0 right-0 bg-[#2C2C2A] py-2 px-3 text-center z-10 transition-colors">
                 <span className="font-serif-display text-base sm:text-lg text-[#F3EFEA] font-normal block leading-none">
