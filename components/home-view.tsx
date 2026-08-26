@@ -622,7 +622,7 @@ export function HomeView({ projects, profile, certificates }: HomeViewProps) {
 
               {/* Description & Competencies */}
               <div className="space-y-3 text-xs font-sans-clean text-[#1A1918]">
-                <p className="leading-relaxed text-[#1A1918]">
+                <p className="leading-relaxed text-[#1A1918] whitespace-pre-wrap break-words">
                   {selectedCert.description}
                 </p>
 
@@ -729,6 +729,9 @@ export function HomeView({ projects, profile, certificates }: HomeViewProps) {
                 <p className="text-xs font-sans-clean text-[#78746D] leading-relaxed">
                   {selectedProject.subtitle}
                 </p>
+                <div className="mt-3 text-xs font-sans-clean text-[#1A1918] leading-relaxed whitespace-pre-wrap break-words">
+                  {selectedProject.elevatorPitch}
+                </div>
               </div>
 
               {/* Metric Highlights */}
@@ -747,7 +750,7 @@ export function HomeView({ projects, profile, certificates }: HomeViewProps) {
                   <h4 className="font-mono-code text-[11px] text-[#78746D] uppercase tracking-wider font-semibold">
                     1. Problem Formulation &amp; Challenge
                   </h4>
-                  <p className="text-[#1A1918] leading-relaxed pl-3 border-l-2 border-[#1A1918]">
+                  <p className="text-[#1A1918] leading-relaxed pl-3 border-l-2 border-[#1A1918] whitespace-pre-wrap break-words">
                     {selectedProject.challenge}
                   </p>
                 </div>
@@ -760,7 +763,7 @@ export function HomeView({ projects, profile, certificates }: HomeViewProps) {
                     {selectedProject.architecture.map((item, idx) => (
                       <li key={idx} className="flex items-start gap-2">
                         <span className="text-emerald-800 font-mono-code font-bold">&bull;</span>
-                        <span>{item}</span>
+                        <span className="whitespace-pre-wrap break-words">{item}</span>
                       </li>
                     ))}
                   </ul>
