@@ -10,6 +10,8 @@ export default function AdminDashboard() {
   const [certificates, setCertificates] = useState<CertificateRow[]>([]);
   const [editingCert, setEditingCert] = useState<CertificateRow | null>(null);
   const [confirmDelete, setConfirmDelete] = useState<{type: 'project' | 'cert', id: string, name: string} | null>(null);
+  const [isAddingProject, setIsAddingProject] = useState(false);
+  const [isAddingCert, setIsAddingCert] = useState(false);
   const [profile, setProfile] = useState<ProfileRow | null>(null);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState<string | null>(null);
@@ -59,18 +61,24 @@ export default function AdminDashboard() {
     }
   }
 
-  async function saveProject(project: ProjectRow) {
-    setSaving(project.id);
+  async function saveProject(project: Partial<ProjectRow>) {
+    setSaving(project.id || 'new');
+    const isNew = !project.id;
     try {
       const res = await fetch('/api/admin/projects', {
-        method: 'PATCH',
+        method: isNew ? 'POST' : 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(project),
       });
       if (res.ok) {
         const updated = await res.json();
-        setProjects(prev => prev.map(p => p.id === updated.id ? updated : p));
+        if (isNew) {
+          setProjects(prev => [...prev, updated].sort((a, b) => a.sort_order - b.sort_order));
+        } else {
+          setProjects(prev => prev.map(p => p.id === updated.id ? updated : p));
+        }
         setEditingProject(null);
+        setIsAddingProject(false);
       }
     } finally {
       setSaving(null);
@@ -94,18 +102,24 @@ export default function AdminDashboard() {
     }
   }
 
-  async function saveCert(cert: CertificateRow) {
-    setSaving(cert.id);
+  async function saveCert(cert: Partial<CertificateRow>) {
+    setSaving(cert.id || 'new');
+    const isNew = !cert.id;
     try {
       const res = await fetch('/api/admin/certificates', {
-        method: 'PATCH',
+        method: isNew ? 'POST' : 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(cert),
       });
       if (res.ok) {
         const updated = await res.json();
-        setCertificates(prev => prev.map(c => c.id === updated.id ? updated : c));
+        if (isNew) {
+          setCertificates(prev => [...prev, updated].sort((a, b) => a.sort_order - b.sort_order));
+        } else {
+          setCertificates(prev => prev.map(c => c.id === updated.id ? updated : c));
+        }
         setEditingCert(null);
+        setIsAddingCert(false);
       }
     } finally {
       setSaving(null);
@@ -225,6 +239,14 @@ export default function AdminDashboard() {
 
         {tab === 'projects' && (
           <div className="space-y-4">
+            <div className="flex justify-end mb-4">
+              <button onClick={() => {
+                setIsAddingProject(true);
+                setEditingProject({ name: '', subtitle: '', tag: '', category: '', sort_order: projects.length + 1, github_url: '', demo_url: '', description: '', highlights: [], technologies: [], visible: true } as any);
+              }} className="px-4 py-2 text-sm bg-emerald-500/10 text-emerald-500 border border-emerald-500/20 rounded hover:bg-emerald-500/20 transition-colors">
+                + Add New Project
+              </button>
+            </div>
             {projects.map(p => (
               <div key={p.id} className={`p-4 rounded-xl border ${p.visible ? 'border-neutral-800 bg-neutral-900' : 'border-neutral-800/50 bg-neutral-900/30'} flex justify-between items-center`}>
                 <div>
@@ -258,6 +280,14 @@ export default function AdminDashboard() {
         
         {tab === 'certificates' && (
           <div className="space-y-4">
+            <div className="flex justify-end mb-4">
+              <button onClick={() => {
+                setIsAddingCert(true);
+                setEditingCert({ title: '', issuer: '', issue_date: '', tag: '', credential_id: '', image_path: '', sort_order: certificates.length + 1, description: '', skills: [], visible: true } as any);
+              }} className="px-4 py-2 text-sm bg-emerald-500/10 text-emerald-500 border border-emerald-500/20 rounded hover:bg-emerald-500/20 transition-colors">
+                + Add New Certificate
+              </button>
+            </div>
             {certificates.map(c => (
               <div key={c.id} className={`p-4 rounded-xl border ${c.visible ? 'border-neutral-800 bg-neutral-900' : 'border-neutral-800/50 bg-neutral-900/30'} flex justify-between items-center`}>
                 <div className="flex items-center gap-4">
@@ -332,7 +362,7 @@ export default function AdminDashboard() {
       {editingProject && (
         <div className="fixed inset-0 bg-black/80 flex items-center justify-center p-4">
           <div className="bg-[#111] border border-neutral-800 rounded-xl p-6 w-full max-w-2xl max-h-[90vh] overflow-y-auto">
-            <h2 className="font-semibold mb-4">Edit Project</h2>
+            <h2 className="font-semibold mb-4">{isAddingProject ? "Add New Project" : "Edit Project"}</h2>
             <div className="grid grid-cols-2 gap-4">
               {['name', 'subtitle', 'tag', 'category', 'sort_order', 'github_url', 'demo_url'].map(field => (
                 <div key={field}>
@@ -353,7 +383,7 @@ export default function AdminDashboard() {
               </div>
 
               <div className="col-span-2 flex justify-end gap-2 mt-4">
-                <button onClick={() => setEditingProject(null)} className="px-4 py-2 text-sm border border-neutral-700 rounded hover:bg-neutral-800">Cancel</button>
+                <button onClick={() => { setEditingProject(null); setIsAddingProject(false); }} className="px-4 py-2 text-sm border border-neutral-700 rounded hover:bg-neutral-800">Cancel</button>
                 <button onClick={() => saveProject(editingProject)} disabled={saving === editingProject.id} className="px-4 py-2 text-sm bg-white text-black rounded hover:bg-neutral-200">Save Changes</button>
               </div>
             </div>
@@ -364,7 +394,7 @@ export default function AdminDashboard() {
       {editingCert && (
         <div className="fixed inset-0 bg-black/80 flex items-center justify-center p-4 z-50">
           <div className="bg-[#111] border border-neutral-800 rounded-xl p-6 w-full max-w-2xl max-h-[90vh] overflow-y-auto">
-            <h2 className="font-semibold mb-4">Edit Certificate</h2>
+            <h2 className="font-semibold mb-4">{isAddingCert ? "Add New Certificate" : "Edit Certificate"}</h2>
             <div className="grid grid-cols-2 gap-4">
               {['title', 'issuer', 'issue_date', 'tag', 'credential_id', 'image_path', 'sort_order'].map(field => (
                 <div key={field}>
@@ -384,7 +414,7 @@ export default function AdminDashboard() {
               </div>
 
               <div className="col-span-2 flex justify-end gap-2 mt-4">
-                <button onClick={() => setEditingCert(null)} className="px-4 py-2 text-sm border border-neutral-700 rounded hover:bg-neutral-800">Cancel</button>
+                <button onClick={() => { setEditingCert(null); setIsAddingCert(false); }} className="px-4 py-2 text-sm border border-neutral-700 rounded hover:bg-neutral-800">Cancel</button>
                 <button onClick={() => saveCert(editingCert)} disabled={saving === editingCert.id} className="px-4 py-2 text-sm bg-white text-black rounded hover:bg-neutral-200">Save Changes</button>
               </div>
             </div>

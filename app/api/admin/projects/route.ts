@@ -41,3 +41,15 @@ export async function DELETE(request: Request) {
   if (error) return NextResponse.json({ error: error.message }, { status: 500 });
   return NextResponse.json({ success: true });
 }
+
+export async function POST(request: Request) {
+  const cookieStore = await cookies();
+  const token = cookieStore.get('sb-access-token')?.value;
+  if (!token) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+
+  const body = await request.json();
+  const supabase = createAdminClient();
+  const { data, error } = await supabase.from('projects').insert([body]).select().single();
+  if (error) return NextResponse.json({ error: error.message }, { status: 500 });
+  return NextResponse.json(data);
+}
