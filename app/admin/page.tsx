@@ -9,6 +9,7 @@ export default function AdminDashboard() {
   const [projects, setProjects] = useState<ProjectRow[]>([]);
   const [certificates, setCertificates] = useState<CertificateRow[]>([]);
   const [editingCert, setEditingCert] = useState<CertificateRow | null>(null);
+  const [confirmDelete, setConfirmDelete] = useState<{type: 'project' | 'cert', id: string, name: string} | null>(null);
   const [profile, setProfile] = useState<ProfileRow | null>(null);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState<string | null>(null);
@@ -113,7 +114,6 @@ export default function AdminDashboard() {
 
   
   async function deleteProject(id: string) {
-    if (!confirm('Are you sure you want to delete this project permanently?')) return;
     setSaving(id);
     try {
       const res = await fetch(`/api/admin/projects?id=${id}`, { method: 'DELETE' });
@@ -126,7 +126,6 @@ export default function AdminDashboard() {
   }
 
   async function deleteCert(id: string) {
-    if (!confirm('Are you sure you want to delete this certificate permanently?')) return;
     setSaving(id);
     try {
       const res = await fetch(`/api/admin/certificates?id=${id}`, { method: 'DELETE' });
@@ -247,7 +246,7 @@ export default function AdminDashboard() {
                   <button onClick={() => setEditingProject({...p})} className="px-3 py-1.5 text-xs bg-white text-black rounded hover:bg-neutral-200">
                     Edit
                   </button>
-                  <button onClick={() => deleteProject(p.id)} disabled={saving === p.id} className="px-3 py-1.5 text-xs bg-red-500/10 text-red-500 rounded hover:bg-red-500/20 disabled:opacity-50">
+                  <button onClick={() => setConfirmDelete({ type: 'project', id: p.id, name: p.name })} disabled={saving === p.id} className="px-3 py-1.5 text-xs bg-red-500/10 text-red-500 rounded hover:bg-red-500/20 disabled:opacity-50">
                     Delete
                   </button>
                 </div>
@@ -283,7 +282,7 @@ export default function AdminDashboard() {
                   <button onClick={() => setEditingCert({...c})} className="px-3 py-1.5 text-xs bg-white text-black rounded hover:bg-neutral-200">
                     Edit
                   </button>
-                  <button onClick={() => deleteCert(c.id)} disabled={saving === c.id} className="px-3 py-1.5 text-xs bg-red-500/10 text-red-500 rounded hover:bg-red-500/20 disabled:opacity-50">
+                  <button onClick={() => setConfirmDelete({ type: 'cert', id: c.id, name: c.title })} disabled={saving === c.id} className="px-3 py-1.5 text-xs bg-red-500/10 text-red-500 rounded hover:bg-red-500/20 disabled:opacity-50">
                     Delete
                   </button>
                 </div>
@@ -388,6 +387,35 @@ export default function AdminDashboard() {
                 <button onClick={() => setEditingCert(null)} className="px-4 py-2 text-sm border border-neutral-700 rounded hover:bg-neutral-800">Cancel</button>
                 <button onClick={() => saveCert(editingCert)} disabled={saving === editingCert.id} className="px-4 py-2 text-sm bg-white text-black rounded hover:bg-neutral-200">Save Changes</button>
               </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {confirmDelete && (
+        <div className="fixed inset-0 bg-black/80 flex items-center justify-center p-4 z-[60] animate-in fade-in duration-200">
+          <div className="bg-[#1A1918] border border-red-500/20 rounded-2xl p-6 w-full max-w-sm shadow-2xl animate-in zoom-in-95 duration-200">
+            <h2 className="font-serif-display text-2xl text-[#F3EFEA] tracking-tight mb-2">Confirm Deletion</h2>
+            <p className="text-sm font-sans-clean text-[#78746D] mb-6 leading-relaxed">
+              Are you absolutely sure you want to permanently delete <strong className="text-[#F3EFEA] font-medium">{confirmDelete.name}</strong>? This action cannot be undone.
+            </p>
+            <div className="flex justify-end gap-3">
+              <button 
+                onClick={() => setConfirmDelete(null)} 
+                className="px-4 py-2 text-xs font-mono-code uppercase tracking-wider text-[#78746D] hover:text-[#F3EFEA] transition-colors"
+              >
+                Cancel
+              </button>
+              <button 
+                onClick={() => {
+                  if (confirmDelete.type === 'project') deleteProject(confirmDelete.id);
+                  else deleteCert(confirmDelete.id);
+                  setConfirmDelete(null);
+                }} 
+                className="px-4 py-2 text-xs font-mono-code uppercase tracking-wider bg-red-500/10 text-red-500 hover:bg-red-500/20 rounded-lg transition-colors border border-red-500/20"
+              >
+                Delete Permanently
+              </button>
             </div>
           </div>
         </div>
