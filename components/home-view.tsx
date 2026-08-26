@@ -44,10 +44,17 @@ export function HomeView({ projects, profile, certificates }: HomeViewProps) {
         {/* 1. TOP NAVIGATION BAR                                               */}
         {/* =================================================================== */}
         <header className="flex flex-col sm:flex-row items-center justify-between px-1 sm:px-2 pt-2 sm:pt-0 pb-2 sm:pb-1 shrink-0 gap-3 sm:gap-2">
-          <div className="flex items-center gap-2 shrink-0">
+          <div className="flex items-center justify-between w-full sm:w-auto shrink-0 px-2 sm:px-0">
             <span className="font-mono-code text-xs sm:text-sm font-semibold tracking-widest text-[#F3EFEA] uppercase">
               DEV / ILYAN
             </span>
+            <a 
+              href="/admin" 
+              className="sm:hidden flex items-center justify-center w-7 h-7 rounded-full bg-[rgba(243,239,234,0.05)] active:bg-[rgba(243,239,234,0.12)] border border-[rgba(243,239,234,0.05)] text-[#DFD5C6] transition-all backdrop-blur-md shadow-sm active:scale-95" 
+              title="Admin Portal"
+            >
+              <UserIcon size={13} />
+            </a>
           </div>
 
           <nav className="flex flex-wrap justify-center items-center gap-3 sm:gap-6 lg:gap-8 text-[11px] sm:text-xs font-sans-clean font-medium tracking-wide text-[#A39E95] py-0.5 w-full sm:w-auto">
@@ -84,7 +91,7 @@ export function HomeView({ projects, profile, certificates }: HomeViewProps) {
             </button>
             <a 
               href="/admin" 
-              className="flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-[rgba(243,239,234,0.05)] hover:bg-[rgba(243,239,234,0.12)] border border-[rgba(243,239,234,0.05)] hover:border-[rgba(243,239,234,0.2)] text-[#DFD5C6] hover:text-[#F3EFEA] transition-all backdrop-blur-md shadow-sm active:scale-95 group" 
+              className="hidden sm:flex items-center justify-center w-8 h-8 rounded-full bg-[rgba(243,239,234,0.05)] hover:bg-[rgba(243,239,234,0.12)] border border-[rgba(243,239,234,0.05)] hover:border-[rgba(243,239,234,0.2)] text-[#DFD5C6] hover:text-[#F3EFEA] transition-all backdrop-blur-md shadow-sm active:scale-95 group" 
               title="Admin Portal"
             >
               <div className="group-hover:rotate-12 transition-transform duration-300">
