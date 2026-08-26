@@ -38,12 +38,12 @@ export function HomeView({ projects, profile, certificates }: HomeViewProps) {
   return (
     <main className="min-h-screen w-full lg:h-screen lg:max-h-screen bg-[#1A1918] p-2.5 sm:p-4 lg:p-5 flex items-center justify-center overflow-y-auto lg:overflow-hidden">
       {/* Outer Dark Frame */}
-      <div className="w-full max-w-7xl min-h-screen lg:min-h-0 lg:h-full lg:max-h-[96vh] bg-[#262523] rounded-2xl sm:rounded-[2rem] p-3.5 sm:p-5 lg:p-6 shadow-2xl border border-white/[0.06] flex flex-col justify-between overflow-visible lg:overflow-hidden gap-3 sm:gap-4 lg:gap-0 my-auto">
+      <div className="w-full max-w-7xl min-h-screen lg:min-h-0 lg:h-full lg:max-h-[96vh] bg-[#262523] rounded-2xl sm:rounded-[2rem] px-3.5 sm:px-5 lg:px-6 pt-2 sm:pt-3 lg:pt-4 pb-3.5 sm:pb-5 lg:pb-6 shadow-2xl border border-white/[0.06] flex flex-col justify-between overflow-visible lg:overflow-hidden gap-3 sm:gap-4 lg:gap-0 my-auto">
         
         {/* =================================================================== */}
         {/* 1. TOP NAVIGATION BAR                                               */}
         {/* =================================================================== */}
-        <header className="flex items-center justify-between px-1 sm:px-2 py-1 shrink-0 gap-2">
+        <header className="flex items-center justify-between px-1 sm:px-2 pt-0 pb-1 shrink-0 gap-2">
           <div className="flex items-center gap-2 shrink-0">
             <span className="font-mono-code text-xs sm:text-sm font-semibold tracking-widest text-[#F3EFEA] uppercase">
               DEV / ILYAN
