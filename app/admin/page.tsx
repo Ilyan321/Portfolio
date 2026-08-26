@@ -395,9 +395,7 @@ export default function AdminDashboard() {
 
               <div className="col-span-2">
                 <label className="block text-xs text-neutral-500 mb-1">architecture (one bullet per line)</label>
-                <textarea rows={3} value={(editingProject.architecture || []).join('
-')} onChange={e => setEditingProject({...editingProject, architecture: e.target.value.split('
-').filter(Boolean)})} className="w-full px-3 py-2 bg-neutral-800 rounded border border-neutral-700 text-sm" />
+                <textarea rows={3} value={(editingProject.architecture || []).join('\n')} onChange={e => setEditingProject({...editingProject, architecture: e.target.value.split('\n').filter(Boolean)})} className="w-full px-3 py-2 bg-neutral-800 rounded border border-neutral-700 text-sm" />
               </div>
 
               <div className="col-span-2">
