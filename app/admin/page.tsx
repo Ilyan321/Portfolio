@@ -145,35 +145,52 @@ export default function AdminDashboard() {
 
       <main className="max-w-5xl mx-auto p-6">
         {tab === 'welcome' && (
-          <div className="space-y-6">
-            <div className="p-8 md:p-12 rounded-2xl bg-[#1A1918] border border-white/10 relative overflow-hidden group">
-              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-emerald-500/0 via-emerald-500/50 to-emerald-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-1000"></div>
-              
-              <span className="text-[10px] font-mono-code uppercase tracking-widest text-emerald-400/80 mb-4 block">
-                ADMINISTRATION LAYER
-              </span>
-              <h2 className="text-3xl md:text-5xl font-serif-display text-[#F3EFEA] mb-2 tracking-tight">
-                Welcome back, {profile?.name?.split(' ')[0] || 'Admin'}.
+          <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
+            <div className="flex flex-col gap-2 border-b border-neutral-800 pb-8">
+              <h2 className="text-4xl sm:text-5xl font-serif-display text-[#F3EFEA] tracking-tight">
+                Welcome, {profile?.name?.split(' ')[0] || 'Ilyan'}.
               </h2>
-              <p className="text-sm font-sans-clean text-[#78746D] max-w-lg mb-8">
-                Your portfolio backend is online and securely authenticated. 
-                Use this portal to manage your showcased work, update credentials, and tailor your digital presence.
+              <p className="text-sm font-sans-clean text-[#78746D] max-w-xl leading-relaxed">
+                This is your private workspace. From here, you can manage the visibility of your projects, update your professional credentials, and refine your public profile details. Changes made here will instantly reflect on your live portfolio.
               </p>
-              
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div onClick={() => setTab('projects')} className="p-5 rounded-xl border border-white/5 bg-white/5 hover:bg-white/10 transition-colors cursor-pointer group/card">
-                  <div className="text-[10px] font-mono-code text-[#78746D] mb-1 group-hover/card:text-[#F3EFEA] transition-colors">TOTAL PROJECTS</div>
-                  <div className="text-3xl font-serif-display text-[#F3EFEA]">{projects.length}</div>
-                </div>
-                <div onClick={() => setTab('certificates')} className="p-5 rounded-xl border border-white/5 bg-white/5 hover:bg-white/10 transition-colors cursor-pointer group/card">
-                  <div className="text-[10px] font-mono-code text-[#78746D] mb-1 group-hover/card:text-[#F3EFEA] transition-colors">CERTIFICATES</div>
-                  <div className="text-3xl font-serif-display text-[#F3EFEA]">{certificates.length}</div>
-                </div>
-                <div className="p-5 rounded-xl border border-emerald-500/20 bg-emerald-500/5 hover:bg-emerald-500/10 transition-colors cursor-pointer group/card flex flex-col justify-center items-center">
-                  <div className="text-[10px] font-mono-code text-emerald-400 mb-1 group-hover/card:text-emerald-300 transition-colors">SYSTEM STATUS</div>
-                  <div className="text-sm font-sans-clean text-emerald-500 font-semibold flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> ONLINE
+            </div>
+            
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div 
+                onClick={() => setTab('projects')} 
+                className="group p-6 rounded-2xl bg-[#1A1918] border border-[rgba(255,255,255,0.05)] hover:border-[#78746D]/30 transition-all cursor-pointer flex flex-col justify-between min-h-[160px]"
+              >
+                <div>
+                  <div className="text-[10px] font-mono-code text-[#78746D] uppercase tracking-widest mb-4 group-hover:text-[#F3EFEA] transition-colors">
+                    Projects Overview
                   </div>
+                  <div className="flex items-baseline gap-2">
+                    <span className="text-4xl font-serif-display text-[#F3EFEA]">{projects.length}</span>
+                    <span className="text-xs font-sans-clean text-[#78746D]">Total Items</span>
+                  </div>
+                </div>
+                <div className="flex items-center justify-between text-xs font-mono-code pt-4 border-t border-[rgba(255,255,255,0.05)] mt-4">
+                  <span className="text-emerald-500/80">{projects.filter(p => p.visible).length} Visible</span>
+                  <span className="text-red-400/80">{projects.filter(p => !p.visible).length} Hidden</span>
+                </div>
+              </div>
+
+              <div 
+                onClick={() => setTab('certificates')} 
+                className="group p-6 rounded-2xl bg-[#1A1918] border border-[rgba(255,255,255,0.05)] hover:border-[#78746D]/30 transition-all cursor-pointer flex flex-col justify-between min-h-[160px]"
+              >
+                <div>
+                  <div className="text-[10px] font-mono-code text-[#78746D] uppercase tracking-widest mb-4 group-hover:text-[#F3EFEA] transition-colors">
+                    Credentials Overview
+                  </div>
+                  <div className="flex items-baseline gap-2">
+                    <span className="text-4xl font-serif-display text-[#F3EFEA]">{certificates.length}</span>
+                    <span className="text-xs font-sans-clean text-[#78746D]">Total Items</span>
+                  </div>
+                </div>
+                <div className="flex items-center justify-between text-xs font-mono-code pt-4 border-t border-[rgba(255,255,255,0.05)] mt-4">
+                  <span className="text-emerald-500/80">{certificates.filter(c => c.visible).length} Visible</span>
+                  <span className="text-red-400/80">{certificates.filter(c => !c.visible).length} Hidden</span>
                 </div>
               </div>
             </div>
