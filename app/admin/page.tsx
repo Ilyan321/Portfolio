@@ -200,7 +200,7 @@ export default function AdminDashboard() {
               DEV / ADMIN
             </span>
           </div>
-          <div className="flex gap-2 overflow-x-auto no-scrollbar pb-1 w-full sm:w-auto">
+          <div className="flex flex-wrap gap-2 pb-1 w-full sm:w-auto justify-start sm:justify-end">
             <button onClick={() => setTab('welcome')} className={`px-4 py-1.5 text-xs font-mono-code uppercase tracking-wider rounded-full transition-all ${tab === 'welcome' ? 'bg-[#DFD5C6] text-[#1A1918]' : 'bg-[rgba(243,239,234,0.05)] text-[#78746D] hover:text-[#F3EFEA]'}`}>Home</button>
             <button onClick={() => setTab('projects')} className={`px-4 py-1.5 text-xs font-mono-code uppercase tracking-wider rounded-full transition-all ${tab === 'projects' ? 'bg-[#DFD5C6] text-[#1A1918]' : 'bg-[rgba(243,239,234,0.05)] text-[#78746D] hover:text-[#F3EFEA]'}`}>Projects</button>
             <button onClick={() => setTab('certificates')} className={`px-4 py-1.5 text-xs font-mono-code uppercase tracking-wider rounded-full transition-all ${tab === 'certificates' ? 'bg-[#DFD5C6] text-[#1A1918]' : 'bg-[rgba(243,239,234,0.05)] text-[#78746D] hover:text-[#F3EFEA]'}`}>Certificates</button>
@@ -278,7 +278,7 @@ export default function AdminDashboard() {
               </button>
             </div>
             {projects.map(p => (
-              <div key={p.id} className={`p-4 rounded-xl border ${p.visible ? 'border-[rgba(243,239,234,0.1)] bg-[#1A1918]' : 'border-[rgba(243,239,234,0.1)]/50 bg-[#1A1918]/30'} flex justify-between items-center`}>
+              <div key={p.id} className={`p-4 rounded-xl border ${p.visible ? 'border-[rgba(243,239,234,0.1)] bg-[#1A1918]' : 'border-[rgba(243,239,234,0.1)]/50 bg-[#1A1918]/30'} flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4`}>
                 <div>
                   <h3 className="font-semibold">
                     {p.name} 
@@ -323,7 +323,7 @@ export default function AdminDashboard() {
               </button>
             </div>
             {certificates.map(c => (
-              <div key={c.id} className={`p-4 rounded-xl border ${c.visible ? 'border-[rgba(243,239,234,0.1)] bg-[#1A1918]' : 'border-[rgba(243,239,234,0.1)]/50 bg-[#1A1918]/30'} flex justify-between items-center`}>
+              <div key={c.id} className={`p-4 rounded-xl border ${c.visible ? 'border-[rgba(243,239,234,0.1)] bg-[#1A1918]' : 'border-[rgba(243,239,234,0.1)]/50 bg-[#1A1918]/30'} flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4`}>
                 <div className="flex items-center gap-4">
                   {c.image_path ? (
                     <img src={c.image_path} alt={c.title} className="w-12 h-12 rounded object-cover border border-[rgba(243,239,234,0.1)]" />
@@ -361,8 +361,8 @@ export default function AdminDashboard() {
 
         {tab === 'profile' && profile && (
           <div className="p-6 rounded-xl border border-[rgba(243,239,234,0.1)] bg-[#1A1918]">
-            <div className="flex justify-between items-center mb-6">
-              <h2 className="font-semibold">Profile Settings</h2>
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4 border-b border-[rgba(243,239,234,0.1)] pb-4">
+              <div><h2 className="font-serif-display text-2xl sm:text-3xl text-[#F3EFEA] tracking-tight">Profile Settings</h2><p className="text-[11px] sm:text-xs font-mono-code text-[#78746D] mt-1 uppercase tracking-wider">Manage your public information</p></div>
               {editingProfile ? (
                 <div className="flex gap-2">
                   <button onClick={() => setEditingProfile(false)} className="px-3 py-1.5 text-xs border border-[rgba(243,239,234,0.1)] rounded">Cancel</button>
@@ -373,7 +373,7 @@ export default function AdminDashboard() {
               )}
             </div>
             
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {['name', 'title', 'email', 'whatsapp', 'location', 'github_url', 'linkedin_url', 'huggingface_url'].map(field => (
                 <div key={field}>
                   <label className="block text-xs text-[#78746D] mb-1">{field}</label>
@@ -384,7 +384,7 @@ export default function AdminDashboard() {
                   )}
                 </div>
               ))}
-              <div className="col-span-2">
+              <div className="col-span-1 sm:col-span-2">
                 <label className="block text-xs text-[#78746D] mb-1">bio</label>
                 {editingProfile ? (
                   <textarea value={profile.bio} onChange={e => setProfile({...profile, bio: e.target.value})} className="w-full px-3 py-2 bg-[#1A1918] focus:border-[#DFD5C6] focus:ring-1 focus:ring-[#DFD5C6] transition-all outline-none rounded border border-[rgba(243,239,234,0.1)] text-sm" rows={3} />
@@ -401,10 +401,10 @@ export default function AdminDashboard() {
       {editingProject && (
         <div className="fixed inset-0 bg-black/80 flex items-center justify-center p-4">
           <div className="bg-[#262523] shadow-2xl border border-[rgba(243,239,234,0.1)] rounded-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto relative">
-            <div className="sticky top-0 bg-[#262523] z-10 p-6 pb-4 border-b border-[rgba(243,239,234,0.1)]/50 mb-4">
+            <div className="sticky top-0 bg-[#262523] z-10 p-4 sm:p-6 pb-4 border-b border-[rgba(243,239,234,0.1)]/50 mb-4">
               <h2 className="font-serif-display text-2xl tracking-tight text-[#F3EFEA]">{isAddingProject ? "Add New Project" : "Edit Project"}</h2>
             </div>
-            <div className="grid grid-cols-2 gap-4 px-6 pb-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 px-4 sm:px-6 pb-6">
               {['name', 'subtitle', 'tag', 'category', 'sort_order', 'github_url', 'demo_url', 'hugging_face_url'].map(field => (
                 <div key={field}>
                   <label className="block text-xs text-[#78746D] mb-1">{field}</label>
@@ -412,22 +412,22 @@ export default function AdminDashboard() {
                 </div>
               ))}
               
-              <div className="col-span-2">
+              <div className="col-span-1 sm:col-span-2">
                 <label className="block text-xs text-[#78746D] mb-1">elevator_pitch</label>
                 <textarea rows={3} value={editingProject.elevator_pitch || ''} onChange={e => setEditingProject({...editingProject, elevator_pitch: e.target.value})} className="w-full px-3 py-2 bg-[#1A1918] focus:border-[#DFD5C6] focus:ring-1 focus:ring-[#DFD5C6] transition-all outline-none rounded border border-[rgba(243,239,234,0.1)] text-sm" />
               </div>
 
-              <div className="col-span-2">
+              <div className="col-span-1 sm:col-span-2">
                 <label className="block text-xs text-[#78746D] mb-1">challenge</label>
                 <textarea rows={2} value={editingProject.challenge || ''} onChange={e => setEditingProject({...editingProject, challenge: e.target.value})} className="w-full px-3 py-2 bg-[#1A1918] focus:border-[#DFD5C6] focus:ring-1 focus:ring-[#DFD5C6] transition-all outline-none rounded border border-[rgba(243,239,234,0.1)] text-sm" />
               </div>
 
-              <div className="col-span-2">
+              <div className="col-span-1 sm:col-span-2">
                 <label className="block text-xs text-[#78746D] mb-1">architecture (comma or new-line separated)</label>
                 <textarea rows={3} value={Array.isArray(editingProject.architecture) ? editingProject.architecture.join('\n') : editingProject.architecture} onChange={e => setEditingProject({...editingProject, architecture: e.target.value as any})} className="w-full px-3 py-2 bg-[#1A1918] focus:border-[#DFD5C6] focus:ring-1 focus:ring-[#DFD5C6] transition-all outline-none rounded border border-[rgba(243,239,234,0.1)] text-sm" />
               </div>
 
-              <div className="col-span-2">
+              <div className="col-span-1 sm:col-span-2">
                 <label className="block text-xs text-[#78746D] mb-1">tech_stack (comma or new-line separated)</label>
                 <textarea rows={2} value={Array.isArray(editingProject.tech_stack) ? editingProject.tech_stack.join(', ') : editingProject.tech_stack} onChange={e => setEditingProject({...editingProject, tech_stack: e.target.value as any})} className="w-full px-3 py-2 bg-[#1A1918] focus:border-[#DFD5C6] focus:ring-1 focus:ring-[#DFD5C6] transition-all outline-none rounded border border-[rgba(243,239,234,0.1)] text-sm" />
               </div>
@@ -444,10 +444,10 @@ export default function AdminDashboard() {
       {editingCert && (
         <div className="fixed inset-0 bg-black/80 flex items-center justify-center p-4 z-50">
           <div className="bg-[#262523] shadow-2xl border border-[rgba(243,239,234,0.1)] rounded-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto relative">
-            <div className="sticky top-0 bg-[#262523] z-10 p-6 pb-4 border-b border-[rgba(243,239,234,0.1)]/50 mb-4">
+            <div className="sticky top-0 bg-[#262523] z-10 p-4 sm:p-6 pb-4 border-b border-[rgba(243,239,234,0.1)]/50 mb-4">
               <h2 className="font-serif-display text-2xl tracking-tight text-[#F3EFEA]">{isAddingCert ? "Add New Certificate" : "Edit Certificate"}</h2>
             </div>
-            <div className="grid grid-cols-2 gap-4 px-6 pb-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 px-4 sm:px-6 pb-6">
               {['title', 'issuer', 'issue_date', 'tag', 'credential_id', 'image_path', 'sort_order'].map(field => (
                 <div key={field}>
                   <label className="block text-xs text-[#78746D] mb-1">{field}</label>
@@ -455,12 +455,12 @@ export default function AdminDashboard() {
                 </div>
               ))}
               
-              <div className="col-span-2">
+              <div className="col-span-1 sm:col-span-2">
                 <label className="block text-xs text-[#78746D] mb-1">description</label>
                 <textarea rows={4} value={editingCert.description || ''} onChange={e => setEditingCert({...editingCert, description: e.target.value})} className="w-full px-3 py-2 bg-[#1A1918] focus:border-[#DFD5C6] focus:ring-1 focus:ring-[#DFD5C6] transition-all outline-none rounded border border-[rgba(243,239,234,0.1)] text-sm" />
               </div>
 
-              <div className="col-span-2">
+              <div className="col-span-1 sm:col-span-2">
                 <label className="block text-xs text-[#78746D] mb-1">skills (comma or new-line separated)</label>
                 <textarea rows={2} value={Array.isArray(editingCert.skills) ? editingCert.skills.join(', ') : editingCert.skills} onChange={e => setEditingCert({...editingCert, skills: e.target.value as any})} className="w-full px-3 py-2 bg-[#1A1918] focus:border-[#DFD5C6] focus:ring-1 focus:ring-[#DFD5C6] transition-all outline-none rounded border border-[rgba(243,239,234,0.1)] text-sm" />
               </div>
