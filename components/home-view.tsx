@@ -320,41 +320,25 @@ export function HomeView({ projects, profile }: HomeViewProps) {
               </span>
 
               <div className="divide-y divide-[rgba(26,25,24,0.08)]">
-                {/* Project 1 */}
-                <button
-                  onClick={() => setSelectedProject(projects[0])}
-                  className="w-full py-1.5 flex items-center justify-between group transition-colors cursor-pointer text-left active:bg-black/5 rounded-md px-1 -mx-1"
-                >
-                  <div className="pr-2 min-w-0">
-                    <span className="text-xs font-sans-clean font-semibold text-[#1A1918] group-hover:text-emerald-800 transition-colors block truncate">
-                      {projects[0].name}
+                {projects.slice(0, 2).map((proj) => (
+                  <button
+                    key={proj.id}
+                    onClick={() => setSelectedProject(proj)}
+                    className="w-full py-1.5 flex items-center justify-between group transition-colors cursor-pointer text-left active:bg-black/5 rounded-md px-1 -mx-1"
+                  >
+                    <div className="pr-2 min-w-0">
+                      <span className="text-xs font-sans-clean font-semibold text-[#1A1918] group-hover:text-emerald-800 transition-colors block truncate">
+                        {proj.name}
+                      </span>
+                      <span className="text-[10px] font-mono-code text-[#78746D] block truncate">
+                        {proj.subtitle}
+                      </span>
+                    </div>
+                    <span className="text-xs font-mono-code text-[#78746D] group-hover:translate-x-1 group-hover:text-[#1A1918] transition-all shrink-0">
+                      &rarr;
                     </span>
-                    <span className="text-[10px] font-mono-code text-[#78746D] block truncate">
-                      {projects[0].subtitle}
-                    </span>
-                  </div>
-                  <span className="text-xs font-mono-code text-[#78746D] group-hover:translate-x-1 group-hover:text-[#1A1918] transition-all shrink-0">
-                    &rarr;
-                  </span>
-                </button>
-
-                {/* Project 2 */}
-                <button
-                  onClick={() => setSelectedProject(projects[1])}
-                  className="w-full py-1.5 flex items-center justify-between group transition-colors cursor-pointer text-left active:bg-black/5 rounded-md px-1 -mx-1"
-                >
-                  <div className="pr-2 min-w-0">
-                    <span className="text-xs font-sans-clean font-semibold text-[#1A1918] group-hover:text-emerald-800 transition-colors block truncate">
-                      {projects[1].name}
-                    </span>
-                    <span className="text-[10px] font-mono-code text-[#78746D] block truncate">
-                      {projects[1].subtitle}
-                    </span>
-                  </div>
-                  <span className="text-xs font-mono-code text-[#78746D] group-hover:translate-x-1 group-hover:text-[#1A1918] transition-all shrink-0">
-                    &rarr;
-                  </span>
-                </button>
+                  </button>
+                ))}
               </div>
             </div>
 
