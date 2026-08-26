@@ -148,7 +148,15 @@ export default function AdminDashboard() {
             {projects.map(p => (
               <div key={p.id} className={`p-4 rounded-xl border ${p.visible ? 'border-neutral-800 bg-neutral-900' : 'border-neutral-800/50 bg-neutral-900/30'} flex justify-between items-center`}>
                 <div>
-                  <h3 className="font-semibold">{p.name} <span className="text-xs font-mono text-neutral-500 ml-2">#{p.sort_order}</span> {!p.visible && <span className="text-xs bg-red-500/20 text-red-400 px-2 py-1 rounded ml-2">HIDDEN</span>}</h3>
+                  <h3 className="font-semibold">
+                    {p.name} 
+                    <span className="text-xs font-mono text-neutral-500 ml-2">#{p.sort_order}</span>
+                    {p.visible ? (
+                      <span className="text-[10px] font-mono tracking-wider bg-emerald-500/20 text-emerald-400 px-2 py-1 rounded ml-2 uppercase">Visible</span>
+                    ) : (
+                      <span className="text-[10px] font-mono tracking-wider bg-red-500/20 text-red-400 px-2 py-1 rounded ml-2 uppercase">Hidden</span>
+                    )}
+                  </h3>
                   <p className="text-xs text-neutral-400">{p.subtitle}</p>
                 </div>
                 <div className="flex gap-2">
@@ -172,7 +180,15 @@ export default function AdminDashboard() {
                 <div className="flex items-center gap-4">
                   <img src={c.image_path} alt={c.title} className="w-12 h-12 rounded object-cover border border-neutral-800" />
                   <div>
-                    <h3 className="font-semibold">{c.title} <span className="text-xs font-mono text-neutral-500 ml-2">#{c.sort_order}</span> {!c.visible && <span className="text-xs bg-red-500/20 text-red-400 px-2 py-1 rounded ml-2">HIDDEN</span>}</h3>
+                    <h3 className="font-semibold">
+                      {c.title} 
+                      <span className="text-xs font-mono text-neutral-500 ml-2">#{c.sort_order}</span>
+                      {c.visible ? (
+                        <span className="text-[10px] font-mono tracking-wider bg-emerald-500/20 text-emerald-400 px-2 py-1 rounded ml-2 uppercase">Visible</span>
+                      ) : (
+                        <span className="text-[10px] font-mono tracking-wider bg-red-500/20 text-red-400 px-2 py-1 rounded ml-2 uppercase">Hidden</span>
+                      )}
+                    </h3>
                     <p className="text-xs text-neutral-400">{c.issuer} &bull; {c.issue_date}</p>
                   </div>
                 </div>

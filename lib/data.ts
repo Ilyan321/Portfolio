@@ -42,7 +42,7 @@ export async function getVisibleCertificates(): Promise<CertificateItem[]> {
     .order('sort_order', { ascending: true });
 
   if (error) {
-    console.error('Error fetching certificates:', error);
+    console.error('Error fetching certificates:', error.message, error.details, error.hint, error.code);
     return [];
   }
 
