@@ -64,11 +64,20 @@ export default function AdminDashboard() {
   async function saveProject(project: Partial<ProjectRow>) {
     setSaving(project.id || 'new');
     const isNew = !project.id;
+    
+    const payload = { ...project };
+    if (typeof payload.architecture === 'string') {
+      payload.architecture = (payload.architecture as unknown as string).split(/[\n,]+/).map(s => s.trim()).filter(Boolean);
+    }
+    if (typeof payload.tech_stack === 'string') {
+      payload.tech_stack = (payload.tech_stack as unknown as string).split(/[\n,]+/).map(s => s.trim()).filter(Boolean);
+    }
+
     try {
       const res = await fetch('/api/admin/projects', {
         method: isNew ? 'POST' : 'PATCH',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(project),
+        body: JSON.stringify(payload),
       });
       if (res.ok) {
         const updated = await res.json();
@@ -107,11 +116,17 @@ export default function AdminDashboard() {
   async function saveCert(cert: Partial<CertificateRow>) {
     setSaving(cert.id || 'new');
     const isNew = !cert.id;
+    
+    const payload = { ...cert };
+    if (typeof payload.skills === 'string') {
+      payload.skills = (payload.skills as unknown as string).split(/[\n,]+/).map(s => s.trim()).filter(Boolean);
+    }
+
     try {
       const res = await fetch('/api/admin/certificates', {
         method: isNew ? 'POST' : 'PATCH',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(cert),
+        body: JSON.stringify(payload),
       });
       if (res.ok) {
         const updated = await res.json();
@@ -395,12 +410,12 @@ export default function AdminDashboard() {
 
               <div className="col-span-2">
                 <label className="block text-xs text-neutral-500 mb-1">architecture (comma or new-line separated)</label>
-                <textarea rows={3} value={(editingProject.architecture || []).join('\n')} onChange={e => setEditingProject({...editingProject, architecture: e.target.value.split(/[\n,]+/).map(s => s.trim()).filter(Boolean)})} className="w-full px-3 py-2 bg-neutral-800 rounded border border-neutral-700 text-sm" />
+                <textarea rows={3} value={Array.isArray(editingProject.architecture) ? editingProject.architecture.join('\n') : editingProject.architecture} onChange={e => setEditingProject({...editingProject, architecture: e.target.value as any})} className="w-full px-3 py-2 bg-neutral-800 rounded border border-neutral-700 text-sm" />
               </div>
 
               <div className="col-span-2">
                 <label className="block text-xs text-neutral-500 mb-1">tech_stack (comma or new-line separated)</label>
-                <textarea rows={2} value={(editingProject.tech_stack || []).join(', ')} onChange={e => setEditingProject({...editingProject, tech_stack: e.target.value.split(/[\n,]+/).map(s => s.trim()).filter(Boolean)})} className="w-full px-3 py-2 bg-neutral-800 rounded border border-neutral-700 text-sm" />
+                <textarea rows={2} value={Array.isArray(editingProject.tech_stack) ? editingProject.tech_stack.join(', ') : editingProject.tech_stack} onChange={e => setEditingProject({...editingProject, tech_stack: e.target.value as any})} className="w-full px-3 py-2 bg-neutral-800 rounded border border-neutral-700 text-sm" />
               </div>
 
               <div className="col-span-2 flex justify-end gap-2 mt-4">
@@ -433,7 +448,7 @@ export default function AdminDashboard() {
 
               <div className="col-span-2">
                 <label className="block text-xs text-neutral-500 mb-1">skills (comma or new-line separated)</label>
-                <textarea rows={2} value={(editingCert.skills || []).join(', ')} onChange={e => setEditingCert({...editingCert, skills: e.target.value.split(/[\n,]+/).map(s => s.trim()).filter(Boolean)})} className="w-full px-3 py-2 bg-neutral-800 rounded border border-neutral-700 text-sm" />
+                <textarea rows={2} value={Array.isArray(editingCert.skills) ? editingCert.skills.join(', ') : editingCert.skills} onChange={e => setEditingCert({...editingCert, skills: e.target.value as any})} className="w-full px-3 py-2 bg-neutral-800 rounded border border-neutral-700 text-sm" />
               </div>
 
               <div className="col-span-2 flex justify-end gap-2 mt-4">
