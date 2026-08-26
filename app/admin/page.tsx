@@ -388,6 +388,7 @@ export default function AdminDashboard() {
           </div>
         )}
         </div>
+      </div>
 
       {editingProject && (
         <div className="fixed inset-0 bg-black/80 flex items-center justify-center p-4">
@@ -493,6 +494,6 @@ export default function AdminDashboard() {
           </div>
         </div>
       )}
-    </div>
+    </main>
   );
 }
