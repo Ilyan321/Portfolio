@@ -98,7 +98,7 @@ export default function AdminDashboard() {
         <div className="flex gap-2">
           <button onClick={() => setTab('projects')} className={`px-4 py-2 text-sm rounded ${tab === 'projects' ? 'bg-white text-black' : 'text-neutral-400'}`}>Projects</button>
           <button onClick={() => setTab('profile')} className={`px-4 py-2 text-sm rounded ${tab === 'profile' ? 'bg-white text-black' : 'text-neutral-400'}`}>Profile</button>
-          <button onClick={() => fetch('/api/auth/logout', { method: 'POST' }).then(() => router.push('/admin/login'))} className="px-4 py-2 text-sm text-red-400">Logout</button>
+          <button onClick={() => fetch('/api/auth/logout', { method: 'POST' }).then(() => router.push('/'))} className="px-4 py-2 text-sm text-red-400">Logout</button>
         </div>
       </header>
 
