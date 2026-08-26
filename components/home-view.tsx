@@ -158,7 +158,7 @@ export function HomeView({ projects, profile, certificates }: HomeViewProps) {
               <img
                 src="/pp.jpeg"
                 alt={profile?.name ?? 'Ilyan Khan'}
-                className="w-full h-full object-cover object-[center_28%] scale-[1.25] lg:scale-100 lg:object-top hover:scale-[1.3] lg:hover:scale-105 transition-transform duration-700"
+                className="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-700"
               />
               <div className="absolute top-0 left-0 right-0 bg-[#2C2C2A] py-2 px-3 text-center z-10 transition-colors">
                 <span className="font-serif-display text-base sm:text-lg text-[#F3EFEA] font-normal block leading-none">
