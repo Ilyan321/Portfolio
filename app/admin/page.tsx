@@ -189,25 +189,30 @@ export default function AdminDashboard() {
     }
   }
 
-  if (loading) return <div className="min-h-screen bg-[#0a0a0a] flex items-center justify-center text-neutral-500">Loading...</div>;
+  if (loading) return <div className="min-h-screen bg-[#0a0a0a] flex items-center justify-center text-[#78746D]">Loading...</div>;
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] text-white">
-      <header className="border-b border-neutral-800 px-6 py-4 flex justify-between items-center">
-        <h1 className="font-bold">Portfolio Admin</h1>
-        <div className="flex gap-2 overflow-x-auto no-scrollbar">
-          <button onClick={() => setTab('welcome')} className={`px-4 py-2 text-sm rounded ${tab === 'welcome' ? 'bg-white text-black' : 'text-neutral-400'}`}>Home</button>
-          <button onClick={() => setTab('projects')} className={`px-4 py-2 text-sm rounded ${tab === 'projects' ? 'bg-white text-black' : 'text-neutral-400'}`}>Projects</button>
-          <button onClick={() => setTab('certificates')} className={`px-4 py-2 text-sm rounded ${tab === 'certificates' ? 'bg-white text-black' : 'text-neutral-400'}`}>Certificates</button>
-          <button onClick={() => setTab('profile')} className={`px-4 py-2 text-sm rounded ${tab === 'profile' ? 'bg-white text-black' : 'text-neutral-400'}`}>Profile</button>
-          <button onClick={() => fetch('/api/auth/logout', { method: 'POST' }).then(() => router.push('/'))} className="px-4 py-2 text-sm text-red-400">Logout</button>
-        </div>
-      </header>
+    <main className="min-h-screen w-full bg-[#1A1918] lg:p-5 flex items-center justify-center font-sans-clean overflow-hidden">
+      <div className="w-full max-w-6xl h-screen lg:h-[96vh] bg-[#262523] lg:rounded-[2rem] p-4 sm:p-6 lg:p-8 shadow-2xl border border-white/[0.06] flex flex-col relative">
+        <header className="flex flex-col sm:flex-row justify-between items-start sm:items-center pb-6 border-b border-[rgba(243,239,234,0.1)] gap-4 shrink-0">
+          <div>
+            <span className="font-mono-code text-xs font-semibold tracking-widest text-[#F3EFEA] uppercase">
+              DEV / ADMIN
+            </span>
+          </div>
+          <div className="flex gap-2 overflow-x-auto no-scrollbar pb-1 w-full sm:w-auto">
+            <button onClick={() => setTab('welcome')} className={`px-4 py-1.5 text-xs font-mono-code uppercase tracking-wider rounded-full transition-all ${tab === 'welcome' ? 'bg-[#DFD5C6] text-[#1A1918]' : 'bg-[rgba(243,239,234,0.05)] text-[#78746D] hover:text-[#F3EFEA]'}`}>Home</button>
+            <button onClick={() => setTab('projects')} className={`px-4 py-1.5 text-xs font-mono-code uppercase tracking-wider rounded-full transition-all ${tab === 'projects' ? 'bg-[#DFD5C6] text-[#1A1918]' : 'bg-[rgba(243,239,234,0.05)] text-[#78746D] hover:text-[#F3EFEA]'}`}>Projects</button>
+            <button onClick={() => setTab('certificates')} className={`px-4 py-1.5 text-xs font-mono-code uppercase tracking-wider rounded-full transition-all ${tab === 'certificates' ? 'bg-[#DFD5C6] text-[#1A1918]' : 'bg-[rgba(243,239,234,0.05)] text-[#78746D] hover:text-[#F3EFEA]'}`}>Certificates</button>
+            <button onClick={() => setTab('profile')} className={`px-4 py-1.5 text-xs font-mono-code uppercase tracking-wider rounded-full transition-all ${tab === 'profile' ? 'bg-[#DFD5C6] text-[#1A1918]' : 'bg-[rgba(243,239,234,0.05)] text-[#78746D] hover:text-[#F3EFEA]'}`}>Profile</button>
+            <button onClick={() => fetch('/api/auth/logout', { method: 'POST' }).then(() => router.push('/'))} className="px-4 py-1.5 text-xs font-mono-code uppercase tracking-wider rounded-full bg-red-950/30 text-red-400 hover:bg-red-900/50 transition-all">Logout</button>
+          </div>
+        </header>
 
-      <main className="max-w-5xl mx-auto p-6">
+        <div className="flex-1 overflow-y-auto mt-6 no-scrollbar">
         {tab === 'welcome' && (
           <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
-            <div className="flex flex-col gap-2 border-b border-neutral-800 pb-8">
+            <div className="flex flex-col gap-2 border-b border-[rgba(243,239,234,0.1)] pb-8">
               <h2 className="text-4xl sm:text-5xl font-serif-display text-[#F3EFEA] tracking-tight">
                 Welcome, {profile?.name?.split(' ')[0] || 'Ilyan'}.
               </h2>
@@ -269,11 +274,11 @@ export default function AdminDashboard() {
               </button>
             </div>
             {projects.map(p => (
-              <div key={p.id} className={`p-4 rounded-xl border ${p.visible ? 'border-neutral-800 bg-neutral-900' : 'border-neutral-800/50 bg-neutral-900/30'} flex justify-between items-center`}>
+              <div key={p.id} className={`p-4 rounded-xl border ${p.visible ? 'border-[rgba(243,239,234,0.1)] bg-[#1A1918]' : 'border-[rgba(243,239,234,0.1)]/50 bg-[#1A1918]/30'} flex justify-between items-center`}>
                 <div>
                   <h3 className="font-semibold">
                     {p.name} 
-                    <span className="text-xs font-mono-code text-neutral-500 ml-2">#{p.sort_order}</span>
+                    <span className="text-xs font-mono-code text-[#78746D] ml-2">#{p.sort_order}</span>
                     {p.visible ? (
                       <span className="text-[10px] font-mono-code tracking-wider bg-emerald-500/20 text-emerald-400 px-2 py-1 rounded ml-2 uppercase">Visible</span>
                     ) : (
@@ -283,10 +288,10 @@ export default function AdminDashboard() {
                   <p className="text-xs text-neutral-400">{p.subtitle}</p>
                 </div>
                 <div className="flex gap-2">
-                  <button onClick={() => toggleVisibility(p)} disabled={saving === p.id} className="px-3 py-1.5 text-xs border border-neutral-700 rounded hover:bg-neutral-800 disabled:opacity-50">
+                  <button onClick={() => toggleVisibility(p)} disabled={saving === p.id} className="px-3 py-1.5 text-xs border border-[rgba(243,239,234,0.1)] rounded hover:bg-[#1A1918] focus:border-[#DFD5C6] focus:ring-1 focus:ring-[#DFD5C6] transition-all outline-none disabled:opacity-50">
                     {p.visible ? 'Hide' : 'Show'}
                   </button>
-                  <button onClick={() => setEditingProject({...p})} className="px-3 py-1.5 text-xs bg-white text-black rounded hover:bg-neutral-200">
+                  <button onClick={() => setEditingProject({...p})} className="px-3 py-1.5 text-xs bg-[#DFD5C6] text-[#1A1918] font-semibold hover:bg-[#F3EFEA] rounded hover:bg-neutral-200">
                     Edit
                   </button>
                   <button onClick={() => setConfirmDelete({ type: 'project', id: p.id, name: p.name })} disabled={saving === p.id} className="px-3 py-1.5 text-xs bg-red-500/10 text-red-500 rounded hover:bg-red-500/20 disabled:opacity-50">
@@ -310,17 +315,17 @@ export default function AdminDashboard() {
               </button>
             </div>
             {certificates.map(c => (
-              <div key={c.id} className={`p-4 rounded-xl border ${c.visible ? 'border-neutral-800 bg-neutral-900' : 'border-neutral-800/50 bg-neutral-900/30'} flex justify-between items-center`}>
+              <div key={c.id} className={`p-4 rounded-xl border ${c.visible ? 'border-[rgba(243,239,234,0.1)] bg-[#1A1918]' : 'border-[rgba(243,239,234,0.1)]/50 bg-[#1A1918]/30'} flex justify-between items-center`}>
                 <div className="flex items-center gap-4">
                   {c.image_path ? (
-                    <img src={c.image_path} alt={c.title} className="w-12 h-12 rounded object-cover border border-neutral-800" />
+                    <img src={c.image_path} alt={c.title} className="w-12 h-12 rounded object-cover border border-[rgba(243,239,234,0.1)]" />
                   ) : (
-                    <div className="w-12 h-12 rounded border border-neutral-800 bg-neutral-800/50 flex items-center justify-center text-[8px] text-neutral-500 font-mono-code text-center leading-tight">NO IMG</div>
+                    <div className="w-12 h-12 rounded border border-[rgba(243,239,234,0.1)] bg-[#1A1918] focus:border-[#DFD5C6] focus:ring-1 focus:ring-[#DFD5C6] transition-all outline-none/50 flex items-center justify-center text-[8px] text-[#78746D] font-mono-code text-center leading-tight">NO IMG</div>
                   )}
                   <div>
                     <h3 className="font-semibold">
                       {c.title} 
-                      <span className="text-xs font-mono-code text-neutral-500 ml-2">#{c.sort_order}</span>
+                      <span className="text-xs font-mono-code text-[#78746D] ml-2">#{c.sort_order}</span>
                       {c.visible ? (
                         <span className="text-[10px] font-mono-code tracking-wider bg-emerald-500/20 text-emerald-400 px-2 py-1 rounded ml-2 uppercase">Visible</span>
                       ) : (
@@ -331,10 +336,10 @@ export default function AdminDashboard() {
                   </div>
                 </div>
                 <div className="flex gap-2">
-                  <button onClick={() => toggleCertVisibility(c)} disabled={saving === c.id} className="px-3 py-1.5 text-xs border border-neutral-700 rounded hover:bg-neutral-800 disabled:opacity-50">
+                  <button onClick={() => toggleCertVisibility(c)} disabled={saving === c.id} className="px-3 py-1.5 text-xs border border-[rgba(243,239,234,0.1)] rounded hover:bg-[#1A1918] focus:border-[#DFD5C6] focus:ring-1 focus:ring-[#DFD5C6] transition-all outline-none disabled:opacity-50">
                     {c.visible ? 'Hide' : 'Show'}
                   </button>
-                  <button onClick={() => setEditingCert({...c})} className="px-3 py-1.5 text-xs bg-white text-black rounded hover:bg-neutral-200">
+                  <button onClick={() => setEditingCert({...c})} className="px-3 py-1.5 text-xs bg-[#DFD5C6] text-[#1A1918] font-semibold hover:bg-[#F3EFEA] rounded hover:bg-neutral-200">
                     Edit
                   </button>
                   <button onClick={() => setConfirmDelete({ type: 'cert', id: c.id, name: c.title })} disabled={saving === c.id} className="px-3 py-1.5 text-xs bg-red-500/10 text-red-500 rounded hover:bg-red-500/20 disabled:opacity-50">
@@ -347,34 +352,34 @@ export default function AdminDashboard() {
         )}
 
         {tab === 'profile' && profile && (
-          <div className="p-6 rounded-xl border border-neutral-800 bg-neutral-900">
+          <div className="p-6 rounded-xl border border-[rgba(243,239,234,0.1)] bg-[#1A1918]">
             <div className="flex justify-between items-center mb-6">
               <h2 className="font-semibold">Profile Settings</h2>
               {editingProfile ? (
                 <div className="flex gap-2">
-                  <button onClick={() => setEditingProfile(false)} className="px-3 py-1.5 text-xs border border-neutral-700 rounded">Cancel</button>
-                  <button onClick={() => saveProfile(profile)} disabled={saving === 'profile'} className="px-3 py-1.5 text-xs bg-white text-black rounded">Save</button>
+                  <button onClick={() => setEditingProfile(false)} className="px-3 py-1.5 text-xs border border-[rgba(243,239,234,0.1)] rounded">Cancel</button>
+                  <button onClick={() => saveProfile(profile)} disabled={saving === 'profile'} className="px-3 py-1.5 text-xs bg-[#DFD5C6] text-[#1A1918] font-semibold hover:bg-[#F3EFEA] rounded">Save</button>
                 </div>
               ) : (
-                <button onClick={() => setEditingProfile(true)} className="px-3 py-1.5 text-xs bg-white text-black rounded">Edit</button>
+                <button onClick={() => setEditingProfile(true)} className="px-3 py-1.5 text-xs bg-[#DFD5C6] text-[#1A1918] font-semibold hover:bg-[#F3EFEA] rounded">Edit</button>
               )}
             </div>
             
             <div className="grid grid-cols-2 gap-4">
               {['name', 'title', 'email', 'whatsapp', 'location', 'github_url', 'linkedin_url', 'huggingface_url'].map(field => (
                 <div key={field}>
-                  <label className="block text-xs text-neutral-500 mb-1">{field}</label>
+                  <label className="block text-xs text-[#78746D] mb-1">{field}</label>
                   {editingProfile ? (
-                    <input type="text" value={(profile as any)[field] || ''} onChange={e => setProfile({...profile, [field]: e.target.value})} className="w-full px-3 py-2 bg-neutral-800 rounded border border-neutral-700 text-sm" />
+                    <input type="text" value={(profile as any)[field] || ''} onChange={e => setProfile({...profile, [field]: e.target.value})} className="w-full px-3 py-2 bg-[#1A1918] focus:border-[#DFD5C6] focus:ring-1 focus:ring-[#DFD5C6] transition-all outline-none rounded border border-[rgba(243,239,234,0.1)] text-sm" />
                   ) : (
                     <div className="text-sm">{(profile as any)[field] || '—'}</div>
                   )}
                 </div>
               ))}
               <div className="col-span-2">
-                <label className="block text-xs text-neutral-500 mb-1">bio</label>
+                <label className="block text-xs text-[#78746D] mb-1">bio</label>
                 {editingProfile ? (
-                  <textarea value={profile.bio} onChange={e => setProfile({...profile, bio: e.target.value})} className="w-full px-3 py-2 bg-neutral-800 rounded border border-neutral-700 text-sm" rows={3} />
+                  <textarea value={profile.bio} onChange={e => setProfile({...profile, bio: e.target.value})} className="w-full px-3 py-2 bg-[#1A1918] focus:border-[#DFD5C6] focus:ring-1 focus:ring-[#DFD5C6] transition-all outline-none rounded border border-[rgba(243,239,234,0.1)] text-sm" rows={3} />
                 ) : (
                   <div className="text-sm">{profile.bio}</div>
                 )}
@@ -382,45 +387,45 @@ export default function AdminDashboard() {
             </div>
           </div>
         )}
-      </main>
+        </div>
 
       {editingProject && (
         <div className="fixed inset-0 bg-black/80 flex items-center justify-center p-4">
-          <div className="bg-[#111] border border-neutral-800 rounded-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto relative">
-            <div className="sticky top-0 bg-[#111] z-10 p-6 pb-4 border-b border-neutral-800/50 mb-4">
+          <div className="bg-[#262523] shadow-2xl border border-[rgba(243,239,234,0.1)] rounded-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto relative">
+            <div className="sticky top-0 bg-[#262523] z-10 p-6 pb-4 border-b border-[rgba(243,239,234,0.1)]/50 mb-4">
               <h2 className="font-serif-display text-2xl tracking-tight text-[#F3EFEA]">{isAddingProject ? "Add New Project" : "Edit Project"}</h2>
             </div>
             <div className="grid grid-cols-2 gap-4 px-6 pb-6">
               {['name', 'subtitle', 'tag', 'category', 'sort_order', 'github_url', 'demo_url', 'hugging_face_url'].map(field => (
                 <div key={field}>
-                  <label className="block text-xs text-neutral-500 mb-1">{field}</label>
-                  <input type="text" value={(editingProject as any)[field] || ''} onChange={e => setEditingProject({...editingProject, [field]: field === 'sort_order' ? parseInt(e.target.value) || 0 : e.target.value})} className="w-full px-3 py-2 bg-neutral-800 rounded border border-neutral-700 text-sm" />
+                  <label className="block text-xs text-[#78746D] mb-1">{field}</label>
+                  <input type="text" value={(editingProject as any)[field] || ''} onChange={e => setEditingProject({...editingProject, [field]: field === 'sort_order' ? parseInt(e.target.value) || 0 : e.target.value})} className="w-full px-3 py-2 bg-[#1A1918] focus:border-[#DFD5C6] focus:ring-1 focus:ring-[#DFD5C6] transition-all outline-none rounded border border-[rgba(243,239,234,0.1)] text-sm" />
                 </div>
               ))}
               
               <div className="col-span-2">
-                <label className="block text-xs text-neutral-500 mb-1">elevator_pitch</label>
-                <textarea rows={3} value={editingProject.elevator_pitch || ''} onChange={e => setEditingProject({...editingProject, elevator_pitch: e.target.value})} className="w-full px-3 py-2 bg-neutral-800 rounded border border-neutral-700 text-sm" />
+                <label className="block text-xs text-[#78746D] mb-1">elevator_pitch</label>
+                <textarea rows={3} value={editingProject.elevator_pitch || ''} onChange={e => setEditingProject({...editingProject, elevator_pitch: e.target.value})} className="w-full px-3 py-2 bg-[#1A1918] focus:border-[#DFD5C6] focus:ring-1 focus:ring-[#DFD5C6] transition-all outline-none rounded border border-[rgba(243,239,234,0.1)] text-sm" />
               </div>
 
               <div className="col-span-2">
-                <label className="block text-xs text-neutral-500 mb-1">challenge</label>
-                <textarea rows={2} value={editingProject.challenge || ''} onChange={e => setEditingProject({...editingProject, challenge: e.target.value})} className="w-full px-3 py-2 bg-neutral-800 rounded border border-neutral-700 text-sm" />
+                <label className="block text-xs text-[#78746D] mb-1">challenge</label>
+                <textarea rows={2} value={editingProject.challenge || ''} onChange={e => setEditingProject({...editingProject, challenge: e.target.value})} className="w-full px-3 py-2 bg-[#1A1918] focus:border-[#DFD5C6] focus:ring-1 focus:ring-[#DFD5C6] transition-all outline-none rounded border border-[rgba(243,239,234,0.1)] text-sm" />
               </div>
 
               <div className="col-span-2">
-                <label className="block text-xs text-neutral-500 mb-1">architecture (comma or new-line separated)</label>
-                <textarea rows={3} value={Array.isArray(editingProject.architecture) ? editingProject.architecture.join('\n') : editingProject.architecture} onChange={e => setEditingProject({...editingProject, architecture: e.target.value as any})} className="w-full px-3 py-2 bg-neutral-800 rounded border border-neutral-700 text-sm" />
+                <label className="block text-xs text-[#78746D] mb-1">architecture (comma or new-line separated)</label>
+                <textarea rows={3} value={Array.isArray(editingProject.architecture) ? editingProject.architecture.join('\n') : editingProject.architecture} onChange={e => setEditingProject({...editingProject, architecture: e.target.value as any})} className="w-full px-3 py-2 bg-[#1A1918] focus:border-[#DFD5C6] focus:ring-1 focus:ring-[#DFD5C6] transition-all outline-none rounded border border-[rgba(243,239,234,0.1)] text-sm" />
               </div>
 
               <div className="col-span-2">
-                <label className="block text-xs text-neutral-500 mb-1">tech_stack (comma or new-line separated)</label>
-                <textarea rows={2} value={Array.isArray(editingProject.tech_stack) ? editingProject.tech_stack.join(', ') : editingProject.tech_stack} onChange={e => setEditingProject({...editingProject, tech_stack: e.target.value as any})} className="w-full px-3 py-2 bg-neutral-800 rounded border border-neutral-700 text-sm" />
+                <label className="block text-xs text-[#78746D] mb-1">tech_stack (comma or new-line separated)</label>
+                <textarea rows={2} value={Array.isArray(editingProject.tech_stack) ? editingProject.tech_stack.join(', ') : editingProject.tech_stack} onChange={e => setEditingProject({...editingProject, tech_stack: e.target.value as any})} className="w-full px-3 py-2 bg-[#1A1918] focus:border-[#DFD5C6] focus:ring-1 focus:ring-[#DFD5C6] transition-all outline-none rounded border border-[rgba(243,239,234,0.1)] text-sm" />
               </div>
 
               <div className="col-span-2 flex justify-end gap-2 mt-4">
-                <button onClick={() => { setEditingProject(null); setIsAddingProject(false); }} className="px-4 py-2 text-sm border border-neutral-700 rounded hover:bg-neutral-800">Cancel</button>
-                <button onClick={() => saveProject(editingProject)} disabled={saving === editingProject.id} className="px-4 py-2 text-sm bg-white text-black rounded hover:bg-neutral-200">Save Changes</button>
+                <button onClick={() => { setEditingProject(null); setIsAddingProject(false); }} className="px-4 py-2 text-sm border border-[rgba(243,239,234,0.1)] rounded hover:bg-[#1A1918] focus:border-[#DFD5C6] focus:ring-1 focus:ring-[#DFD5C6] transition-all outline-none">Cancel</button>
+                <button onClick={() => saveProject(editingProject)} disabled={saving === editingProject.id} className="px-4 py-2 text-sm bg-[#DFD5C6] text-[#1A1918] font-semibold hover:bg-[#F3EFEA] rounded hover:bg-neutral-200">Save Changes</button>
               </div>
             </div>
           </div>
@@ -429,31 +434,31 @@ export default function AdminDashboard() {
 
       {editingCert && (
         <div className="fixed inset-0 bg-black/80 flex items-center justify-center p-4 z-50">
-          <div className="bg-[#111] border border-neutral-800 rounded-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto relative">
-            <div className="sticky top-0 bg-[#111] z-10 p-6 pb-4 border-b border-neutral-800/50 mb-4">
+          <div className="bg-[#262523] shadow-2xl border border-[rgba(243,239,234,0.1)] rounded-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto relative">
+            <div className="sticky top-0 bg-[#262523] z-10 p-6 pb-4 border-b border-[rgba(243,239,234,0.1)]/50 mb-4">
               <h2 className="font-serif-display text-2xl tracking-tight text-[#F3EFEA]">{isAddingCert ? "Add New Certificate" : "Edit Certificate"}</h2>
             </div>
             <div className="grid grid-cols-2 gap-4 px-6 pb-6">
               {['title', 'issuer', 'issue_date', 'tag', 'credential_id', 'image_path', 'sort_order'].map(field => (
                 <div key={field}>
-                  <label className="block text-xs text-neutral-500 mb-1">{field}</label>
-                  <input type="text" value={(editingCert as any)[field] || ''} onChange={e => setEditingCert({...editingCert, [field]: field === 'sort_order' ? parseInt(e.target.value) || 0 : e.target.value})} className="w-full px-3 py-2 bg-neutral-800 rounded border border-neutral-700 text-sm" />
+                  <label className="block text-xs text-[#78746D] mb-1">{field}</label>
+                  <input type="text" value={(editingCert as any)[field] || ''} onChange={e => setEditingCert({...editingCert, [field]: field === 'sort_order' ? parseInt(e.target.value) || 0 : e.target.value})} className="w-full px-3 py-2 bg-[#1A1918] focus:border-[#DFD5C6] focus:ring-1 focus:ring-[#DFD5C6] transition-all outline-none rounded border border-[rgba(243,239,234,0.1)] text-sm" />
                 </div>
               ))}
               
               <div className="col-span-2">
-                <label className="block text-xs text-neutral-500 mb-1">description</label>
-                <textarea rows={4} value={editingCert.description || ''} onChange={e => setEditingCert({...editingCert, description: e.target.value})} className="w-full px-3 py-2 bg-neutral-800 rounded border border-neutral-700 text-sm" />
+                <label className="block text-xs text-[#78746D] mb-1">description</label>
+                <textarea rows={4} value={editingCert.description || ''} onChange={e => setEditingCert({...editingCert, description: e.target.value})} className="w-full px-3 py-2 bg-[#1A1918] focus:border-[#DFD5C6] focus:ring-1 focus:ring-[#DFD5C6] transition-all outline-none rounded border border-[rgba(243,239,234,0.1)] text-sm" />
               </div>
 
               <div className="col-span-2">
-                <label className="block text-xs text-neutral-500 mb-1">skills (comma or new-line separated)</label>
-                <textarea rows={2} value={Array.isArray(editingCert.skills) ? editingCert.skills.join(', ') : editingCert.skills} onChange={e => setEditingCert({...editingCert, skills: e.target.value as any})} className="w-full px-3 py-2 bg-neutral-800 rounded border border-neutral-700 text-sm" />
+                <label className="block text-xs text-[#78746D] mb-1">skills (comma or new-line separated)</label>
+                <textarea rows={2} value={Array.isArray(editingCert.skills) ? editingCert.skills.join(', ') : editingCert.skills} onChange={e => setEditingCert({...editingCert, skills: e.target.value as any})} className="w-full px-3 py-2 bg-[#1A1918] focus:border-[#DFD5C6] focus:ring-1 focus:ring-[#DFD5C6] transition-all outline-none rounded border border-[rgba(243,239,234,0.1)] text-sm" />
               </div>
 
               <div className="col-span-2 flex justify-end gap-2 mt-4">
-                <button onClick={() => { setEditingCert(null); setIsAddingCert(false); }} className="px-4 py-2 text-sm border border-neutral-700 rounded hover:bg-neutral-800">Cancel</button>
-                <button onClick={() => saveCert(editingCert)} disabled={saving === editingCert.id} className="px-4 py-2 text-sm bg-white text-black rounded hover:bg-neutral-200">Save Changes</button>
+                <button onClick={() => { setEditingCert(null); setIsAddingCert(false); }} className="px-4 py-2 text-sm border border-[rgba(243,239,234,0.1)] rounded hover:bg-[#1A1918] focus:border-[#DFD5C6] focus:ring-1 focus:ring-[#DFD5C6] transition-all outline-none">Cancel</button>
+                <button onClick={() => saveCert(editingCert)} disabled={saving === editingCert.id} className="px-4 py-2 text-sm bg-[#DFD5C6] text-[#1A1918] font-semibold hover:bg-[#F3EFEA] rounded hover:bg-neutral-200">Save Changes</button>
               </div>
             </div>
           </div>
