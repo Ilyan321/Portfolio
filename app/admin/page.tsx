@@ -248,7 +248,7 @@ export default function AdminDashboard() {
             <div className="flex justify-end mb-4">
               <button onClick={() => {
                 setIsAddingProject(true);
-                setEditingProject({ name: '', subtitle: '', tag: '', category: '', sort_order: projects.length + 1, github_url: '', demo_url: '', description: '', highlights: [], technologies: [], visible: true } as any);
+                setEditingProject({ name: '', subtitle: '', tag: '', category: '', sort_order: projects.length + 1, github_url: '', demo_url: '', hugging_face_url: '', elevator_pitch: '', challenge: '', architecture: [], tech_stack: [], highlights: [], visible: true } as any);
               }} className="px-4 py-2 text-sm bg-emerald-500/10 text-emerald-500 border border-emerald-500/20 rounded hover:bg-emerald-500/20 transition-colors">
                 + Add New Project
               </button>
@@ -376,7 +376,7 @@ export default function AdminDashboard() {
               <h2 className="font-serif-display text-2xl tracking-tight text-[#F3EFEA]">{isAddingProject ? "Add New Project" : "Edit Project"}</h2>
             </div>
             <div className="grid grid-cols-2 gap-4 px-6 pb-6">
-              {['name', 'subtitle', 'tag', 'category', 'sort_order', 'github_url', 'demo_url'].map(field => (
+              {['name', 'subtitle', 'tag', 'category', 'sort_order', 'github_url', 'demo_url', 'hugging_face_url'].map(field => (
                 <div key={field}>
                   <label className="block text-xs text-neutral-500 mb-1">{field}</label>
                   <input type="text" value={(editingProject as any)[field] || ''} onChange={e => setEditingProject({...editingProject, [field]: field === 'sort_order' ? parseInt(e.target.value) || 0 : e.target.value})} className="w-full px-3 py-2 bg-neutral-800 rounded border border-neutral-700 text-sm" />
@@ -384,14 +384,25 @@ export default function AdminDashboard() {
               ))}
               
               <div className="col-span-2">
-                <label className="block text-xs text-neutral-500 mb-1">description</label>
-                <textarea rows={4} value={editingProject.description || ''} onChange={e => setEditingProject({...editingProject, description: e.target.value})} className="w-full px-3 py-2 bg-neutral-800 rounded border border-neutral-700 text-sm" />
+                <label className="block text-xs text-neutral-500 mb-1">elevator_pitch</label>
+                <textarea rows={3} value={editingProject.elevator_pitch || ''} onChange={e => setEditingProject({...editingProject, elevator_pitch: e.target.value})} className="w-full px-3 py-2 bg-neutral-800 rounded border border-neutral-700 text-sm" />
               </div>
 
+              <div className="col-span-2">
+                <label className="block text-xs text-neutral-500 mb-1">challenge</label>
+                <textarea rows={2} value={editingProject.challenge || ''} onChange={e => setEditingProject({...editingProject, challenge: e.target.value})} className="w-full px-3 py-2 bg-neutral-800 rounded border border-neutral-700 text-sm" />
+              </div>
 
               <div className="col-span-2">
-                <label className="block text-xs text-neutral-500 mb-1">technologies (comma separated)</label>
-                <textarea rows={2} value={(editingProject.technologies || []).join(', ')} onChange={e => setEditingProject({...editingProject, technologies: e.target.value.split(',').map(s => s.trim()).filter(Boolean)})} className="w-full px-3 py-2 bg-neutral-800 rounded border border-neutral-700 text-sm" />
+                <label className="block text-xs text-neutral-500 mb-1">architecture (one bullet per line)</label>
+                <textarea rows={3} value={(editingProject.architecture || []).join('
+')} onChange={e => setEditingProject({...editingProject, architecture: e.target.value.split('
+').filter(Boolean)})} className="w-full px-3 py-2 bg-neutral-800 rounded border border-neutral-700 text-sm" />
+              </div>
+
+              <div className="col-span-2">
+                <label className="block text-xs text-neutral-500 mb-1">tech_stack (comma separated)</label>
+                <textarea rows={2} value={(editingProject.tech_stack || []).join(', ')} onChange={e => setEditingProject({...editingProject, tech_stack: e.target.value.split(',').map(s => s.trim()).filter(Boolean)})} className="w-full px-3 py-2 bg-neutral-800 rounded border border-neutral-700 text-sm" />
               </div>
 
               <div className="col-span-2 flex justify-end gap-2 mt-4">
