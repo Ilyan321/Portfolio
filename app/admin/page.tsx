@@ -394,13 +394,13 @@ export default function AdminDashboard() {
               </div>
 
               <div className="col-span-2">
-                <label className="block text-xs text-neutral-500 mb-1">architecture (one bullet per line)</label>
-                <textarea rows={3} value={(editingProject.architecture || []).join('\n')} onChange={e => setEditingProject({...editingProject, architecture: e.target.value.split('\n').filter(Boolean)})} className="w-full px-3 py-2 bg-neutral-800 rounded border border-neutral-700 text-sm" />
+                <label className="block text-xs text-neutral-500 mb-1">architecture (comma or new-line separated)</label>
+                <textarea rows={3} value={(editingProject.architecture || []).join('\n')} onChange={e => setEditingProject({...editingProject, architecture: e.target.value.split(/[\n,]+/).map(s => s.trim()).filter(Boolean)})} className="w-full px-3 py-2 bg-neutral-800 rounded border border-neutral-700 text-sm" />
               </div>
 
               <div className="col-span-2">
-                <label className="block text-xs text-neutral-500 mb-1">tech_stack (comma separated)</label>
-                <textarea rows={2} value={(editingProject.tech_stack || []).join(', ')} onChange={e => setEditingProject({...editingProject, tech_stack: e.target.value.split(',').map(s => s.trim()).filter(Boolean)})} className="w-full px-3 py-2 bg-neutral-800 rounded border border-neutral-700 text-sm" />
+                <label className="block text-xs text-neutral-500 mb-1">tech_stack (comma or new-line separated)</label>
+                <textarea rows={2} value={(editingProject.tech_stack || []).join(', ')} onChange={e => setEditingProject({...editingProject, tech_stack: e.target.value.split(/[\n,]+/).map(s => s.trim()).filter(Boolean)})} className="w-full px-3 py-2 bg-neutral-800 rounded border border-neutral-700 text-sm" />
               </div>
 
               <div className="col-span-2 flex justify-end gap-2 mt-4">
@@ -432,8 +432,8 @@ export default function AdminDashboard() {
               </div>
 
               <div className="col-span-2">
-                <label className="block text-xs text-neutral-500 mb-1">skills (comma separated)</label>
-                <textarea rows={2} value={(editingCert.skills || []).join(', ')} onChange={e => setEditingCert({...editingCert, skills: e.target.value.split(',').map(s => s.trim()).filter(Boolean)})} className="w-full px-3 py-2 bg-neutral-800 rounded border border-neutral-700 text-sm" />
+                <label className="block text-xs text-neutral-500 mb-1">skills (comma or new-line separated)</label>
+                <textarea rows={2} value={(editingCert.skills || []).join(', ')} onChange={e => setEditingCert({...editingCert, skills: e.target.value.split(/[\n,]+/).map(s => s.trim()).filter(Boolean)})} className="w-full px-3 py-2 bg-neutral-800 rounded border border-neutral-700 text-sm" />
               </div>
 
               <div className="col-span-2 flex justify-end gap-2 mt-4">
