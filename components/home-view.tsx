@@ -485,9 +485,6 @@ export function HomeView({ projects, profile, certificates }: HomeViewProps) {
                           <span className="text-xs font-sans-clean font-bold text-[#1A1918] group-hover:text-emerald-800 transition-colors">
                             {proj.name}
                           </span>
-                          <span className="px-1.5 py-0.5 rounded text-[9px] font-mono-code bg-emerald-100 text-emerald-800 font-semibold border border-emerald-300">
-                            {proj.grade}
-                          </span>
                         </div>
                         <p className="text-[11px] font-mono-code text-[#78746D]">
                           {proj.subtitle}
@@ -718,9 +715,6 @@ export function HomeView({ projects, profile, certificates }: HomeViewProps) {
                 <div className="flex items-center gap-2">
                   <span className="px-2 py-0.5 rounded text-[10px] font-mono-code bg-[#1A1918] text-[#F3EFEA] uppercase font-medium">
                     {selectedProject.category}
-                  </span>
-                  <span className="px-2 py-0.5 rounded text-[10px] font-mono-code bg-emerald-800 text-white font-semibold">
-                    {selectedProject.grade}
                   </span>
                 </div>
                 <h2 className="font-serif-display text-2xl sm:text-3xl font-normal text-[#1A1918] tracking-tight">

@@ -3,7 +3,6 @@ export interface ProjectRow {
   name: string;
   subtitle: string;
   tag: string;
-  grade: string;
   category: string;
   elevator_pitch: string;
   challenge: string;
@@ -42,7 +41,6 @@ export interface ProjectItem {
   name: string;
   subtitle: string;
   tag: string;
-  grade: string;
   category: string;
   elevatorPitch: string;
   challenge: string;
@@ -76,7 +74,6 @@ export function toProjectItem(row: ProjectRow): ProjectItem {
     name: row.name,
     subtitle: row.subtitle,
     tag: row.tag,
-    grade: row.grade,
     category: row.category,
     elevatorPitch: row.elevator_pitch,
     challenge: row.challenge,

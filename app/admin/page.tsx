@@ -302,7 +302,7 @@ export default function AdminDashboard() {
           <div className="bg-[#111] border border-neutral-800 rounded-xl p-6 w-full max-w-2xl max-h-[90vh] overflow-y-auto">
             <h2 className="font-semibold mb-4">Edit Project</h2>
             <div className="grid grid-cols-2 gap-4">
-              {['name', 'subtitle', 'tag', 'grade', 'category', 'sort_order', 'github_url', 'demo_url'].map(field => (
+              {['name', 'subtitle', 'tag', 'category', 'sort_order', 'github_url', 'demo_url'].map(field => (
                 <div key={field}>
                   <label className="block text-xs text-neutral-500 mb-1">{field}</label>
                   <input type="text" value={(editingProject as any)[field] || ''} onChange={e => setEditingProject({...editingProject, [field]: field === 'sort_order' ? parseInt(e.target.value) || 0 : e.target.value})} className="w-full px-3 py-2 bg-neutral-800 rounded border border-neutral-700 text-sm" />
