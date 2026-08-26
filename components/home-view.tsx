@@ -606,12 +606,18 @@ export function HomeView({ projects, profile, certificates }: HomeViewProps) {
               {/* Certificate Image or Document Preview (Full View, Never Cropped) */}
               <div className="w-full rounded-xl overflow-hidden border border-[rgba(26,25,24,0.15)] bg-[#1A1918]/5 p-1 sm:p-2 shadow-inner">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={selectedCert.imagePath}
-                  alt={selectedCert.title}
-                  className="w-full h-auto max-h-[65vh] object-contain rounded-lg shadow-md mx-auto block"
-                  loading="lazy"
-                />
+                {selectedCert.imagePath ? (
+                  <img
+                    src={selectedCert.imagePath}
+                    alt={selectedCert.title}
+                    className="w-full h-auto max-h-[65vh] object-contain rounded-lg shadow-md mx-auto block"
+                    loading="lazy"
+                  />
+                ) : (
+                  <div className="w-full h-48 flex items-center justify-center rounded-lg shadow-inner bg-[rgba(26,25,24,0.05)] border border-[rgba(26,25,24,0.1)] text-[#78746D] font-mono-code text-xs uppercase tracking-widest">
+                    [ No Credentials Image Provided ]
+                  </div>
+                )}
               </div>
 
               {/* Description & Competencies */}

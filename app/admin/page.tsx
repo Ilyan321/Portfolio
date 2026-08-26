@@ -36,7 +36,6 @@ export default function AdminDashboard() {
       setProjects(await projRes.json());
       setCertificates(await certRes.json());
       setProfile(await profRes.json());
-      } else { alert("Error saving: " + JSON.stringify(await res.json())); }
     } finally {
       setLoading(false);
     }
@@ -57,7 +56,7 @@ export default function AdminDashboard() {
       if (res.ok) {
         setProjects(prev => prev.map(p => p.id === project.id ? { ...p, visible: !p.visible } : p));
       }
-      } else { alert("Error saving: " + JSON.stringify(await res.json())); }
+      
     } finally {
       setSaving(null);
     }
@@ -82,7 +81,7 @@ export default function AdminDashboard() {
         setEditingProject(null);
         setIsAddingProject(false);
       }
-      } else { alert("Error saving: " + JSON.stringify(await res.json())); }
+      
     } finally {
       setSaving(null);
     }
@@ -100,7 +99,7 @@ export default function AdminDashboard() {
       if (res.ok) {
         setCertificates(prev => prev.map(c => c.id === cert.id ? { ...c, visible: !c.visible } : c));
       }
-      } else { alert("Error saving: " + JSON.stringify(await res.json())); }
+      
     } finally {
       setSaving(null);
     }
@@ -125,7 +124,7 @@ export default function AdminDashboard() {
         setEditingCert(null);
         setIsAddingCert(false);
       }
-      } else { alert("Error saving: " + JSON.stringify(await res.json())); }
+      
     } finally {
       setSaving(null);
     }
@@ -139,7 +138,7 @@ export default function AdminDashboard() {
       if (res.ok) {
         setProjects(prev => prev.filter(p => p.id !== id));
       }
-      } else { alert("Error saving: " + JSON.stringify(await res.json())); }
+      
     } finally {
       setSaving(null);
     }
@@ -152,7 +151,7 @@ export default function AdminDashboard() {
       if (res.ok) {
         setCertificates(prev => prev.filter(c => c.id !== id));
       }
-      } else { alert("Error saving: " + JSON.stringify(await res.json())); }
+      
     } finally {
       setSaving(null);
     }
@@ -170,7 +169,7 @@ export default function AdminDashboard() {
         setProfile(await res.json());
         setEditingProfile(false);
       }
-      } else { alert("Error saving: " + JSON.stringify(await res.json())); }
+      
     } finally {
       setSaving(null);
     }
@@ -299,7 +298,11 @@ export default function AdminDashboard() {
             {certificates.map(c => (
               <div key={c.id} className={`p-4 rounded-xl border ${c.visible ? 'border-neutral-800 bg-neutral-900' : 'border-neutral-800/50 bg-neutral-900/30'} flex justify-between items-center`}>
                 <div className="flex items-center gap-4">
-                  <img src={c.image_path} alt={c.title} className="w-12 h-12 rounded object-cover border border-neutral-800" />
+                  {c.image_path ? (
+                    <img src={c.image_path} alt={c.title} className="w-12 h-12 rounded object-cover border border-neutral-800" />
+                  ) : (
+                    <div className="w-12 h-12 rounded border border-neutral-800 bg-neutral-800/50 flex items-center justify-center text-[8px] text-neutral-500 font-mono-code text-center leading-tight">NO IMG</div>
+                  )}
                   <div>
                     <h3 className="font-semibold">
                       {c.title} 
