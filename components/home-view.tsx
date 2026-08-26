@@ -2,6 +2,8 @@
 
 import * as React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import type { ProjectItem, ProfileData } from '../lib/types';
+
 import {
   ExternalLinkIcon,
   GithubIcon,
@@ -10,22 +12,6 @@ import {
   XIcon,
 } from './ui/icons';
 
-interface ProjectItem {
-  id: string;
-  name: string;
-  subtitle: string;
-  tag: string;
-  grade: string;
-  category: string;
-  elevatorPitch: string;
-  challenge: string;
-  architecture: string[];
-  techStack: string[];
-  githubUrl: string;
-  demoUrl?: string;
-  huggingFaceUrl?: string;
-  highlights: { label: string; value: string }[];
-}
 
 interface CertificateItem {
   id: string;
@@ -41,272 +27,6 @@ interface CertificateItem {
 }
 
 // Curated Projects List (All Flagship Projects)
-const ALL_PROJECTS: ProjectItem[] = [
-  {
-    id: 'sql-agent',
-    name: 'Schema-Aware SQL Agent',
-    subtitle: 'LoRA Fine-Tuned LLaMA-3 + AST Security Guardrail',
-    tag: 'AI & Security Systems',
-    grade: 'Grade 9.5 / 10',
-    category: 'LLM Fine-Tuning & AST Parsers',
-    elevatorPitch:
-      'A natural language to SQL translation system built with a LoRA fine-tuned LLaMA-3-8B model trained on the Yale Spider benchmark, shielded by a deterministic Python AST parser that enforces read-only execution and prevents schema leakage.',
-    challenge:
-      'Eliminating multi-table join hallucinations while enforcing strict database integrity at the AST compilation level.',
-    architecture: [
-      'LoRA 4-bit Quantized Fine-Tuning on LLaMA-3-8B utilizing Unsloth and TRL on the Yale Spider benchmark.',
-      'Deterministic Python AST Security Guardrail ensuring 100% read-only SQL execution.',
-      'Dynamic Schema Extraction Layer injecting table structures and foreign keys into context prompts.',
-      'Public model weights published on Hugging Face Model Hub.',
-    ],
-    techStack: ['PyTorch', 'LLaMA-3-8B', 'Unsloth', 'LoRA / PEFT', 'Transformers', 'SQLite', 'Hugging Face'],
-    githubUrl: 'https://github.com/Ilyan321/Schema-Aware-SQL-Agent',
-    demoUrl: 'https://huggingface.co/Ilyankhan69/schema-aware-sql-agent',
-    huggingFaceUrl: 'https://huggingface.co/Ilyankhan69/schema-aware-sql-agent',
-    highlights: [
-      { label: 'Base Model', value: 'LLaMA-3-8B' },
-      { label: 'Fine-Tuning', value: 'LoRA (PEFT)' },
-      { label: 'Guardrail', value: 'AST Read-Only' },
-      { label: 'Benchmark', value: 'Yale Spider' },
-    ],
-  },
-  {
-    id: 'hogwarts-archivist',
-    name: 'The Hogwarts Archivist',
-    subtitle: 'Source-Attributed RAG with FAISS & Groq',
-    tag: 'Retrieval & RAG Systems',
-    grade: 'Grade 9.2 / 10',
-    category: 'Vector Search & RAG Architecture',
-    elevatorPitch:
-      'A high-speed conversational research engine combining LangChain vector search, FAISS Euclidean similarity indexing, and Groq LLaMA-3 inference with precise, verifiable paragraph-level source attribution.',
-    challenge:
-      'Grounding LLM responses against large document corpuses with zero hallucinations and exact paragraph citation.',
-    architecture: [
-      'Recursive text chunking with metadata binding chapter, book, and paragraph coordinates.',
-      'Sub-millisecond Euclidean similarity indexing via FAISS in-memory vector store.',
-      'Groq LLaMA-3 acceleration delivering responses at >500 tokens/second.',
-    ],
-    techStack: ['Python', 'LangChain', 'FAISS', 'Groq API', 'LLaMA-3', 'Streamlit'],
-    githubUrl: 'https://github.com/Ilyan321/Hogwarts_Archivist',
-    demoUrl: 'https://huggingface.co/spaces/Ilyankhan69/Hogwarts-Archivist',
-    huggingFaceUrl: 'https://huggingface.co/spaces/Ilyankhan69/Hogwarts-Archivist',
-    highlights: [
-      { label: 'Vector Index', value: 'FAISS Vector DB' },
-      { label: 'Inference', value: '>500 tok/sec' },
-      { label: 'Attribution', value: 'Paragraph Exact' },
-      { label: 'Platform', value: 'Hugging Face Space' },
-    ],
-  },
-  {
-    id: 'vibeguard',
-    name: 'VibeGuard Moderation',
-    subtitle: 'DistilBERT Multi-Label Toxicity Classifier',
-    tag: 'NLP & Safety Systems',
-    grade: 'Grade 9.0 / 10',
-    category: 'Transformer NLP & Classification',
-    elevatorPitch:
-      'A real-time toxicity and harm classification model fine-tuned on DistilBERT using the Jigsaw multi-label dataset, delivering fast sub-50ms inference latency and probability radar scoring across 6 risk categories.',
-    challenge:
-      'Optimizing multi-label transformer inference latency for fast, reliable moderation workflows.',
-    architecture: [
-      'Fine-tuned DistilBERT transformer reaching 86.67% validation accuracy.',
-      'Optimized sub-50ms inference latency for high-throughput moderation.',
-      'Interactive probability radar scoring across 6 harm vectors.',
-    ],
-    techStack: ['PyTorch', 'DistilBERT', 'Transformers', 'Datasets', 'Streamlit', 'Scikit-Learn'],
-    githubUrl: 'https://github.com/Ilyan321/VibeGuard',
-    demoUrl: 'https://huggingface.co/spaces/Ilyan321/vibeguard',
-    huggingFaceUrl: 'https://huggingface.co/spaces/Ilyan321/vibeguard',
-    highlights: [
-      { label: 'Model', value: 'DistilBERT Multi-label' },
-      { label: 'Accuracy', value: '86.67%' },
-      { label: 'Latency', value: '< 50ms per prompt' },
-      { label: 'Classes', value: '6 Toxicity Vectors' },
-    ],
-  },
-  {
-    id: 'slasher-vision',
-    name: 'Slasher-Vision-35mm',
-    subtitle: 'Custom SDXL Diffusion LoRA for 35mm Retro Cinema',
-    tag: 'Generative AI & Vision',
-    grade: 'Grade 8.9 / 10',
-    category: 'Diffusion Models & LoRA Fine-Tuning',
-    elevatorPitch:
-      'A specialized Low-Rank Adaptation (LoRA) for Stable Diffusion XL (SDXL) designed to synthesize authentic 1980s 35mm film grain, anamorphic flare, and vintage cinematography aesthetics, stripping away generic digital smoothness.',
-    challenge:
-      'Isolating high-frequency film grain and optical distortion artifacts during training without degrading subject prompt fidelity.',
-    architecture: [
-      'Low-Rank Adaptation fine-tuned across SDXL UNet cross-attention layers.',
-      'Trained on curated vintage 35mm horror and thriller cinematography stills.',
-      'Published weights and usage triggers on Hugging Face Model Hub.',
-    ],
-    techStack: ['PyTorch', 'SDXL', 'Diffusers', 'LoRA / PEFT', 'Hugging Face', 'Python'],
-    githubUrl: 'https://github.com/Ilyan321/Slasher-Vision-35mm',
-    demoUrl: 'https://huggingface.co/Ilyankhan69/slasher-vision-35mm',
-    huggingFaceUrl: 'https://huggingface.co/Ilyankhan69/slasher-vision-35mm',
-    highlights: [
-      { label: 'Base Model', value: 'SDXL 1.0' },
-      { label: 'Technique', value: 'Cross-Attention LoRA' },
-      { label: 'Aesthetic', value: '35mm Film Grain' },
-      { label: 'Platform', value: 'Hugging Face Hub' },
-    ],
-  },
-  {
-    id: 'edufocus',
-    name: 'EduFocus Attendance Portal',
-    subtitle: 'React 18 & Supabase Real-Time Attendance SPA',
-    tag: 'Full-Stack Web',
-    grade: 'Grade 8.8 / 10',
-    category: 'Web Engineering & Real-Time Sync',
-    elevatorPitch:
-      'A modern Single Page Application (SPA) for real-time academic attendance tracking, built with React 18, Vite 5, Tailwind CSS 4, and Supabase PostgreSQL with real-time sync, role-based authentication, and automated classroom analytics.',
-    challenge:
-      'Providing instantaneous bi-directional roster synchronization across simultaneous teachers while maintaining offline resilient local state.',
-    architecture: [
-      'Bi-directional state sync via Supabase PostgreSQL and Row-Level Security (RLS).',
-      'Quick-click status toggling with instant streak metrics and analytics.',
-      'Responsive glassmorphic UI built with Tailwind CSS 4 and Vite 5.',
-    ],
-    techStack: ['React 18', 'Vite 5', 'Tailwind CSS 4', 'Supabase', 'PostgreSQL', 'TypeScript'],
-    githubUrl: 'https://github.com/Ilyan321/attendance-app',
-    demoUrl: 'https://Ilyan321.github.io/attendance-app/',
-    highlights: [
-      { label: 'Frontend', value: 'React 18 + Vite 5' },
-      { label: 'Database', value: 'Supabase PostgreSQL' },
-      { label: 'Security', value: 'Row-Level (RLS)' },
-      { label: 'Deploy', value: 'GitHub Pages' },
-    ],
-  },
-  {
-    id: 'spatial-classroom',
-    name: 'Spatial Classroom',
-    subtitle: 'Gamified Reverse-Tutor AI (Feynman Technique)',
-    tag: 'AI Education & Edge',
-    grade: 'Grade 8.7 / 10',
-    category: 'Conversational AI & State Machines',
-    elevatorPitch:
-      'A reverse-classroom web application testing user comprehension of complex technical concepts via the Feynman Technique — users teach a stubborn, easily confused 12-year-old AI student named Leo.',
-    challenge:
-      'Orchestrating dual-stream LLM threads concurrently to manage student cognitive state and coach the teacher in real-time.',
-    architecture: [
-      'Reverse-Tutor state machine tracking comprehension (0-100%) and patience depletion.',
-      'Netlify Edge Function orchestrating two simultaneous Groq LLaMA 3 threads.',
-      'Document grounding extracting uploaded notes and PDFs into inquiry constraints.',
-    ],
-    techStack: ['JavaScript', 'Netlify Edge Functions', 'Groq LLaMA 3', 'HTML5 Canvas', 'CSS3'],
-    githubUrl: 'https://github.com/Ilyan321/spatial-classroom',
-    highlights: [
-      { label: 'Method', value: 'Feynman Technique' },
-      { label: 'Backend', value: 'Netlify Edge' },
-      { label: 'Inference', value: 'Groq LLaMA 3' },
-      { label: 'State', value: 'Cognitive Engine' },
-    ],
-  },
-  {
-    id: 'email-spam-filter',
-    name: 'Email Spam Filter (DistilBERT)',
-    subtitle: '99.05% Accuracy Transformer Classifier on Enron',
-    tag: 'NLP & Security',
-    grade: 'Grade 8.5 / 10',
-    category: 'Transformer Fine-Tuning & Evaluation',
-    elevatorPitch:
-      'An end-to-end NLP classification pipeline fine-tuning DistilBERT on the Enron email dataset, delivering 99.05% test accuracy with hosted zero-code browser inference on Hugging Face.',
-    challenge:
-      'Minimizing false positives on business-critical communications while maintaining sub-millisecond evaluation speed.',
-    architecture: [
-      'Fine-tuned DistilBERT transformer reaching 99.05% test accuracy and 99.06% F1-score.',
-      'Mixed-precision fp16 cloud training on dual Kaggle T4 GPUs with early stopping.',
-      'Public model card with interactive Hugging Face API widget.',
-    ],
-    techStack: ['PyTorch', 'DistilBERT', 'Transformers', 'Datasets', 'Hugging Face', 'Python'],
-    githubUrl: 'https://github.com/Ilyan321/email-spam-filter-model',
-    demoUrl: 'https://huggingface.co/Ilyankhan69/email-spam-filter',
-    huggingFaceUrl: 'https://huggingface.co/Ilyankhan69/email-spam-filter',
-    highlights: [
-      { label: 'Model', value: 'DistilBERT' },
-      { label: 'Accuracy', value: '99.05%' },
-      { label: 'F1 Score', value: '99.06%' },
-      { label: 'Dataset', value: 'Enron Spam' },
-    ],
-  },
-  {
-    id: 'school-attendance',
-    name: 'School Attendance System',
-    subtitle: 'Next.js 15 App Router & Strict TypeScript Platform',
-    tag: 'Full-Stack Web',
-    grade: 'Grade 8.4 / 10',
-    category: 'Modern Web Architecture',
-    elevatorPitch:
-      'A scalable school administration platform engineered with Next.js 15 App Router, TypeScript, and Tailwind CSS, featuring institutional schedule orchestration, multi-class attendance logs, and PRD-driven modular architecture.',
-    challenge:
-      'Structuring scalable multi-tenant administrative schemas with end-to-end type safety and Server Component rendering.',
-    architecture: [
-      'Next.js 15 App Router with React Server Components (RSC) and server actions.',
-      'Strict TypeScript type definitions covering session roles, class models, and schemas.',
-      'Role-differentiated dashboards for institution administrators, faculty, and students.',
-    ],
-    techStack: ['Next.js 15', 'React 19', 'TypeScript', 'Tailwind CSS 4', 'PostgreSQL', 'ESLint'],
-    githubUrl: 'https://github.com/Ilyan321/school-attendance-system',
-    highlights: [
-      { label: 'Framework', value: 'Next.js 15 (RSC)' },
-      { label: 'Language', value: 'TypeScript 5' },
-      { label: 'Styling', value: 'Tailwind CSS 4' },
-      { label: 'Architecture', value: 'Server Actions' },
-    ],
-  },
-  {
-    id: 'ai-summarizer',
-    name: 'AI Content Summarizer & Translator',
-    subtitle: 'Groq LLaMA 3.1 Scraping & Polyglot Engine',
-    tag: 'GenAI Utilities',
-    grade: 'Grade 8.2 / 10',
-    category: 'Web Scraping & Polyglot Translation',
-    elevatorPitch:
-      'An automated web content ingestion and synthesis platform that scrapes live article URLs, generates structured summaries using Groq LLaMA 3.1, and translates outputs into 7 global languages.',
-    challenge:
-      'Cleaning messy DOM boilerplates and navigation trees to extract pure article text before LLM context ingestion.',
-    architecture: [
-      'BeautifulSoup4 web scraper removing HTML boilerplate, navbars, and advertisements.',
-      'Tunable summary brevity engine powered by Groq LLaMA 3.1 8B inference.',
-      '7-language instant translation (Spanish, French, German, Chinese, Arabic, Urdu, Japanese).',
-    ],
-    techStack: ['Python', 'Streamlit', 'Groq API', 'LLaMA-3.1', 'BeautifulSoup4', 'Requests'],
-    githubUrl: 'https://github.com/Ilyan321/AI_Content_Summarizer',
-    highlights: [
-      { label: 'Scraper', value: 'BeautifulSoup4' },
-      { label: 'LLM', value: 'Groq LLaMA 3.1' },
-      { label: 'Languages', value: '7 Global Languages' },
-      { label: 'UI', value: 'Streamlit' },
-    ],
-  },
-  {
-    id: 'weather-ai',
-    name: 'Weather AI & Style Advisor',
-    subtitle: 'OpenWeatherMap + Groq LLaMA 3.3 Context Advisor',
-    tag: 'Applied GenAI',
-    grade: 'Grade 8.0 / 10',
-    category: 'API Integration & Reasoning',
-    elevatorPitch:
-      'A real-time meteorological intelligence utility that combines live OpenWeatherMap sensory data with Groq LLaMA 3.3 reasoning to generate personalized, climate-adaptive outfit recommendations and outdoor activity guidance.',
-    challenge:
-      'Translating numeric meteorological variables into practical fabric, layering, and lifestyle suggestions in real time.',
-    architecture: [
-      'Live meteorological data ingestion (temperature, precipitation, humidity, UV index).',
-      'Context-aware style advice generated via Groq LLaMA 3.3 inference.',
-      'Live hosted deployment on Hugging Face Spaces.',
-    ],
-    techStack: ['Python', 'Streamlit', 'Groq API', 'LLaMA-3.3', 'OpenWeatherMap API'],
-    githubUrl: 'https://github.com/Ilyan321/Weather_App',
-    demoUrl: 'https://huggingface.co/spaces/Ilyankhan69/WeatherApp',
-    huggingFaceUrl: 'https://huggingface.co/spaces/Ilyankhan69/WeatherApp',
-    highlights: [
-      { label: 'API', value: 'OpenWeather REST' },
-      { label: 'Reasoning', value: 'Groq LLaMA 3.3' },
-      { label: 'Latency', value: '< 1 second' },
-      { label: 'Platform', value: 'Hugging Face Space' },
-    ],
-  },
-];
 
 // Verified Certifications List (All 9 Verified Credentials)
 const ALL_CERTIFICATES: CertificateItem[] = [
@@ -425,7 +145,12 @@ const ALL_CERTIFICATES: CertificateItem[] = [
   },
 ];
 
-export function HomeView() {
+interface HomeViewProps {
+  projects: ProjectItem[];
+  profile: ProfileData | null;
+}
+
+export function HomeView({ projects, profile }: HomeViewProps) {
   const [selectedProject, setSelectedProject] = React.useState<ProjectItem | null>(null);
   const [selectedCert, setSelectedCert] = React.useState<CertificateItem | null>(null);
   const [showDirectoryModal, setShowDirectoryModal] = React.useState<boolean>(false);
@@ -541,13 +266,13 @@ export function HomeView() {
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/pp.jpeg"
-                alt="Ilyan Khan"
+                alt={profile?.name ?? 'Ilyan Khan'}
                 className="w-full h-full object-cover object-[center_28%] scale-[1.25] lg:scale-100 lg:object-top hover:scale-[1.3] lg:hover:scale-105 transition-transform duration-700"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#1A1918]/65 via-transparent to-transparent pointer-events-none" />
               <div className="absolute bottom-2.5 left-3 right-3 text-[#F3EFEA] font-sans-clean">
                 <span className="font-serif-display text-base sm:text-lg lg:text-base font-normal block leading-tight">
-                  Ilyan Khan
+                  {profile?.name ?? 'Ilyan Khan'}
                 </span>
                 <span className="text-[9px] font-mono-code text-[#DFD5C6] uppercase">
                   Systems Engineering &bull; QUEST
@@ -589,15 +314,15 @@ export function HomeView() {
               <div className="divide-y divide-[rgba(26,25,24,0.08)]">
                 {/* Project 1 */}
                 <button
-                  onClick={() => setSelectedProject(ALL_PROJECTS[0])}
+                  onClick={() => setSelectedProject(projects[0])}
                   className="w-full py-1.5 flex items-center justify-between group transition-colors cursor-pointer text-left active:bg-black/5 rounded-md px-1 -mx-1"
                 >
                   <div className="pr-2 min-w-0">
                     <span className="text-xs font-sans-clean font-semibold text-[#1A1918] group-hover:text-emerald-800 transition-colors block truncate">
-                      {ALL_PROJECTS[0].name}
+                      {projects[0].name}
                     </span>
                     <span className="text-[10px] font-mono-code text-[#78746D] block truncate">
-                      {ALL_PROJECTS[0].subtitle}
+                      {projects[0].subtitle}
                     </span>
                   </div>
                   <span className="text-xs font-mono-code text-[#78746D] group-hover:translate-x-1 group-hover:text-[#1A1918] transition-all shrink-0">
@@ -607,15 +332,15 @@ export function HomeView() {
 
                 {/* Project 2 */}
                 <button
-                  onClick={() => setSelectedProject(ALL_PROJECTS[1])}
+                  onClick={() => setSelectedProject(projects[1])}
                   className="w-full py-1.5 flex items-center justify-between group transition-colors cursor-pointer text-left active:bg-black/5 rounded-md px-1 -mx-1"
                 >
                   <div className="pr-2 min-w-0">
                     <span className="text-xs font-sans-clean font-semibold text-[#1A1918] group-hover:text-emerald-800 transition-colors block truncate">
-                      {ALL_PROJECTS[1].name}
+                      {projects[1].name}
                     </span>
                     <span className="text-[10px] font-mono-code text-[#78746D] block truncate">
-                      {ALL_PROJECTS[1].subtitle}
+                      {projects[1].subtitle}
                     </span>
                   </div>
                   <span className="text-xs font-mono-code text-[#78746D] group-hover:translate-x-1 group-hover:text-[#1A1918] transition-all shrink-0">
@@ -735,7 +460,7 @@ export function HomeView() {
             </div>
 
             <div className="text-[10px] sm:text-[11px] font-mono-code text-emerald-400 font-medium">
-              ilyaankhan342@gmail.com
+              {profile?.email ?? 'ilyaankhan342@gmail.com'}
             </div>
           </div>
 
@@ -755,7 +480,7 @@ export function HomeView() {
 
             <div className="flex flex-col gap-1 py-1">
               <a
-                href="https://github.com/Ilyan321"
+                href={profile?.githubUrl ?? 'https://github.com/Ilyan321'}
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={(e) => e.stopPropagation()}
@@ -765,7 +490,7 @@ export function HomeView() {
                 <span className="text-xs font-mono-code text-[#78746D]">↗</span>
               </a>
               <a
-                href="https://linkedin.com/in/ilyan-khan-480341359"
+                href={profile?.linkedinUrl ?? 'https://linkedin.com/in/ilyan-khan-480341359'}
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={(e) => e.stopPropagation()}
@@ -864,7 +589,7 @@ export function HomeView() {
                       : 'text-[#78746D] hover:text-[#1A1918]'
                   }`}
                 >
-                  Flagship Projects ({ALL_PROJECTS.length})
+                  Flagship Projects ({projects.length})
                 </button>
                 <button
                   onClick={() => setDirectoryTab('certificates')}
@@ -881,7 +606,7 @@ export function HomeView() {
               {/* Tab 1: Full Projects List */}
               {directoryTab === 'projects' && (
                 <div className="space-y-2.5">
-                  {ALL_PROJECTS.map((proj) => (
+                  {projects.map((proj) => (
                     <div
                       key={proj.id}
                       onClick={() => setSelectedProject(proj)}
@@ -1273,7 +998,7 @@ export function HomeView() {
                   &ldquo;The deepest way to understand any system is to build it from first principles. I connect foundational computer systems principles with practical AI to create fast, reliable software.&rdquo;
                 </p>
                 <span className="text-[10px] font-mono-code text-[#78746D] block mt-2">
-                  — Ilyan Khan, 2nd Year Computer Systems Engineering
+                  — {profile?.name ?? 'Ilyan Khan'}, {profile?.title ?? '2nd Year Computer Systems Engineering'}
                 </span>
               </div>
 
@@ -1301,7 +1026,7 @@ export function HomeView() {
               {/* Footer Link */}
               <div className="pt-3 border-t border-[rgba(26,25,24,0.12)]">
                 <a
-                  href="https://github.com/Ilyan321"
+                  href={profile?.githubUrl ?? 'https://github.com/Ilyan321'}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-xs font-mono-code bg-[#1A1918] text-[#F3EFEA] font-semibold hover:bg-black transition-colors"
@@ -1373,7 +1098,7 @@ export function HomeView() {
 
               <div className="space-y-2.5 font-mono-code text-xs">
                 <a
-                  href="https://github.com/Ilyan321"
+                  href={profile?.githubUrl ?? 'https://github.com/Ilyan321'}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center justify-between p-3.5 rounded-xl bg-[#DFD5C6] border border-[rgba(26,25,24,0.1)] text-[#1A1918] hover:border-[#1A1918] hover:bg-[#D5CBB9] active:bg-[#CFC3B0] transition-all group"
@@ -1389,7 +1114,7 @@ export function HomeView() {
                 </a>
 
                 <a
-                  href="https://linkedin.com/in/ilyan-khan-480341359"
+                  href={profile?.linkedinUrl ?? 'https://linkedin.com/in/ilyan-khan-480341359'}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center justify-between p-3.5 rounded-xl bg-[#DFD5C6] border border-[rgba(26,25,24,0.1)] text-[#1A1918] hover:border-[#1A1918] hover:bg-[#D5CBB9] active:bg-[#CFC3B0] transition-all group"
@@ -1405,7 +1130,7 @@ export function HomeView() {
                 </a>
 
                 <a
-                  href="https://huggingface.co/Ilyankhan69"
+                  href={profile?.huggingfaceUrl ?? 'https://huggingface.co/Ilyankhan69'}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center justify-between p-3.5 rounded-xl bg-[#DFD5C6] border border-[rgba(26,25,24,0.1)] text-[#1A1918] hover:border-[#1A1918] hover:bg-[#D5CBB9] active:bg-[#CFC3B0] transition-all group"
@@ -1496,11 +1221,11 @@ export function HomeView() {
 
               <div className="space-y-2.5 font-mono-code text-xs">
                 <a
-                  href="mailto:ilyaankhan342@gmail.com"
+                  href={`mailto:${profile?.email ?? 'ilyaankhan342@gmail.com'}`}
                   className="flex items-center justify-between p-3.5 rounded-xl bg-[#262523] border border-white/10 text-[#F3EFEA] hover:border-emerald-400 active:bg-[#1f1e1c] transition-colors"
                 >
                   <span className="text-[#A39E95]">Email:</span>
-                  <span className="text-emerald-400 font-semibold truncate pl-2">ilyaankhan342@gmail.com</span>
+                  <span className="text-emerald-400 font-semibold truncate pl-2">{profile?.email ?? 'ilyaankhan342@gmail.com'}</span>
                 </a>
 
                 <a
@@ -1575,7 +1300,7 @@ export function HomeView() {
                   ACADEMIC &amp; CAREER PROFILE
                 </span>
                 <h2 className="font-serif-display text-2xl sm:text-3xl text-[#1A1918] font-normal mt-1">
-                  About Ilyan Khan
+                  About {profile?.name ?? 'Ilyan Khan'}
                 </h2>
                 <p className="text-xs font-sans-clean text-[#78746D] mt-0.5 leading-relaxed">
                   Undergraduate Computer Systems Engineer at QUEST Nawabshah, Sindh, Pakistan.
