@@ -111,6 +111,33 @@ export default function AdminDashboard() {
     }
   }
 
+  
+  async function deleteProject(id: string) {
+    if (!confirm('Are you sure you want to delete this project permanently?')) return;
+    setSaving(id);
+    try {
+      const res = await fetch(`/api/admin/projects?id=${id}`, { method: 'DELETE' });
+      if (res.ok) {
+        setProjects(prev => prev.filter(p => p.id !== id));
+      }
+    } finally {
+      setSaving(null);
+    }
+  }
+
+  async function deleteCert(id: string) {
+    if (!confirm('Are you sure you want to delete this certificate permanently?')) return;
+    setSaving(id);
+    try {
+      const res = await fetch(`/api/admin/certificates?id=${id}`, { method: 'DELETE' });
+      if (res.ok) {
+        setCertificates(prev => prev.filter(c => c.id !== id));
+      }
+    } finally {
+      setSaving(null);
+    }
+  }
+
   async function saveProfile(prof: ProfileRow) {
     setSaving('profile');
     try {
@@ -220,6 +247,9 @@ export default function AdminDashboard() {
                   <button onClick={() => setEditingProject({...p})} className="px-3 py-1.5 text-xs bg-white text-black rounded hover:bg-neutral-200">
                     Edit
                   </button>
+                  <button onClick={() => deleteProject(p.id)} disabled={saving === p.id} className="px-3 py-1.5 text-xs bg-red-500/10 text-red-500 rounded hover:bg-red-500/20 disabled:opacity-50">
+                    Delete
+                  </button>
                 </div>
               </div>
             ))}
@@ -252,6 +282,9 @@ export default function AdminDashboard() {
                   </button>
                   <button onClick={() => setEditingCert({...c})} className="px-3 py-1.5 text-xs bg-white text-black rounded hover:bg-neutral-200">
                     Edit
+                  </button>
+                  <button onClick={() => deleteCert(c.id)} disabled={saving === c.id} className="px-3 py-1.5 text-xs bg-red-500/10 text-red-500 rounded hover:bg-red-500/20 disabled:opacity-50">
+                    Delete
                   </button>
                 </div>
               </div>
