@@ -19,31 +19,30 @@ export default function AdminDashboard() {
   const [editingProfile, setEditingProfile] = useState(false);
   const router = useRouter();
 
-  const fetchData = useCallback(async () => {
-    setLoading(true);
-    try {
-      const [projRes, certRes, profRes] = await Promise.all([
-        fetch('/api/admin/projects'),
-        fetch('/api/admin/certificates'),
-        fetch('/api/admin/profile'),
-      ]);
-
-      if (projRes.status === 401 || profRes.status === 401) {
-        router.push('/admin/login');
-        return;
-      }
-
-      setProjects(await projRes.json());
-      setCertificates(await certRes.json());
-      setProfile(await profRes.json());
-    } finally {
-      setLoading(false);
-    }
-  }, [router]);
-
   useEffect(() => {
+    async function fetchData() {
+      setLoading(true);
+      try {
+        const [projRes, certRes, profRes] = await Promise.all([
+          fetch('/api/admin/projects'),
+          fetch('/api/admin/certificates'),
+          fetch('/api/admin/profile'),
+        ]);
+
+        if (projRes.status === 401 || profRes.status === 401) {
+          router.push('/admin/login');
+          return;
+        }
+
+        setProjects(await projRes.json());
+        setCertificates(await certRes.json());
+        setProfile(await profRes.json());
+      } finally {
+        setLoading(false);
+      }
+    }
     fetchData();
-  }, [fetchData]);
+  }, [router]);
 
   async function toggleVisibility(project: ProjectRow) {
     setSaving(project.id);
