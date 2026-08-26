@@ -10,6 +10,7 @@ import {
   LinkedinIcon,
   FileTextIcon,
   XIcon,
+  UserIcon,
 } from './ui/icons';
 
 
@@ -207,6 +208,13 @@ export function HomeView({ projects, profile }: HomeViewProps) {
             >
               CONTACT
             </button>
+            <a 
+              href="/admin" 
+              className="hover:text-[#F3EFEA] active:text-white transition-colors cursor-pointer flex items-center" 
+              title="Admin Login"
+            >
+              <UserIcon size={14} />
+            </a>
           </nav>
         </header>
 
