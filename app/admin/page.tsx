@@ -265,7 +265,11 @@ export default function AdminDashboard() {
 
         {tab === 'projects' && (
           <div className="space-y-4">
-            <div className="flex justify-end mb-4">
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 pb-4 border-b border-[rgba(243,239,234,0.1)] gap-4">
+              <div>
+                <h2 className="font-serif-display text-2xl sm:text-3xl text-[#F3EFEA] tracking-tight">Projects Directory</h2>
+                <p className="text-[11px] sm:text-xs font-mono-code text-[#78746D] mt-1 uppercase tracking-wider">Manage flagship engineering projects.</p>
+              </div>
               <button onClick={() => {
                 setIsAddingProject(true);
                 setEditingProject({ name: '', subtitle: '', tag: '', category: '', sort_order: projects.length + 1, github_url: '', demo_url: '', hugging_face_url: '', elevator_pitch: '', challenge: '', architecture: [], tech_stack: [], highlights: [], visible: true } as any);
@@ -306,7 +310,11 @@ export default function AdminDashboard() {
         
         {tab === 'certificates' && (
           <div className="space-y-4">
-            <div className="flex justify-end mb-4">
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 pb-4 border-b border-[rgba(243,239,234,0.1)] gap-4">
+              <div>
+                <h2 className="font-serif-display text-2xl sm:text-3xl text-[#F3EFEA] tracking-tight">Certificates & Credentials</h2>
+                <p className="text-[11px] sm:text-xs font-mono-code text-[#78746D] mt-1 uppercase tracking-wider">Manage verified academic achievements.</p>
+              </div>
               <button onClick={() => {
                 setIsAddingCert(true);
                 setEditingCert({ title: '', issuer: '', issue_date: '', tag: '', credential_id: '', image_path: '', sort_order: certificates.length + 1, description: '', skills: [], visible: true } as any);
