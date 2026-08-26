@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import type { ProjectItem, ProfileData } from '../lib/types';
+import type { ProjectItem, ProfileData, CertificateItem } from '../lib/types';
 
 import {
   ExternalLinkIcon,
@@ -14,144 +14,18 @@ import {
 } from './ui/icons';
 
 
-interface CertificateItem {
-  id: string;
-  title: string;
-  issuer: string;
-  issueDate: string;
-  tag: string;
-  credentialId?: string;
-  imagePath: string;
-  pdfPath?: string;
-  description: string;
-  skills: string[];
-}
 
 // Curated Projects List (All Flagship Projects)
 
 // Verified Certifications List (All 9 Verified Credentials)
-const ALL_CERTIFICATES: CertificateItem[] = [
-  {
-    id: 'cybersecurity',
-    title: 'Google Cybersecurity Professional',
-    issuer: 'Google Career Certificates',
-    issueDate: '2025 – 2026',
-    tag: 'Security & Systems',
-    credentialId: 'GCC-SEC-892401',
-    imagePath: '/certificates/cybersecurity.png',
-    description:
-      'Comprehensive professional certification covering security operations, Python automation for defensive operations, Linux CLI, SIEM tools, packet sniffing with Wireshark, and incident response frameworks.',
-    skills: ['Linux OS', 'Python Automation', 'SIEM / Splunk', 'Network Security', 'Wireshark', 'NIST Framework'],
-  },
-  {
-    id: 'ai-essentials',
-    title: 'Google AI Essentials',
-    issuer: 'Google',
-    issueDate: '2025',
-    tag: 'Artificial Intelligence',
-    credentialId: 'GCC-AI-104928',
-    imagePath: '/certificates/ai-essentials.png',
-    description:
-      'Foundational mastery of modern generative AI workflows, large language model architectures, automated workflow design, and ethical AI evaluation principles.',
-    skills: ['Generative AI', 'LLM Workflow Design', 'Ethical AI', 'Model Evaluation', 'Productivity AI'],
-  },
-  {
-    id: 'prompting-essentials',
-    title: 'Google Prompting Essentials',
-    issuer: 'Google',
-    issueDate: '2025',
-    tag: 'Prompt Engineering',
-    credentialId: 'GCC-PRM-382914',
-    imagePath: '/certificates/prompting-essentials.png',
-    description:
-      'Advanced prompt engineering techniques covering chain-of-thought, few-shot conditioning, structured schema enforcement, and iterative context refinement for enterprise LLMs.',
-    skills: ['Chain-of-Thought', 'Few-Shot Conditioning', 'System Prompts', 'Context Optimization', 'Schema Guardrails'],
-  },
-  {
-    id: 'agile-essentials',
-    title: 'Agile with Atlassian Jira',
-    issuer: 'Atlassian',
-    issueDate: '2025',
-    tag: 'Software Engineering',
-    credentialId: 'ATL-AGL-552910',
-    imagePath: '/certificates/agile-essentials.png',
-    description:
-      'Industry qualification in Agile project management, sprint backlogs, Kanban execution, story point estimation, and production software lifecycle delivery with Jira.',
-    skills: ['Scrum Framework', 'Sprint Planning', 'Kanban Boards', 'Jira Software', 'Agile Delivery'],
-  },
-  {
-    id: 'claude-code-action',
-    title: 'Claude Code in Action',
-    issuer: 'Anthropic Education',
-    issueDate: 'July 2026',
-    tag: 'Agentic Coding & CLI',
-    credentialId: 'ANTH-CCA-2026',
-    imagePath: '/certificates/claude-code-in-action-1.png',
-    pdfPath: '/certificates/claude-code-in-action.pdf',
-    description:
-      'Official Anthropic certification in deploying agentic command-line developer workflows, terminal autonomy, multi-file code editing, tool execution, and automated testing loops with Claude Code.',
-    skills: ['Claude Code CLI', 'Agentic Workflows', 'Terminal Automation', 'Context Engineering', 'Codebase Refactoring'],
-  },
-  {
-    id: 'claude-code-101',
-    title: 'Claude Code 101',
-    issuer: 'Anthropic Education',
-    issueDate: 'July 2026',
-    tag: 'Agentic Engineering',
-    credentialId: 'ANTH-CC-101',
-    imagePath: '/certificates/claude-code-101-1.png',
-    pdfPath: '/certificates/claude-code-101.pdf',
-    description:
-      'Foundational mastery of the Claude Code command-line tool, configuration management, project permissions, cost control, subagent orchestration, and prompt customization.',
-    skills: ['Claude Code Setup', 'Subagent Management', 'Shell Integration', 'Tool Permissions', 'Developer Experience'],
-  },
-  {
-    id: 'ai-fluency',
-    title: 'AI Fluency: Framework & Foundations',
-    issuer: 'Anthropic / UCC / HEA',
-    issueDate: '2026',
-    tag: 'Frontier AI & Reasoning',
-    credentialId: 'ANTH-AIF-2026',
-    imagePath: '/certificates/ai-fluency-1.png',
-    pdfPath: '/certificates/AI Fluency.pdf',
-    description:
-      'Professional qualification in frontier Large Language Model fluency, multi-step chain-of-thought reasoning, agentic workflow architecture, and enterprise AI evaluation.',
-    skills: ['Frontier LLMs', 'Applied Reasoning', 'Agentic Workflows', 'Model Evaluation', 'AI Strategy'],
-  },
-  {
-    id: 'claude-101',
-    title: 'Claude 101 Mastery',
-    issuer: 'Anthropic Education',
-    issueDate: '2026',
-    tag: 'Applied AI & Tool Use',
-    credentialId: 'ANTH-CLD-101',
-    imagePath: '/certificates/claude-101-1.png',
-    pdfPath: '/certificates/Claude 101.pdf',
-    description:
-      'Specialized qualification in Anthropic Claude architecture, advanced system prompt design, structured tool use / function calling, and context window optimization.',
-    skills: ['Claude Architecture', 'System Prompts', 'Structured Tool Use', 'Context Engineering', 'API Integration'],
-  },
-  {
-    id: 'genai-mastermind',
-    title: 'Generative AI Mastermind',
-    issuer: 'Outskill',
-    issueDate: '2026',
-    tag: 'GenAI Mastermind',
-    credentialId: 'OUTSKILL-GAI-2026',
-    imagePath: '/certificates/internship-cert-1.png',
-    pdfPath: '/certificates/internship-cert.pdf',
-    description:
-      'Comprehensive executive masterclass on state-of-the-art Generative AI systems, multimodal LLM pipelines, autonomous agents, and enterprise AI workflow automation.',
-    skills: ['Generative AI', 'Agentic Pipelines', 'Prompt Architecture', 'Automation Workflows', 'Multimodal AI'],
-  },
-];
 
 interface HomeViewProps {
   projects: ProjectItem[];
   profile: ProfileData | null;
+  certificates: CertificateItem[];
 }
 
-export function HomeView({ projects, profile }: HomeViewProps) {
+export function HomeView({ projects, profile, certificates }: HomeViewProps) {
   const [selectedProject, setSelectedProject] = React.useState<ProjectItem | null>(null);
   const [selectedCert, setSelectedCert] = React.useState<CertificateItem | null>(null);
   const [showDirectoryModal, setShowDirectoryModal] = React.useState<boolean>(false);
@@ -355,41 +229,31 @@ export function HomeView({ projects, profile }: HomeViewProps) {
               </span>
 
               <div className="divide-y divide-[rgba(26,25,24,0.08)]">
-                {/* Cert 1 */}
-                <button
-                  onClick={() => setSelectedCert(ALL_CERTIFICATES[0])}
-                  className="w-full py-1.5 flex items-center justify-between group transition-colors cursor-pointer text-left active:bg-black/5 rounded-md px-1 -mx-1"
-                >
-                  <div className="pr-2 min-w-0">
-                    <span className="text-xs font-sans-clean font-semibold text-[#1A1918] group-hover:text-emerald-800 transition-colors block truncate">
-                      {ALL_CERTIFICATES[0].title}
-                    </span>
-                    <span className="text-[10px] font-mono-code text-[#78746D] block truncate">
-                      {ALL_CERTIFICATES[0].issuer} &bull; Verified
-                    </span>
+                {certificates.length === 0 ? (
+                  <div className="py-2 text-xs font-mono-code text-[#78746D]">
+                    [NO CERTS VISIBLE]
                   </div>
-                  <span className="text-xs font-mono-code text-[#78746D] group-hover:translate-x-1 group-hover:text-[#1A1918] transition-all shrink-0">
-                    &rarr;
-                  </span>
-                </button>
-
-                {/* Cert 2 */}
-                <button
-                  onClick={() => setSelectedCert(ALL_CERTIFICATES[1])}
-                  className="w-full py-1.5 flex items-center justify-between group transition-colors cursor-pointer text-left active:bg-black/5 rounded-md px-1 -mx-1"
-                >
-                  <div className="pr-2 min-w-0">
-                    <span className="text-xs font-sans-clean font-semibold text-[#1A1918] group-hover:text-emerald-800 transition-colors block truncate">
-                      {ALL_CERTIFICATES[1].title}
-                    </span>
-                    <span className="text-[10px] font-mono-code text-[#78746D] block truncate">
-                      {ALL_CERTIFICATES[1].issuer} &bull; Generative AI
-                    </span>
-                  </div>
-                  <span className="text-xs font-mono-code text-[#78746D] group-hover:translate-x-1 group-hover:text-[#1A1918] transition-all shrink-0">
-                    &rarr;
-                  </span>
-                </button>
+                ) : (
+                  certificates.slice(0, 2).map((cert) => (
+                    <button
+                      key={cert.id}
+                      onClick={() => setSelectedCert(cert)}
+                      className="w-full py-1.5 flex items-center justify-between group transition-colors cursor-pointer text-left active:bg-black/5 rounded-md px-1 -mx-1"
+                    >
+                      <div className="pr-2 min-w-0">
+                        <span className="text-xs font-sans-clean font-semibold text-[#1A1918] group-hover:text-emerald-800 transition-colors block truncate">
+                          {cert.title}
+                        </span>
+                        <span className="text-[10px] font-mono-code text-[#78746D] block truncate">
+                          {cert.issuer} &bull; Verified
+                        </span>
+                      </div>
+                      <span className="text-xs font-mono-code text-[#78746D] group-hover:translate-x-1 group-hover:text-[#1A1918] transition-all shrink-0">
+                        &rarr;
+                      </span>
+                    </button>
+                  ))
+                )}
               </div>
             </div>
 
@@ -597,7 +461,7 @@ export function HomeView({ projects, profile }: HomeViewProps) {
                       : 'text-[#78746D] hover:text-[#1A1918]'
                   }`}
                 >
-                  Verified Credentials ({ALL_CERTIFICATES.length})
+                  Verified Credentials ({certificates.length})
                 </button>
               </div>
 
@@ -641,30 +505,37 @@ export function HomeView({ projects, profile }: HomeViewProps) {
               {/* Tab 2: Full Certifications List */}
               {directoryTab === 'certificates' && (
                 <div className="space-y-2.5">
-                  {ALL_CERTIFICATES.map((cert) => (
-                    <div
-                      key={cert.id}
-                      onClick={() => setSelectedCert(cert)}
-                      className="p-3.5 sm:p-4 rounded-xl bg-[#DFD5C6] border border-[rgba(26,25,24,0.1)] hover:border-[#1A1918] transition-all cursor-pointer group flex flex-col sm:flex-row sm:items-center justify-between gap-2"
-                    >
-                      <div className="space-y-1">
-                        <div className="flex items-center gap-2">
-                          <span className="text-xs font-sans-clean font-bold text-[#1A1918] group-hover:text-emerald-800 transition-colors">
-                            {cert.title}
-                          </span>
-                          <span className="px-1.5 py-0.5 rounded text-[9px] font-mono-code bg-[#1A1918] text-[#F3EFEA]">
-                            {cert.tag}
-                          </span>
-                        </div>
-                        <p className="text-[11px] font-mono-code text-[#78746D]">
-                          {cert.issuer} &bull; {cert.issueDate}
-                        </p>
-                      </div>
-                      <span className="text-xs font-mono-code text-[#78746D] group-hover:text-[#1A1918] group-hover:translate-x-1 transition-all self-end sm:self-center">
-                        View Credential &rarr;
-                      </span>
+                  {certificates.length === 0 ? (
+                    <div className="p-8 text-center flex flex-col items-center justify-center gap-2 border border-dashed border-[#78746D]/30 rounded-xl bg-[#DFD5C6]/50">
+                      <span className="text-sm font-mono-code text-[#78746D] tracking-widest uppercase">No Certs Found</span>
+                      <span className="text-xs font-sans-clean text-[#78746D]">There are currently no visible certificates in the database.</span>
                     </div>
-                  ))}
+                  ) : (
+                    certificates.map((cert) => (
+                      <div
+                        key={cert.id}
+                        onClick={() => setSelectedCert(cert)}
+                        className="p-3.5 sm:p-4 rounded-xl bg-[#DFD5C6] border border-[rgba(26,25,24,0.1)] hover:border-[#1A1918] transition-all cursor-pointer group flex flex-col sm:flex-row sm:items-center justify-between gap-2"
+                      >
+                        <div className="space-y-1">
+                          <div className="flex items-center gap-2">
+                            <span className="text-xs font-sans-clean font-bold text-[#1A1918] group-hover:text-emerald-800 transition-colors">
+                              {cert.title}
+                            </span>
+                            <span className="px-1.5 py-0.5 rounded text-[9px] font-mono-code bg-emerald-100 text-emerald-800 font-semibold border border-emerald-300">
+                              {cert.tag}
+                            </span>
+                          </div>
+                          <p className="text-[11px] font-mono-code text-[#78746D]">
+                            {cert.issuer} &bull; {cert.issueDate}
+                          </p>
+                        </div>
+                        <span className="text-xs font-mono-code text-[#78746D] group-hover:text-[#1A1918] group-hover:translate-x-1 transition-all self-end sm:self-center">
+                          View Credential &rarr;
+                        </span>
+                      </div>
+                    ))
+                  )}
                 </div>
               )}
 
