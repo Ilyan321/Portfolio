@@ -143,7 +143,7 @@ export function HomeView({ projects, profile, certificates }: HomeViewProps) {
           </div>
 
           {/* Portrait Card (Exact original 24% width on desktop, responsive clear face framing on mobile) */}
-          <div className="w-full lg:w-[24%] sand-card p-2 sm:p-2.5 flex items-center justify-center relative overflow-hidden h-80 sm:h-96 lg:h-full shrink-0">
+          <div className="w-full lg:w-[24%] sand-card-dark border border-[#363633] p-2 sm:p-2.5 flex items-center justify-center relative overflow-hidden h-80 sm:h-96 lg:h-full shrink-0">
             <div className="w-full h-full rounded-[1.1rem] overflow-hidden relative shadow-inner bg-[#DFD5C6]">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
@@ -151,7 +151,7 @@ export function HomeView({ projects, profile, certificates }: HomeViewProps) {
                 alt={profile?.name ?? 'Ilyan Khan'}
                 className="w-full h-full object-cover object-[center_28%] scale-[1.25] lg:scale-100 lg:object-top hover:scale-[1.3] lg:hover:scale-105 transition-transform duration-700"
               />
-              <div className="absolute top-0 left-0 right-0 bg-[#1A1918] border-b border-black/20 py-2 px-3 text-center z-10 transition-colors">
+              <div className="absolute top-0 left-0 right-0 bg-[#2C2C2A] border-b border-[#363633] py-2 px-3 text-center z-10 transition-colors">
                 <span className="font-serif-display text-base sm:text-lg text-[#F3EFEA] font-normal block leading-none">
                   {profile?.name ?? 'Ilyan Khan'}
                 </span>
