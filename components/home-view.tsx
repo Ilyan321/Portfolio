@@ -84,10 +84,12 @@ export function HomeView({ projects, profile, certificates }: HomeViewProps) {
             </button>
             <a 
               href="/admin" 
-              className="hover:text-[#F3EFEA] active:text-white transition-colors cursor-pointer flex items-center" 
-              title="Admin Login"
+              className="flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-[rgba(243,239,234,0.05)] hover:bg-[rgba(243,239,234,0.12)] border border-[rgba(243,239,234,0.05)] hover:border-[rgba(243,239,234,0.2)] text-[#DFD5C6] hover:text-[#F3EFEA] transition-all backdrop-blur-md shadow-sm active:scale-95 group" 
+              title="Admin Portal"
             >
-              <UserIcon size={14} />
+              <div className="group-hover:rotate-12 transition-transform duration-300">
+                <UserIcon size={13} />
+              </div>
             </a>
           </nav>
         </header>
