@@ -1274,6 +1274,54 @@ export function HomeView({ projects, profile, certificates }: HomeViewProps) {
           </div>
         )}
       </AnimatePresence>
+
+      {/* =================================================================== */}
+      {/* ✦ SEO & ACCESSIBILITY ENGINE (Screen-Reader Only)                   */}
+      {/* =================================================================== */}
+      <div className="sr-only" aria-hidden="false">
+        <h1>Ilyan Khan - Systems &amp; AI Engineer Portfolio</h1>
+        <section>
+          <h2>About Me</h2>
+          <p>{profile?.bio}</p>
+          <p>Email: {profile?.email}</p>
+          <p>Title: {profile?.title}</p>
+        </section>
+        
+        <section>
+          <h2>Engineering Projects &amp; Case Studies</h2>
+          {projects.map(p => (
+            <article key={p.id}>
+              <h3>{p.name}</h3>
+              <p>{p.subtitle}</p>
+              <p>{p.elevator_pitch}</p>
+              <p>Challenge: {p.challenge}</p>
+              <h4>Tech Stack:</h4>
+              <ul>
+                {p.tech_stack?.map((tech, i) => <li key={i}>{tech}</li>)}
+              </ul>
+              <h4>Architecture:</h4>
+              <ul>
+                {p.architecture?.map((arc, i) => <li key={i}>{arc}</li>)}
+              </ul>
+            </article>
+          ))}
+        </section>
+
+        <section>
+          <h2>Certifications &amp; Credentials</h2>
+          {certificates.map(c => (
+            <article key={c.id}>
+              <h3>{c.title}</h3>
+              <p>Issuer: {c.issuer}</p>
+              <p>Description: {c.description}</p>
+              <h4>Skills Acquired:</h4>
+              <ul>
+                {c.skills?.map((skill, i) => <li key={i}>{skill}</li>)}
+              </ul>
+            </article>
+          ))}
+        </section>
+      </div>
     </main>
   );
 }
