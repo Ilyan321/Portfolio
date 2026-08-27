@@ -1293,11 +1293,11 @@ export function HomeView({ projects, profile, certificates }: HomeViewProps) {
             <article key={p.id}>
               <h3>{p.name}</h3>
               <p>{p.subtitle}</p>
-              <p>{p.elevator_pitch}</p>
+              <p>{p.elevatorPitch}</p>
               <p>Challenge: {p.challenge}</p>
               <h4>Tech Stack:</h4>
               <ul>
-                {p.tech_stack?.map((tech, i) => <li key={i}>{tech}</li>)}
+                {p.techStack?.map((tech, i) => <li key={i}>{tech}</li>)}
               </ul>
               <h4>Architecture:</h4>
               <ul>
