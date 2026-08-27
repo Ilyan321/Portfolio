@@ -8,6 +8,22 @@ export const metadata: Metadata = {
   icons: {
     icon: '/favicon.svg',
   },
+  openGraph: {
+    title: 'Ilyan Khan — Systems & AI Engineer',
+    description: 'Production developer portfolio & Generative AI systems architecture showcase for Ilyan Khan.',
+    url: 'https://www.ilyankhan.tech',
+    siteName: 'Ilyan Khan Portfolio',
+    images: [
+      {
+        url: 'https://www.ilyankhan.tech/pp.jpeg',
+        width: 800,
+        height: 600,
+        alt: 'Ilyan Khan - Systems Engineer',
+      },
+    ],
+    locale: 'en_US',
+    type: 'website',
+  },
 };
 
 export default function RootLayout({
