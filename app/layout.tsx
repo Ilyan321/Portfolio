@@ -1,3 +1,4 @@
+import { GoogleAnalytics } from '@next/third-parties/google';
 import './globals.css';
 import type { Metadata } from 'next';
 
@@ -18,6 +19,7 @@ export default function RootLayout({
     <html lang="en" className="dark">
       <body className="bg-[#08090A] text-[#F3F4F6] min-h-screen font-sans antialiased">
         {children}
+        <GoogleAnalytics gaId="G-SYC3BYGN7J" />
       </body>
     </html>
   );
