@@ -182,11 +182,10 @@ export function HomeView({ projects, profile, certificates }: HomeViewProps) {
               onClick={() => {
                 window.dispatchEvent(new CustomEvent('toggle-terminal'));
               }}
-              className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[rgba(243,239,234,0.05)] hover:bg-[rgba(243,239,234,0.12)] border border-[rgba(243,239,234,0.1)] text-[#DFD5C6] hover:text-[#F3EFEA] transition-all font-mono-code text-[11px]"
+              className="hover:text-[#F3EFEA] active:text-white transition-colors uppercase cursor-pointer whitespace-nowrap"
               title="Open Terminal (or press ~)"
             >
-              <span className="text-emerald-400">$_</span>
-              <span className="hidden md:inline">CLI</span>
+              TERMINAL
             </button>
             <a 
               href="/admin" 
