@@ -1,11 +1,9 @@
 import { createAdminClient } from '@/lib/supabase';
-import { cookies } from 'next/headers';
+import { verifyAdminSession } from '@/lib/auth';
 import { NextResponse } from 'next/server';
 
 export async function GET() {
-  const cookieStore = await cookies();
-  const token = cookieStore.get('sb-access-token')?.value;
-  if (!token) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  if (!(await verifyAdminSession())) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
 
   const supabase = createAdminClient();
   const { data, error } = await supabase.from('profile').select('*').limit(1).single();
@@ -14,9 +12,7 @@ export async function GET() {
 }
 
 export async function PATCH(request: Request) {
-  const cookieStore = await cookies();
-  const token = cookieStore.get('sb-access-token')?.value;
-  if (!token) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  if (!(await verifyAdminSession())) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
 
   const body = await request.json();
   const { id, ...updates } = body;

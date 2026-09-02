@@ -272,7 +272,7 @@ export default function AdminDashboard() {
               </div>
               <button onClick={() => {
                 setIsAddingProject(true);
-                setEditingProject({ name: '', subtitle: '', tag: '', category: '', sort_order: projects.length + 1, github_url: '', demo_url: '', hugging_face_url: '', elevator_pitch: '', challenge: '', architecture: [], tech_stack: [], highlights: [], visible: true } as any);
+                setEditingProject({ name: '', subtitle: '', tag: '', category: '', sort_order: projects.length + 1, github_url: '', demo_url: '', hugging_face_url: '', elevator_pitch: '', challenge: '', architecture: [], tech_stack: [], highlights: [], visible: true } as ProjectItem);
               }} className="px-4 py-2 text-sm bg-emerald-500/10 text-emerald-500 border border-emerald-500/20 rounded hover:bg-emerald-500/20 transition-colors">
                 + Add New Project
               </button>
@@ -317,7 +317,7 @@ export default function AdminDashboard() {
               </div>
               <button onClick={() => {
                 setIsAddingCert(true);
-                setEditingCert({ title: '', issuer: '', issue_date: '', tag: '', credential_id: '', image_path: '', sort_order: certificates.length + 1, description: '', skills: [], visible: true } as any);
+                setEditingCert({ title: '', issuer: '', issue_date: '', tag: '', credential_id: '', image_path: '', sort_order: certificates.length + 1, description: '', skills: [], visible: true } as ProjectItem);
               }} className="px-4 py-2 text-sm bg-emerald-500/10 text-emerald-500 border border-emerald-500/20 rounded hover:bg-emerald-500/20 transition-colors">
                 + Add New Certificate
               </button>
@@ -378,9 +378,9 @@ export default function AdminDashboard() {
                 <div key={field}>
                   <label className="block text-xs text-[#78746D] mb-1">{field}</label>
                   {editingProfile ? (
-                    <input type="text" value={(profile as any)[field] || ''} onChange={e => setProfile({...profile, [field]: e.target.value})} className="w-full px-3 py-2 bg-[#1A1918] focus:border-[#DFD5C6] focus:ring-1 focus:ring-[#DFD5C6] transition-all outline-none rounded border border-[rgba(243,239,234,0.1)] text-sm" />
+                    <input type="text" value={(profile as Record<string, any>)[field] || ''} onChange={e => setProfile({...profile, [field]: e.target.value})} className="w-full px-3 py-2 bg-[#1A1918] focus:border-[#DFD5C6] focus:ring-1 focus:ring-[#DFD5C6] transition-all outline-none rounded border border-[rgba(243,239,234,0.1)] text-sm" />
                   ) : (
-                    <div className="text-sm">{(profile as any)[field] || '—'}</div>
+                    <div className="text-sm">{(profile as Record<string, any>)[field] || '—'}</div>
                   )}
                 </div>
               ))}
@@ -408,7 +408,7 @@ export default function AdminDashboard() {
               {['name', 'subtitle', 'tag', 'category', 'sort_order', 'github_url', 'demo_url', 'hugging_face_url'].map(field => (
                 <div key={field}>
                   <label className="block text-xs text-[#78746D] mb-1">{field}</label>
-                  <input type="text" value={(editingProject as any)[field] || ''} onChange={e => setEditingProject({...editingProject, [field]: field === 'sort_order' ? parseInt(e.target.value) || 0 : e.target.value})} className="w-full px-3 py-2 bg-[#1A1918] focus:border-[#DFD5C6] focus:ring-1 focus:ring-[#DFD5C6] transition-all outline-none rounded border border-[rgba(243,239,234,0.1)] text-sm" />
+                  <input type="text" value={editingProject[field as keyof typeof editingProject] || ''} onChange={e => setEditingProject({...editingProject, [field]: field === 'sort_order' ? parseInt(e.target.value) || 0 : e.target.value})} className="w-full px-3 py-2 bg-[#1A1918] focus:border-[#DFD5C6] focus:ring-1 focus:ring-[#DFD5C6] transition-all outline-none rounded border border-[rgba(243,239,234,0.1)] text-sm" />
                 </div>
               ))}
               
@@ -424,12 +424,12 @@ export default function AdminDashboard() {
 
               <div className="col-span-1 sm:col-span-2">
                 <label className="block text-xs text-[#78746D] mb-1">architecture (comma or new-line separated)</label>
-                <textarea rows={3} value={Array.isArray(editingProject.architecture) ? editingProject.architecture.join('\n') : editingProject.architecture} onChange={e => setEditingProject({...editingProject, architecture: e.target.value as any})} className="w-full px-3 py-2 bg-[#1A1918] focus:border-[#DFD5C6] focus:ring-1 focus:ring-[#DFD5C6] transition-all outline-none rounded border border-[rgba(243,239,234,0.1)] text-sm" />
+                <textarea rows={3} value={Array.isArray(editingProject.architecture) ? editingProject.architecture.join('\n') : editingProject.architecture} onChange={e => setEditingProject({...editingProject, architecture: e.target.value})} className="w-full px-3 py-2 bg-[#1A1918] focus:border-[#DFD5C6] focus:ring-1 focus:ring-[#DFD5C6] transition-all outline-none rounded border border-[rgba(243,239,234,0.1)] text-sm" />
               </div>
 
               <div className="col-span-1 sm:col-span-2">
                 <label className="block text-xs text-[#78746D] mb-1">tech_stack (comma or new-line separated)</label>
-                <textarea rows={2} value={Array.isArray(editingProject.tech_stack) ? editingProject.tech_stack.join(', ') : editingProject.tech_stack} onChange={e => setEditingProject({...editingProject, tech_stack: e.target.value as any})} className="w-full px-3 py-2 bg-[#1A1918] focus:border-[#DFD5C6] focus:ring-1 focus:ring-[#DFD5C6] transition-all outline-none rounded border border-[rgba(243,239,234,0.1)] text-sm" />
+                <textarea rows={2} value={Array.isArray(editingProject.tech_stack) ? editingProject.tech_stack.join(', ') : editingProject.tech_stack} onChange={e => setEditingProject({...editingProject, tech_stack: e.target.value})} className="w-full px-3 py-2 bg-[#1A1918] focus:border-[#DFD5C6] focus:ring-1 focus:ring-[#DFD5C6] transition-all outline-none rounded border border-[rgba(243,239,234,0.1)] text-sm" />
               </div>
 
               <div className="col-span-2 flex justify-end gap-2 mt-4">
@@ -451,7 +451,7 @@ export default function AdminDashboard() {
               {['title', 'issuer', 'issue_date', 'tag', 'credential_id', 'image_path', 'sort_order'].map(field => (
                 <div key={field}>
                   <label className="block text-xs text-[#78746D] mb-1">{field}</label>
-                  <input type="text" value={(editingCert as any)[field] || ''} onChange={e => setEditingCert({...editingCert, [field]: field === 'sort_order' ? parseInt(e.target.value) || 0 : e.target.value})} className="w-full px-3 py-2 bg-[#1A1918] focus:border-[#DFD5C6] focus:ring-1 focus:ring-[#DFD5C6] transition-all outline-none rounded border border-[rgba(243,239,234,0.1)] text-sm" />
+                  <input type="text" value={editingCert[field as keyof typeof editingCert] || ''} onChange={e => setEditingCert({...editingCert, [field]: field === 'sort_order' ? parseInt(e.target.value) || 0 : e.target.value})} className="w-full px-3 py-2 bg-[#1A1918] focus:border-[#DFD5C6] focus:ring-1 focus:ring-[#DFD5C6] transition-all outline-none rounded border border-[rgba(243,239,234,0.1)] text-sm" />
                 </div>
               ))}
               
@@ -462,7 +462,7 @@ export default function AdminDashboard() {
 
               <div className="col-span-1 sm:col-span-2">
                 <label className="block text-xs text-[#78746D] mb-1">skills (comma or new-line separated)</label>
-                <textarea rows={2} value={Array.isArray(editingCert.skills) ? editingCert.skills.join(', ') : editingCert.skills} onChange={e => setEditingCert({...editingCert, skills: e.target.value as any})} className="w-full px-3 py-2 bg-[#1A1918] focus:border-[#DFD5C6] focus:ring-1 focus:ring-[#DFD5C6] transition-all outline-none rounded border border-[rgba(243,239,234,0.1)] text-sm" />
+                <textarea rows={2} value={Array.isArray(editingCert.skills) ? editingCert.skills.join(', ') : editingCert.skills} onChange={e => setEditingCert({...editingCert, skills: e.target.value})} className="w-full px-3 py-2 bg-[#1A1918] focus:border-[#DFD5C6] focus:ring-1 focus:ring-[#DFD5C6] transition-all outline-none rounded border border-[rgba(243,239,234,0.1)] text-sm" />
               </div>
 
               <div className="col-span-2 flex justify-end gap-2 mt-4">

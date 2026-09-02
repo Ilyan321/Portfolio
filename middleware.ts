@@ -1,7 +1,8 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
+import { createClient } from '@supabase/supabase-js';
 
-export function middleware(request: NextRequest) {
+export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   // Only protect /admin routes (except login)
@@ -11,6 +12,23 @@ export function middleware(request: NextRequest) {
     if (!token) {
       const loginUrl = new URL('/admin/login', request.url);
       return NextResponse.redirect(loginUrl);
+    }
+
+    // Cryptographically verify the session token
+    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+    const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+    
+    if (supabaseUrl && supabaseKey) {
+      const supabase = createClient(supabaseUrl, supabaseKey);
+      const { data: { user }, error } = await supabase.auth.getUser(token);
+      
+      if (error || !user) {
+        const loginUrl = new URL('/admin/login', request.url);
+        const response = NextResponse.redirect(loginUrl);
+        response.cookies.delete('sb-access-token');
+        response.cookies.delete('sb-refresh-token');
+        return response;
+      }
     }
   }
 
