@@ -273,7 +273,7 @@ export default function AdminDashboard() {
               </div>
               <button onClick={() => {
                 setIsAddingProject(true);
-                setEditingProject({ name: '', subtitle: '', tag: '', category: '', sort_order: projects.length + 1, github_url: '', demo_url: '', hugging_face_url: '', elevator_pitch: '', challenge: '', architecture: [], tech_stack: [], highlights: [], visible: true } as ProjectRow);
+                setEditingProject({ name: '', subtitle: '', tag: '', category: '', sort_order: projects.length + 1, github_url: '', demo_url: '', hugging_face_url: '', elevator_pitch: '', challenge: '', architecture: [], tech_stack: [], highlights: [], visible: true } as unknown as ProjectRow);
               }} className="px-4 py-2 text-sm bg-emerald-500/10 text-emerald-500 border border-emerald-500/20 rounded hover:bg-emerald-500/20 transition-colors">
                 + Add New Project
               </button>
@@ -318,7 +318,7 @@ export default function AdminDashboard() {
               </div>
               <button onClick={() => {
                 setIsAddingCert(true);
-                setEditingCert({ title: '', issuer: '', issue_date: '', tag: '', credential_id: '', image_path: '', sort_order: certificates.length + 1, description: '', skills: [], visible: true } as ProjectRow);
+                setEditingCert({ title: '', issuer: '', issue_date: '', tag: '', credential_id: '', image_path: '', sort_order: certificates.length + 1, description: '', skills: [], visible: true } as unknown as ProjectRow);
               }} className="px-4 py-2 text-sm bg-emerald-500/10 text-emerald-500 border border-emerald-500/20 rounded hover:bg-emerald-500/20 transition-colors">
                 + Add New Certificate
               </button>
