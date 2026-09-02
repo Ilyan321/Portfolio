@@ -1,7 +1,8 @@
+import { Suspense } from 'react';
 import { HomeView } from '../components/home-view';
 import { getVisibleProjects, getProfile, getVisibleCertificates } from '../lib/data';
 
-export const revalidate = 60; // Revalidate data every 60 seconds
+export const revalidate = 60;
 
 export default async function HomePage() {
   const [projects, profile, certificates] = await Promise.all([
@@ -10,5 +11,9 @@ export default async function HomePage() {
     getVisibleCertificates()
   ]);
 
-  return <HomeView projects={projects} profile={profile} certificates={certificates} />;
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-[#1A1918]" />}>
+      <HomeView projects={projects} profile={profile} certificates={certificates} />
+    </Suspense>
+  );
 }

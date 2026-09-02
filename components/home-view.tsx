@@ -1,6 +1,7 @@
 'use client';
 
 import * as React from 'react';
+import { useRouter, usePathname, useSearchParams } from 'next/navigation';
 import { HomeModals } from "./home-modals";
 import { Terminal } from "./terminal";
 import { motion, AnimatePresence } from 'framer-motion';
@@ -28,14 +29,100 @@ interface HomeViewProps {
 }
 
 export function HomeView({ projects, profile, certificates }: HomeViewProps) {
-  const [selectedProject, setSelectedProject] = React.useState<ProjectItem | null>(null);
-  const [selectedCert, setSelectedCert] = React.useState<CertificateItem | null>(null);
-  const [showDirectoryModal, setShowDirectoryModal] = React.useState<boolean>(false);
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+
+  const [_selectedProject, _setSelectedProject] = React.useState<ProjectItem | null>(null);
+  const [_selectedCert, _setSelectedCert] = React.useState<CertificateItem | null>(null);
+  const [_showDirectoryModal, _setShowDirectoryModal] = React.useState<boolean>(false);
   const [directoryTab, setDirectoryTab] = React.useState<'projects' | 'certificates'>('projects');
-  const [showContactModal, setShowContactModal] = React.useState<boolean>(false);
-  const [showAboutModal, setShowAboutModal] = React.useState<boolean>(false);
-  const [showPhilosophyModal, setShowPhilosophyModal] = React.useState<boolean>(false);
-  const [showNetworkModal, setShowNetworkModal] = React.useState<boolean>(false);
+  const [_showContactModal, _setShowContactModal] = React.useState<boolean>(false);
+  const [_showAboutModal, _setShowAboutModal] = React.useState<boolean>(false);
+  const [_showPhilosophyModal, _setShowPhilosophyModal] = React.useState<boolean>(false);
+  const [_showNetworkModal, _setShowNetworkModal] = React.useState<boolean>(false);
+
+  // Sync state from URL
+  React.useEffect(() => {
+    const pId = searchParams.get('project');
+    const cId = searchParams.get('cert');
+    const mod = searchParams.get('modal');
+
+    if (pId) {
+      const found = projects.find(p => p.id === pId);
+      _setSelectedProject(found || null);
+    } else {
+      _setSelectedProject(null);
+    }
+
+    if (cId) {
+      const found = certificates.find(c => c.id === cId);
+      _setSelectedCert(found || null);
+    } else {
+      _setSelectedCert(null);
+    }
+
+    _setShowDirectoryModal(mod === 'directory');
+    _setShowContactModal(mod === 'contact');
+    _setShowAboutModal(mod === 'about');
+    _setShowPhilosophyModal(mod === 'philosophy');
+    _setShowNetworkModal(mod === 'network');
+  }, [searchParams, projects, certificates]);
+
+  const updateUrl = (params: Record<string, string | null>) => {
+    const current = new URLSearchParams(Array.from(searchParams.entries()));
+    Object.entries(params).forEach(([key, value]) => {
+      if (value === null) current.delete(key);
+      else current.set(key, value);
+    });
+    const search = current.toString();
+    const query = search ? `?${search}` : '';
+    router.push(`${pathname}${query}`, { scroll: false });
+  };
+
+  const setSelectedProject = (p: ProjectItem | null) => {
+    _setSelectedProject(p);
+    updateUrl({ project: p ? p.id : null, modal: null, cert: null });
+  };
+
+  const setSelectedCert = (c: CertificateItem | null) => {
+    _setSelectedCert(c);
+    updateUrl({ cert: c ? c.id : null, modal: null, project: null });
+  };
+
+  const setShowDirectoryModal = (b: boolean) => {
+    _setShowDirectoryModal(b);
+    updateUrl({ modal: b ? 'directory' : null });
+  };
+
+  const setShowContactModal = (b: boolean) => {
+    _setShowContactModal(b);
+    updateUrl({ modal: b ? 'contact' : null });
+  };
+
+  const setShowAboutModal = (b: boolean) => {
+    _setShowAboutModal(b);
+    updateUrl({ modal: b ? 'about' : null });
+  };
+
+  const setShowPhilosophyModal = (b: boolean) => {
+    _setShowPhilosophyModal(b);
+    updateUrl({ modal: b ? 'philosophy' : null });
+  };
+
+  const setShowNetworkModal = (b: boolean) => {
+    _setShowNetworkModal(b);
+    updateUrl({ modal: b ? 'network' : null });
+  };
+
+  // We alias the state back to original names so JSX doesn't break
+  const selectedProject = _selectedProject;
+  const selectedCert = _selectedCert;
+  const showDirectoryModal = _showDirectoryModal;
+  const showContactModal = _showContactModal;
+  const showAboutModal = _showAboutModal;
+  const showPhilosophyModal = _showPhilosophyModal;
+  const showNetworkModal = _showNetworkModal;
 
   return (
     <main className="min-h-screen w-full lg:h-screen lg:max-h-screen bg-[#1A1918] p-2.5 sm:p-4 lg:p-5 flex items-center justify-center overflow-y-auto lg:overflow-hidden">
