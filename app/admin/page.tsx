@@ -318,7 +318,7 @@ export default function AdminDashboard() {
               </div>
               <button onClick={() => {
                 setIsAddingCert(true);
-                setEditingCert({ title: '', issuer: '', issue_date: '', tag: '', credential_id: '', image_path: '', sort_order: certificates.length + 1, description: '', skills: [], visible: true } as unknown as ProjectRow);
+                setEditingCert({ title: '', issuer: '', issue_date: '', tag: '', credential_id: '', image_path: '', sort_order: certificates.length + 1, description: '', skills: [], visible: true } as unknown as unknown as CertificateRow);
               }} className="px-4 py-2 text-sm bg-emerald-500/10 text-emerald-500 border border-emerald-500/20 rounded hover:bg-emerald-500/20 transition-colors">
                 + Add New Certificate
               </button>
