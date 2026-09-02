@@ -39,6 +39,48 @@ export function HomeModals({
   showPhilosophyModal, setShowPhilosophyModal,
   showNetworkModal, setShowNetworkModal
 }: HomeModalsProps) {
+
+  const [sqlQuery, setSqlQuery] = React.useState("SELECT * FROM users;");
+  const [astResult, setAstResult] = React.useState<{status: 'idle' | 'safe' | 'danger', message: string}>({status: 'idle', message: 'Ready to parse.'});
+  const [copiedEmail, setCopiedEmail] = React.useState(false);
+  const [copiedPhone, setCopiedPhone] = React.useState(false);
+  const [projectFilter, setProjectFilter] = React.useState<'All' | 'AI/ML' | 'Systems & Backend' | 'Full Stack'>('All');
+
+
+  const filteredProjects = projects.filter(p => {
+    if (projectFilter === 'All') return true;
+    if (projectFilter === 'AI/ML') return p.tag.includes('AI') || p.tag.includes('Machine Learning') || p.tag.includes('NLP') || p.category.includes('AI') || p.category.includes('ML');
+    if (projectFilter === 'Systems & Backend') return p.tag.includes('System') || p.tag.includes('C++') || p.category.includes('Memory') || p.category.includes('Backend');
+    if (projectFilter === 'Full Stack') return p.tag.includes('Full-Stack') || p.tag.includes('Frontend') || p.tag.includes('Web');
+    return true;
+  });
+
+  const handleCheckSQL = (query: string) => {
+    setSqlQuery(query);
+    if (!query.trim()) {
+      setAstResult({status: 'idle', message: 'Ready to parse.'});
+      return;
+    }
+    const upper = query.toUpperCase();
+    if (upper.includes('DROP') || upper.includes('DELETE') || upper.includes('UPDATE') || upper.includes('INSERT') || upper.includes('ALTER')) {
+      setAstResult({status: 'danger', message: 'AST Parser Blocked: Mutation operation detected.'});
+    } else if (upper.includes('SELECT')) {
+      setAstResult({status: 'safe', message: 'AST Parser Allowed: Read-only query verified.'});
+    } else {
+      setAstResult({status: 'idle', message: 'Unknown query type.'});
+    }
+  }
+
+  const handleCopy = (text: string, type: 'email' | 'phone') => {
+    navigator.clipboard.writeText(text);
+    if (type === 'email') {
+      setCopiedEmail(true);
+      setTimeout(() => setCopiedEmail(false), 2000);
+    } else {
+      setCopiedPhone(true);
+      setTimeout(() => setCopiedPhone(false), 2000);
+    }
+  }
   return (
     <>
       {/* =================================================================== */}
@@ -125,13 +167,13 @@ export function HomeModals({
               {/* Tab 1: Full Projects List */}
               {directoryTab === 'projects' && (
                 <div className="space-y-2.5">
-                  {projects.length === 0 ? (
+                  {filteredProjects.length === 0 ? (
                     <div className="p-8 text-center flex flex-col items-center justify-center gap-2 border border-dashed border-[#78746D]/30 rounded-xl bg-[#DFD5C6]/50">
                       <span className="text-sm font-mono-code text-[#78746D] tracking-widest uppercase">No Projects Found</span>
                       <span className="text-xs font-sans-clean text-[#78746D]">There are currently no visible projects in the database.</span>
                     </div>
                   ) : (
-                    projects.map((proj) => (
+                    filteredProjects.map((proj) => (
                     <div
                       key={proj.id}
                       onClick={() => setSelectedProject(proj)}
@@ -756,23 +798,25 @@ export function HomeModals({
               </div>
 
               <div className="space-y-2.5 font-mono-code text-xs">
-                <a
-                  href={`mailto:${profile?.email ?? 'ilyaankhan342@gmail.com'}`}
-                  className="flex items-center justify-between p-3.5 rounded-xl bg-[#262523] border border-white/10 text-[#F3EFEA] hover:border-emerald-400 active:bg-[#1f1e1c] transition-colors"
+                <button
+                  onClick={() => handleCopy(profile?.email ?? 'ilyaankhan342@gmail.com', 'email')}
+                  className="w-full flex items-center justify-between p-3.5 rounded-xl bg-[#262523] border border-white/10 text-[#F3EFEA] hover:border-emerald-400 active:bg-[#1f1e1c] transition-all cursor-pointer relative overflow-hidden"
                 >
                   <span className="text-[#A39E95]">Email:</span>
-                  <span className="text-emerald-400 font-semibold truncate pl-2">{profile?.email ?? 'ilyaankhan342@gmail.com'}</span>
-                </a>
+                  <span className="text-emerald-400 font-semibold truncate pl-2">
+                    {copiedEmail ? 'Copied to clipboard!' : (profile?.email ?? 'ilyaankhan342@gmail.com')}
+                  </span>
+                </button>
 
-                <a
-                  href="https://wa.me/923213379342"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-between p-3.5 rounded-xl bg-[#262523] border border-white/10 text-[#F3EFEA] hover:border-cyan-400 active:bg-[#1f1e1c] transition-colors"
+                <button
+                  onClick={() => handleCopy('+92 321 3379342', 'phone')}
+                  className="w-full flex items-center justify-between p-3.5 rounded-xl bg-[#262523] border border-white/10 text-[#F3EFEA] hover:border-cyan-400 active:bg-[#1f1e1c] transition-all cursor-pointer"
                 >
                   <span className="text-[#A39E95]">WhatsApp:</span>
-                  <span className="text-cyan-400 font-semibold">+92 321 3379342</span>
-                </a>
+                  <span className="text-cyan-400 font-semibold">
+                    {copiedPhone ? 'Copied to clipboard!' : '+92 321 3379342'}
+                  </span>
+                </button>
 
                 <a
                   href="/CV.pdf"

@@ -55,6 +55,7 @@ export function HomeView({ projects, profile, certificates }: HomeViewProps) {
               title="Admin Portal"
             >
               <UserIcon size={13} />
+      <Terminal projects={projects} certificates={certificates} />
             </a>
           </div>
 
