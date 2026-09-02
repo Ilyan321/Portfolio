@@ -49,9 +49,9 @@ export function HomeModals({
 
   const filteredProjects = projects.filter(p => {
     if (projectFilter === 'All') return true;
-    if (projectFilter === 'AI/ML') return p.tag.includes('AI') || p.tag.includes('Machine Learning') || p.tag.includes('NLP') || p.category.includes('AI') || p.category.includes('ML');
-    if (projectFilter === 'Systems & Backend') return p.tag.includes('System') || p.tag.includes('C++') || p.category.includes('Memory') || p.category.includes('Backend');
-    if (projectFilter === 'Full Stack') return p.tag.includes('Full-Stack') || p.tag.includes('Frontend') || p.tag.includes('Web');
+    if (projectFilter === 'AI/ML') return (p.tag || '').includes('AI') || (p.tag || '').includes('Machine Learning') || (p.tag || '').includes('NLP') || (p.category || '').includes('AI') || (p.category || '').includes('ML');
+    if (projectFilter === 'Systems & Backend') return (p.tag || '').includes('System') || (p.tag || '').includes('C++') || (p.category || '').includes('Memory') || (p.category || '').includes('Backend');
+    if (projectFilter === 'Full Stack') return (p.tag || '').includes('Full-Stack') || (p.tag || '').includes('Frontend') || (p.tag || '').includes('Web');
     return true;
   });
 

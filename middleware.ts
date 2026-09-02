@@ -29,6 +29,10 @@ export async function middleware(request: NextRequest) {
         response.cookies.delete('sb-refresh-token');
         return response;
       }
+    } else {
+      // Fail closed if environment variables are missing
+      const loginUrl = new URL('/admin/login', request.url);
+      return NextResponse.redirect(loginUrl);
     }
   }
 
