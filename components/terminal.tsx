@@ -22,13 +22,25 @@ export function Terminal({ projects, certificates }: TerminalProps) {
 
   React.useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === '`' || e.key === '~') {
+      // Ignore if user is typing inside an input or textarea (unless terminal itself is open)
+      const target = e.target as HTMLElement;
+      if (target && (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA') && !target.closest('#cli-terminal-window')) {
+        return;
+      }
+
+      if (e.key === '`' || e.key === '~' || e.code === 'Backquote') {
         e.preventDefault();
         setIsOpen(prev => !prev);
       }
     };
+    const handleCustomToggle = () => setIsOpen(prev => !prev);
+
     window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
+    window.addEventListener('toggle-terminal', handleCustomToggle);
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      window.removeEventListener('toggle-terminal', handleCustomToggle);
+    };
   }, []);
 
   React.useEffect(() => {
@@ -84,6 +96,7 @@ export function Terminal({ projects, certificates }: TerminalProps) {
     <AnimatePresence>
       {isOpen && (
         <motion.div
+          id="cli-terminal-window"
           initial={{ opacity: 0, y: 50, scale: 0.95 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           exit={{ opacity: 0, y: 50, scale: 0.95 }}

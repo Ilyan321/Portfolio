@@ -143,7 +143,6 @@ export function HomeView({ projects, profile, certificates }: HomeViewProps) {
               title="Admin Portal"
             >
               <UserIcon size={13} />
-      <Terminal projects={projects} certificates={certificates} />
             </a>
           </div>
 
@@ -178,6 +177,16 @@ export function HomeView({ projects, profile, certificates }: HomeViewProps) {
               className="hover:text-[#F3EFEA] active:text-white transition-colors uppercase cursor-pointer whitespace-nowrap"
             >
               CONTACT
+            </button>
+            <button
+              onClick={() => {
+                window.dispatchEvent(new CustomEvent('toggle-terminal'));
+              }}
+              className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[rgba(243,239,234,0.05)] hover:bg-[rgba(243,239,234,0.12)] border border-[rgba(243,239,234,0.1)] text-[#DFD5C6] hover:text-[#F3EFEA] transition-all font-mono-code text-[11px]"
+              title="Open Terminal (or press ~)"
+            >
+              <span className="text-emerald-400">$_</span>
+              <span className="hidden md:inline">CLI</span>
             </button>
             <a 
               href="/admin" 
@@ -503,6 +512,7 @@ export function HomeView({ projects, profile, certificates }: HomeViewProps) {
         showNetworkModal={showNetworkModal}
         setShowNetworkModal={setShowNetworkModal}
       />
+      <Terminal projects={projects} certificates={certificates} />
       {/* =================================================================== */}
       {/* ✦ SEO & ACCESSIBILITY ENGINE (Screen-Reader Only)                   */}
       {/* =================================================================== */}
