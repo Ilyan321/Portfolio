@@ -62,7 +62,18 @@ export function HomeView({ projects, profile, certificates }: HomeViewProps) {
       _setSelectedCert(null);
     }
 
-    _setShowDirectoryModal(mod === 'directory');
+    if (mod === 'projects') {
+      _setShowDirectoryModal(true);
+      setDirectoryTab('projects');
+    } else if (mod === 'certificates' || mod === 'certs') {
+      _setShowDirectoryModal(true);
+      setDirectoryTab('certificates');
+    } else if (mod === 'directory') {
+      _setShowDirectoryModal(true);
+    } else {
+      _setShowDirectoryModal(false);
+    }
+
     _setShowContactModal(mod === 'contact');
     _setShowAboutModal(mod === 'about');
     _setShowPhilosophyModal(mod === 'philosophy');
@@ -90,9 +101,22 @@ export function HomeView({ projects, profile, certificates }: HomeViewProps) {
     updateUrl({ cert: c ? c.id : null, modal: null, project: null });
   };
 
+  const handleSetDirectoryTab = (tab: 'projects' | 'certificates') => {
+    setDirectoryTab(tab);
+    if (_showDirectoryModal) {
+      updateUrl({ modal: tab });
+    }
+  };
+
+  const openDirectoryWithTab = (tab: 'projects' | 'certificates') => {
+    setDirectoryTab(tab);
+    _setShowDirectoryModal(true);
+    updateUrl({ modal: tab });
+  };
+
   const setShowDirectoryModal = (b: boolean) => {
     _setShowDirectoryModal(b);
-    updateUrl({ modal: b ? 'directory' : null });
+    updateUrl({ modal: b ? directoryTab : null });
   };
 
   const setShowContactModal = (b: boolean) => {
@@ -154,19 +178,13 @@ export function HomeView({ projects, profile, certificates }: HomeViewProps) {
               ABOUT
             </button>
             <button
-              onClick={() => {
-                setDirectoryTab('projects');
-                setShowDirectoryModal(true);
-              }}
+              onClick={() => openDirectoryWithTab('projects')}
               className="hover:text-[#F3EFEA] active:text-white transition-colors uppercase cursor-pointer whitespace-nowrap"
             >
               PROJECTS
             </button>
             <button
-              onClick={() => {
-                setDirectoryTab('certificates');
-                setShowDirectoryModal(true);
-              }}
+              onClick={() => openDirectoryWithTab('certificates')}
               className="hover:text-[#F3EFEA] active:text-white transition-colors uppercase cursor-pointer whitespace-nowrap"
             >
               <span className="hidden sm:inline">CERTIFICATIONS</span>
@@ -501,7 +519,7 @@ export function HomeView({ projects, profile, certificates }: HomeViewProps) {
         showDirectoryModal={showDirectoryModal}
         setShowDirectoryModal={setShowDirectoryModal}
         directoryTab={directoryTab}
-        setDirectoryTab={setDirectoryTab}
+        setDirectoryTab={handleSetDirectoryTab}
         showContactModal={showContactModal}
         setShowContactModal={setShowContactModal}
         showAboutModal={showAboutModal}
