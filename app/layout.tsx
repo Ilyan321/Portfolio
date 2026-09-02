@@ -25,6 +25,7 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   title: 'Ilyan Khan — Systems & AI Engineer',
   description: 'Production developer portfolio & Generative AI systems architecture showcase for Ilyan Khan.',
+  applicationName: 'Ilyan Khan',
   icons: {
     icon: '/favicon.svg',
   },
@@ -32,7 +33,7 @@ export const metadata: Metadata = {
     title: 'Ilyan Khan — Systems & AI Engineer',
     description: 'Production developer portfolio & Generative AI systems architecture showcase for Ilyan Khan.',
     url: 'https://www.ilyankhan.tech',
-    siteName: 'Ilyan Khan Portfolio',
+    siteName: 'Ilyan Khan',
     images: [
       {
         url: 'https://www.ilyankhan.tech/pp.jpeg',
@@ -51,8 +52,22 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: 'Ilyan Khan',
+    alternateName: ['Ilyan Khan Portfolio', 'ilyankhan.tech'],
+    url: 'https://www.ilyankhan.tech',
+  };
+
   return (
     <html lang="en" className="dark">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body className={`${instrumentSerif.variable} ${plusJakarta.variable} ${jetbrainsMono.variable} bg-[var(--bg-canvas)] text-[var(--text-dark)] min-h-screen font-sans-clean antialiased`}>
         {children}
         <GoogleAnalytics gaId="G-SYC3BYGN7J" />
