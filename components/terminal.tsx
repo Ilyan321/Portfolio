@@ -8,13 +8,14 @@ import type { ProjectItem, CertificateItem } from '../lib/types';
 interface TerminalProps {
   projects: ProjectItem[];
   certificates: CertificateItem[];
+  onOpenContact?: () => void;
 }
 
-export function Terminal({ projects, certificates }: TerminalProps) {
+export function Terminal({ projects, certificates, onOpenContact }: TerminalProps) {
   const [isOpen, setIsOpen] = React.useState(false);
   const [history, setHistory] = React.useState<{type: 'in' | 'out', text: string}[]>([
     { type: 'out', text: 'IlyanOS v1.0.0' },
-    { type: 'out', text: 'Type "help" for a list of commands.' }
+    { type: 'out', text: 'Type "help" for a list of commands. Press ESC to exit.' }
   ]);
   const [input, setInput] = React.useState('');
   const inputRef = React.useRef<HTMLInputElement>(null);
@@ -22,6 +23,12 @@ export function Terminal({ projects, certificates }: TerminalProps) {
 
   React.useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
+      // If ESC is pressed, always close the terminal if it's open
+      if (e.key === 'Escape') {
+        setIsOpen(false);
+        return;
+      }
+
       // Ignore if user is typing inside an input or textarea (unless terminal itself is open)
       const target = e.target as HTMLElement;
       if (target && (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA') && !target.closest('#cli-terminal-window')) {
@@ -70,7 +77,13 @@ export function Terminal({ projects, certificates }: TerminalProps) {
         output = 'You are a highly esteemed engineering manager / recruiter evaluating Ilyan Khan for a role.';
         break;
       case 'hire':
-        output = 'Great choice. Initiating contact sequence... (Press ESC to close and go to Contact section)';
+        output = 'Initiating contact sequence... Opening contact modal.';
+        if (onOpenContact) {
+          setTimeout(() => {
+            setIsOpen(false);
+            onOpenContact();
+          }, 800);
+        }
         break;
       case 'admin':
         output = 'Redirecting to secure portal...';

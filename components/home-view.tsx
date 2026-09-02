@@ -511,7 +511,11 @@ export function HomeView({ projects, profile, certificates }: HomeViewProps) {
         showNetworkModal={showNetworkModal}
         setShowNetworkModal={setShowNetworkModal}
       />
-      <Terminal projects={projects} certificates={certificates} />
+      <Terminal 
+        projects={projects} 
+        certificates={certificates} 
+        onOpenContact={() => setShowContactModal(true)}
+      />
       {/* =================================================================== */}
       {/* ✦ SEO & ACCESSIBILITY ENGINE (Screen-Reader Only)                   */}
       {/* =================================================================== */}
