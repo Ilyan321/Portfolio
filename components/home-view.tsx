@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import { HomeModals } from "./home-modals";
+import { Terminal } from "./terminal";
 import { motion, AnimatePresence } from 'framer-motion';
 import type { ProjectItem, ProfileData, CertificateItem } from '../lib/types';
 
