@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
+import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import type { ProjectRow, ProfileRow, CertificateRow } from '@/lib/types';
 
@@ -326,7 +327,7 @@ export default function AdminDashboard() {
               <div key={c.id} className={`p-4 rounded-xl border ${c.visible ? 'border-[rgba(243,239,234,0.1)] bg-[#1A1918]' : 'border-[rgba(243,239,234,0.1)]/50 bg-[#1A1918]/30'} flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4`}>
                 <div className="flex items-center gap-4">
                   {c.image_path ? (
-                    <img src={c.image_path} alt={c.title} className="w-12 h-12 rounded object-cover border border-[rgba(243,239,234,0.1)]" />
+                    <Image src={c.image_path} alt={c.title} width={48} height={48} className="w-12 h-12 rounded object-cover border border-[rgba(243,239,234,0.1)]" />
                   ) : (
                     <div className="w-12 h-12 rounded border border-[rgba(243,239,234,0.1)] bg-[#1A1918] focus:border-[#DFD5C6] focus:ring-1 focus:ring-[#DFD5C6] transition-all outline-none/50 flex items-center justify-center text-[8px] text-[#78746D] font-mono-code text-center leading-tight">NO IMG</div>
                   )}

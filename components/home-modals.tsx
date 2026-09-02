@@ -1,6 +1,7 @@
 
 'use client';
 import * as React from 'react';
+import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import type { ProjectItem, ProfileData, CertificateItem } from '../lib/types';
 import { ExternalLinkIcon, GithubIcon, LinkedinIcon, FileTextIcon, XIcon } from './ui/icons';
@@ -263,7 +264,7 @@ export function HomeModals({
               <div className="w-full rounded-xl overflow-hidden border border-[rgba(26,25,24,0.15)] bg-[#1A1918]/5 p-1 sm:p-2 shadow-inner">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 {selectedCert.imagePath ? (
-                  <img
+                  <Image width={800} height={600}
                     src={selectedCert.imagePath}
                     alt={selectedCert.title}
                     className="w-full h-auto max-h-[65vh] object-contain rounded-lg shadow-md mx-auto block"

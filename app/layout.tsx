@@ -1,6 +1,26 @@
 import { GoogleAnalytics } from '@next/third-parties/google';
+import { Instrument_Serif, Plus_Jakarta_Sans, JetBrains_Mono } from 'next/font/google';
 import './globals.css';
 import type { Metadata } from 'next';
+
+const instrumentSerif = Instrument_Serif({ 
+  weight: ['400'],
+  style: ['normal', 'italic'],
+  subsets: ['latin'],
+  variable: '--font-instrument'
+});
+
+const plusJakarta = Plus_Jakarta_Sans({ 
+  weight: ['300', '400', '500', '600', '700'],
+  subsets: ['latin'],
+  variable: '--font-jakarta'
+});
+
+const jetbrainsMono = JetBrains_Mono({ 
+  weight: ['400', '500'],
+  subsets: ['latin'],
+  variable: '--font-jetbrains'
+});
 
 export const metadata: Metadata = {
   title: 'Ilyan Khan — Systems & AI Engineer',
@@ -33,7 +53,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="dark">
-      <body className="bg-[#08090A] text-[#F3F4F6] min-h-screen font-sans antialiased">
+      <body className={`${instrumentSerif.variable} ${plusJakarta.variable} ${jetbrainsMono.variable} bg-[var(--bg-canvas)] text-[var(--text-dark)] min-h-screen font-sans-clean antialiased`}>
         {children}
         <GoogleAnalytics gaId="G-SYC3BYGN7J" />
       </body>
