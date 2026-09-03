@@ -3,6 +3,21 @@ import type { NextRequest } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
 
 export async function middleware(request: NextRequest) {
+  const hostname = request.headers.get('host') || '';
+
+  // Intercept aegis.ilyankhan.tech
+  if (hostname.includes('aegis.ilyankhan.tech')) {
+    const userAgent = (request.headers.get('user-agent') || '').toLowerCase();
+    if (userAgent.includes('curl') || userAgent.includes('wget')) {
+      return NextResponse.redirect('https://raw.githubusercontent.com/Ilyan321/aegis-cli/main/install.sh', 302);
+    }
+    // For browsers: return 404 - DO NOT SHOW PORTFOLIO
+    return new NextResponse('404 Not Found', {
+      status: 404,
+      headers: { 'content-type': 'text/plain' },
+    });
+  }
+
   const { pathname } = request.nextUrl;
 
   // Only protect /admin routes (except login)
@@ -40,5 +55,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/admin/:path*'],
+  matcher: ['/((?!_next/static|_next/image|favicon.ico).*)'],
 };
