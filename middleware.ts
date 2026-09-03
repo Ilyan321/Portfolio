@@ -8,10 +8,19 @@ export async function middleware(request: NextRequest) {
   // Intercept aegis.ilyankhan.tech
   if (hostname.includes('aegis.ilyankhan.tech')) {
     const userAgent = (request.headers.get('user-agent') || '').toLowerCase();
-    if (userAgent.includes('curl') || userAgent.includes('wget')) {
+    const { pathname } = request.nextUrl;
+
+    // 1. Windows PowerShell installer request
+    if (pathname.includes('install.ps1') || userAgent.includes('powershell')) {
+      return NextResponse.redirect('https://raw.githubusercontent.com/Ilyan321/aegis-cli/main/install.ps1', 302);
+    }
+
+    // 2. Linux / macOS curl installer request
+    if (userAgent.includes('curl') || userAgent.includes('wget') || pathname.includes('install.sh')) {
       return NextResponse.redirect('https://raw.githubusercontent.com/Ilyan321/aegis-cli/main/install.sh', 302);
     }
-    // For browsers: return 404 - DO NOT SHOW PORTFOLIO
+
+    // 3. For browsers: return 404 - DO NOT SHOW PORTFOLIO
     return new NextResponse('404 Not Found', {
       status: 404,
       headers: { 'content-type': 'text/plain' },
